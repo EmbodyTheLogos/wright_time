@@ -24,9 +24,9 @@ class AircraftComponent extends React.Component {
                     <thead>
 
                     <tr>
-                        <td> User Id</td>
-                        <td> User Manufacturer</td>
-                        <td> User Model</td>
+                        <td> Aircraft Id</td>
+                        <td> Aircraft Manufacturer</td>
+                        <td> Aircraft Model</td>
                     </tr>
 
                     </thead>
