@@ -32,8 +32,8 @@ class AircraftComponent extends React.Component {
                         <td> Year</td>
                         <td> Maintenance Day</td>
                         <td> Min. Training Duration</td>
-                        <td></td>
-                        <td></td>
+                        <td> </td>
+                        <td> </td>
                     </tr>
 
                     </thead>
@@ -81,5 +81,5 @@ class AircraftComponent extends React.Component {
         )
     }
 }
-
+// https://stackoverflow.com/questions/45598854/passing-values-through-react-router-v4-link
 export default AircraftComponent
