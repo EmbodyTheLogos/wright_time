@@ -31,27 +31,33 @@ class AddAircraftComponent extends React.Component {
             <div>
                 <form>
                     <label for="manufacturer">Manufacturer:</label>
-                    <input type="text" id="manufacturer" name="manufacturer" onChange={this.changeHandler}/>
+                    <input type="text" id="manufacturer" name="manufacturer"
+                           value={this.state.manufacturer} onChange={this.changeHandler}/>
                     <br/>
 
                     <label For="name">Name:</label>
-                    <input type="text" id="name" name="name" onChange={this.changeHandler}/>
+                    <input type="text" id="name" name="name"
+                           value={this.state.name} onChange={this.changeHandler}/>
                     <br/>
 
                     <label for="model">Model:</label>
-                    <input type="text" id="model" name="model" onChange={this.changeHandler}/>
+                    <input type="text" id="model" name="model"
+                           value={this.state.model} onChange={this.changeHandler}/>
                     <br/>
 
                     <label for="year">Year:</label>
-                    <input type="text" id="year" name="year" onChange={this.changeHandler}/>
+                    <input type="text" id="year" name="year"
+                           value={this.state.year} onChange={this.changeHandler}/>
                     <br/>
 
                     <label for="maintenance">Maintenance Day:</label>
-                    <input type="text" id="maintenance" name="maintenance" onChange={this.changeHandler}/>
+                    <input type="text" id="maintenance" name="maintenance"
+                           value={this.state.maintenance} onChange={this.changeHandler}/>
                     <br/>
 
                     <label htmlFor="min_training">Min. Training Duration:</label>
-                    <input type="text" id="min_training" name="min_training" onChange={this.changeHandler}/>
+                    <input type="text" id="min_training" name="min_training"
+                           value={this.state.min_training} onChange={this.changeHandler}/>
                     <br/>
 
                     <input type="submit" value="Submit" onClick={this.submitHandler}/>
