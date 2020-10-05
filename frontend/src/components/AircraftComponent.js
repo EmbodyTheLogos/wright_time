@@ -25,15 +25,15 @@ class AircraftComponent extends React.Component {
                     <thead>
 
                     <tr>
-                        <td> Aircraft Id</td>
-                        <td> Aircraft Manufacturer</td>
-                        <td> Aircraft Name</td>
-                        <td> Aircraft Model</td>
-                        <td> Aircraft Year</td>
-                        <td> Aircraft Maintenance Day</td>
-                        <td> Aircraft Min. Training Duration</td>
-                        <td> Buttons</td>
-                        <td> Buttons</td>
+                        <td> ID Number</td>
+                        <td> Manufacturer</td>
+                        <td> Name</td>
+                        <td> Model</td>
+                        <td> Year</td>
+                        <td> Maintenance Day</td>
+                        <td> Min. Training Duration</td>
+                        <td> </td>
+                        <td> </td>
                     </tr>
 
                     </thead>
@@ -49,20 +49,27 @@ class AircraftComponent extends React.Component {
                                     <td> {aircraft.year}</td>
                                     <td> {aircraft.maintenance_day}</td>
                                     <td> {aircraft.minimum_training_duration}</td>
+                                    <td>
+                                        <Link to="/aircraft/add">
+                                            <button type="button">
+                                                Edit
+                                            </button>
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <Link to="/aircraft/add">
+                                            <button type="button">
+                                                Delete
+                                            </button>
+                                        </Link>
+                                    </td>
                                 </tr>
                         )
                     }
                     </tbody>
                 </table>
 
-                <Link to="/aircraft/add">
-                    <button type="button">
-                        Edit Aircraft
-                    </button>
-                </Link>
-
                 <br/>
-
                 <Link to="/aircraft/add">
                     <button type="button">
                         Add Aircraft
@@ -74,5 +81,5 @@ class AircraftComponent extends React.Component {
         )
     }
 }
-
+// https://stackoverflow.com/questions/45598854/passing-values-through-react-router-v4-link
 export default AircraftComponent
