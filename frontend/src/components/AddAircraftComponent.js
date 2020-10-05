@@ -21,6 +21,9 @@ class AddAircraftComponent extends React.Component {
         let aircraft = {manufacturer: this.state.manufacturer, name: this.state.name, model: this.state.model,
             year: this.state.year, maintenance: this.state.maintenance, min_training: this.state.min_training};
         console.log(JSON.stringify(aircraft));
+        AircraftService.postAircraft(aircraft).then(res => {
+            this.props.history.push('/aircraft')
+        })
     }
 
     render (){
