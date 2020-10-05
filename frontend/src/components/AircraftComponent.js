@@ -1,5 +1,6 @@
 import React from 'react';
 import AircraftService from '../services/AircraftService';
+import {Link} from "react-router-dom";
 
 class AircraftComponent extends React.Component {
 
@@ -43,6 +44,8 @@ class AircraftComponent extends React.Component {
                     }
                     </tbody>
                 </table>
+
+                <Link to="/aircraft/add">Add Aircraft</Link>
 
             </div>
 
