@@ -28,23 +28,31 @@ public class AircraftController {
     }
 
     @GetMapping("/{id}")
-    public Aircraft getOneAircraft(Integer id)
+    public Aircraft getOneAircraft(@PathVariable int id)
     {
        return aircraftRepository.findById(id).get();
     }
 
 
     @PutMapping("/{id}")
-    public void updateAircraft(Aircraft aircraft)
-    {
-        aircraftRepository.save(aircraft);
+    public void updateAircraft(@PathVariable int id, @RequestBody Aircraft aircraft) {
+        aircraftRepository.findById(id).ifPresentOrElse(toUpdate -> {
+            toUpdate.setManufacturer(aircraft.getManufacturer());
+            toUpdate.setName(aircraft.getName());
+            toUpdate.setModel(aircraft.getModel());
+            toUpdate.setYear(aircraft.getYear());
+            toUpdate.setMaintenance_day(aircraft.getMaintenance_day());
+            toUpdate.setMinimum_training_duration(aircraft.getMinimum_training_duration());
+        }, () -> {
+            aircraft.setAircraftId(id);
+            aircraftRepository.save(aircraft);
+        });
     }
 
 
     @DeleteMapping("/{id}")
-    public void deleteAircraft(Integer id)
-    {
-        aircraftRepository.delete(getOneAircraft(id));
+    public void deleteAircraft(@PathVariable int id) {
+        aircraftRepository.deleteById(id);
     }
 
 }
