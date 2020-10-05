@@ -41,7 +41,6 @@ class AircraftComponent extends React.Component {
                                 </tr>
                         )
                     }
-
                     </tbody>
                 </table>
 
