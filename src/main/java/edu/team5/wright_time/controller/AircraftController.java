@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AircraftController {
     private AircraftRepository aircraftRepository;
+//    private Aircraft aircraft;
 
     @Autowired
     public AircraftController(AircraftRepository aircraftRepository) {
@@ -33,6 +34,11 @@ public class AircraftController {
        return aircraftRepository.findById(id).get();
     }
 
+//    @GetMapping("api/aircraft/{id}")
+//    public Aircraft getOneAircraft(Integer id)
+//    {
+//        return aircraftRepository.findById(id).get();
+//    }
 
     @PutMapping("/{id}")
     public void updateAircraft(@PathVariable int id, @RequestBody Aircraft aircraft) {
@@ -49,10 +55,23 @@ public class AircraftController {
         });
     }
 
+//    @PostMapping("api/aircraft/{id}")
+//    public void updateAircraft(Aircraft aircraft)
+//    {
+//        aircraftRepository.save(aircraft);
+//    }
+
 
     @DeleteMapping("/{id}")
     public void deleteAircraft(@PathVariable int id) {
         aircraftRepository.deleteById(id);
     }
 
+//    @PostMapping("api/aircraft/{id}")
+//    public void deleteAircraft(Integer id)
+//    {
+//        aircraftRepository.delete(getOneAircraft(id));
+//    }
+
 }
+
