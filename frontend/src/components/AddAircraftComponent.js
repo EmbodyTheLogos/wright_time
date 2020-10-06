@@ -7,7 +7,7 @@ class AddAircraftComponent extends React.Component {
     constructor(props){
         super(props)
         this.state = {manufacturer: "", name: "", model: "", year: "",
-            maintenance: "", min_training: ""}
+            maintenanceDay: "", minimumTrainingDuration: ""}
     }
 
     changeHandler = (event) => {
@@ -19,7 +19,8 @@ class AddAircraftComponent extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
         let aircraft = {manufacturer: this.state.manufacturer, name: this.state.name, model: this.state.model,
-            year: this.state.year, maintenance: this.state.maintenance, min_training: this.state.min_training};
+            year: this.state.year, maintenanceDay: this.state.maintenanceDay,
+            minimumTrainingDuration: this.state.minimumTrainingDuration};
         console.log(JSON.stringify(aircraft));
         AircraftService.postAircraft(aircraft).then(res => {
             this.props.history.push('/aircraft')
@@ -52,12 +53,12 @@ class AddAircraftComponent extends React.Component {
 
                     <label for="maintenance">Maintenance Day:</label>
                     <input type="text" id="maintenance" name="maintenance"
-                           value={this.state.maintenance} onChange={this.changeHandler}/>
+                           value={this.state.maintenanceDay} onChange={this.changeHandler}/>
                     <br/>
 
                     <label htmlFor="min_training">Min. Training Duration:</label>
                     <input type="text" id="min_training" name="min_training"
-                           value={this.state.min_training} onChange={this.changeHandler}/>
+                           value={this.state.minimumTrainingDuration} onChange={this.changeHandler}/>
                     <br/>
 
                     <input type="submit" value="Submit" onClick={this.submitHandler}/>
