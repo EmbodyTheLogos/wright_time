@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 public class AircraftController {
     private AircraftRepository aircraftRepository;
-//    private Aircraft aircraft;
 
     @Autowired
     public AircraftController(AircraftRepository aircraftRepository) {
@@ -34,12 +33,6 @@ public class AircraftController {
        return aircraftRepository.findById(id).get();
     }
 
-//    @GetMapping("api/aircraft/{id}")
-//    public Aircraft getOneAircraft(Integer id)
-//    {
-//        return aircraftRepository.findById(id).get();
-//    }
-
     @PutMapping("/{id}")
     public void updateAircraft(@PathVariable int id, @RequestBody Aircraft aircraft) {
         aircraftRepository.findById(id).ifPresentOrElse(toUpdate -> {
@@ -47,31 +40,18 @@ public class AircraftController {
             toUpdate.setName(aircraft.getName());
             toUpdate.setModel(aircraft.getModel());
             toUpdate.setYear(aircraft.getYear());
-            toUpdate.setMaintenance_day(aircraft.getMaintenance_day());
-            toUpdate.setMinimum_training_duration(aircraft.getMinimum_training_duration());
+            toUpdate.setMaintenanceDay(aircraft.getMaintenanceDay());
+            toUpdate.setMinimumTrainingDuration(aircraft.getMinimumTrainingDuration());
         }, () -> {
             aircraft.setAircraftId(id);
             aircraftRepository.save(aircraft);
         });
     }
 
-//    @PostMapping("api/aircraft/{id}")
-//    public void updateAircraft(Aircraft aircraft)
-//    {
-//        aircraftRepository.save(aircraft);
-//    }
-
-
     @DeleteMapping("/{id}")
     public void deleteAircraft(@PathVariable int id) {
         aircraftRepository.deleteById(id);
     }
-
-//    @PostMapping("api/aircraft/{id}")
-//    public void deleteAircraft(Integer id)
-//    {
-//        aircraftRepository.delete(getOneAircraft(id));
-//    }
 
 }
 
