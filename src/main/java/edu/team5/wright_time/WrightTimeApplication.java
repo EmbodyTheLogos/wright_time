@@ -18,8 +18,10 @@ public class WrightTimeApplication {
     @Bean
     public CommandLineRunner demo(AircraftRepository repository) {
         return (args) -> {
-            repository.save(new Aircraft("Manufacturer 1", "Name 1", "Model 1", 1999, 10, 10));
-            repository.save(new Aircraft("Manufacturer 2", "Name 2", "Model 2", 2019, 6, 15));
+            if (repository.findAll().iterator().hasNext()) {
+                repository.save(new Aircraft("Manufacturer 1", "Name 1", "Model 1", 1999, 10, 10));
+                repository.save(new Aircraft("Manufacturer 2", "Name 2", "Model 2", 2019, 6, 15));
+            }
         };
     }
 
