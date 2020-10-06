@@ -47,8 +47,8 @@ class AircraftComponent extends React.Component {
                                     <td> {aircraft.name}</td>
                                     <td> {aircraft.model}</td>
                                     <td> {aircraft.year}</td>
-                                    <td> {aircraft.maintenance_day}</td>
-                                    <td> {aircraft.minimum_training_duration}</td>
+                                    <td> {aircraft.maintenanceDay}</td>
+                                    <td> {aircraft.minimumTrainingDuration}</td>
                                     <td>
                                         <Link to="/aircraft/add">
                                             <button type="button">
