@@ -17,16 +17,16 @@ public class Aircraft {
     private String name;
     private String model;
     private int year;
-    private int maintenance_day;
-    private int minimum_training_duration;
+    private int maintenanceDay;
+    private int minimumTrainingDuration;
 
-    public Aircraft(String manufacturer, String name, String model, int year, int maintenance_day, int minimum_training_duration) {
+    public Aircraft(String manufacturer, String name, String model, int year, int maintenanceDay, int minimumTrainingDuration) {
         this.manufacturer = manufacturer;
         this.name = name;
         this.model = model;
         this.year = year;
-        this.maintenance_day = maintenance_day;
-        this.minimum_training_duration = minimum_training_duration;
+        this.maintenanceDay = maintenanceDay;
+        this.minimumTrainingDuration = minimumTrainingDuration;
     }
 
     public Aircraft() {
