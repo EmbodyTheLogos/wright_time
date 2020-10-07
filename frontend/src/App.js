@@ -11,11 +11,12 @@ function App() {
           <BrowserRouter>
               <Switch>
                   <Route path="/aircraft" exact component={AircraftComponent}></Route>
-                  <Route path="/aircraft/add" exact component={AddAircraftComponent}></Route>
+                  <Route path="/aircraft/:id" exact component={AddAircraftComponent}></Route>
               </Switch>
           </BrowserRouter>
       </div>
   );
 }
 
+//<Route path="/aircraft/add" exact component={AddAircraftComponent}></Route>
 export default App;

@@ -50,7 +50,7 @@ class AircraftComponent extends React.Component {
                                     <td> {aircraft.maintenanceDay}</td>
                                     <td> {aircraft.minimumTrainingDuration}</td>
                                     <td>
-                                        <Link to="/aircraft/add">
+                                        <Link to={"/aircraft/" + aircraft.aircraftId}>
                                             <button type="button">
                                                 Edit
                                             </button>

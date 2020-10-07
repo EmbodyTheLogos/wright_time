@@ -6,8 +6,23 @@ class AddAircraftComponent extends React.Component {
 
     constructor(props){
         super(props)
-        this.state = {manufacturer: "", name: "", model: "", year: "",
-            maintenanceDay: "", minimumTrainingDuration: ""}
+        this.state = {aircraftId: props.match.params.id, manufacturer: "", name: "", model: "", year: "",
+            maintenanceDay: "", minimumTrainingDuration: ""};
+    }
+
+    componentDidMount(){
+        if(this.props.match.params.id != "add") {
+            AircraftService.getOneAircraft(this.props.match.params.id).then(res => {
+                this.setState({
+                    manufacturer: res.data.manufacturer,
+                    name: res.data.name,
+                    model: res.data.model,
+                    year: res.data.year,
+                    maintenanceDay: res.data.maintenanceDay,
+                    minimumTrainingDuration: res.data.minimumTrainingDuration
+                });
+            })
+        }
     }
 
     changeHandler = (event) => {
@@ -31,7 +46,7 @@ class AddAircraftComponent extends React.Component {
         return (
             <div>
                 <form>
-                    <label for="manufacturer">Manufacturer:</label>
+                    <label For="manufacturer">Manufacturer:</label>
                     <input type="text" id="manufacturer" name="manufacturer"
                            value={this.state.manufacturer} onChange={this.changeHandler}/>
                     <br/>
@@ -41,17 +56,17 @@ class AddAircraftComponent extends React.Component {
                            value={this.state.name} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label for="model">Model:</label>
+                    <label For="model">Model:</label>
                     <input type="text" id="model" name="model"
                            value={this.state.model} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label for="year">Year:</label>
+                    <label For="year">Year:</label>
                     <input type="text" id="year" name="year"
                            value={this.state.year} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label for="maintenanceDay">Maintenance Day:</label>
+                    <label For="maintenanceDay">Maintenance Day:</label>
                     <input type="text" id="maintenanceDay" name="maintenanceDay"
                            value={this.state.maintenanceDay} onChange={this.changeHandler}/>
                     <br/>
