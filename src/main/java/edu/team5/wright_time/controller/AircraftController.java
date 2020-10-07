@@ -34,16 +34,17 @@ public class AircraftController {
 
     @PutMapping("/{id}")
     public void updateAircraft(@PathVariable int id, @RequestBody Aircraft aircraft) {
-        aircraftRepository.findById(id).ifPresentOrElse(toUpdate -> {
+        aircraftRepository.findById(id).map(toUpdate -> {
             toUpdate.setManufacturer(aircraft.getManufacturer());
             toUpdate.setName(aircraft.getName());
             toUpdate.setModel(aircraft.getModel());
             toUpdate.setYear(aircraft.getYear());
             toUpdate.setMaintenanceDay(aircraft.getMaintenanceDay());
             toUpdate.setMinimumTrainingDuration(aircraft.getMinimumTrainingDuration());
-        }, () -> {
+            return aircraftRepository.save(toUpdate);
+        }).orElseGet(() -> {
             aircraft.setAircraftId(id);
-            aircraftRepository.save(aircraft);
+            return aircraftRepository.save(aircraft);
         });
     }
 

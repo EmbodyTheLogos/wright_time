@@ -37,9 +37,16 @@ class AddAircraftComponent extends React.Component {
             year: this.state.year, maintenanceDay: this.state.maintenanceDay,
             minimumTrainingDuration: this.state.minimumTrainingDuration};
         console.log(JSON.stringify(aircraft));
-        AircraftService.postAircraft(aircraft).then(res => {
-            this.props.history.push('/aircraft')
-        })
+        if(this.state.aircraftId == "add") {
+            AircraftService.postAircraft(aircraft).then(res => {
+                this.props.history.push('/aircraft')
+            })
+        } else {
+            AircraftService.putAircraft(this.state.aircraftId, aircraft).then(res => {
+                this.props.history.push('/aircraft')
+            })
+        }
+
     }
 
     render (){
