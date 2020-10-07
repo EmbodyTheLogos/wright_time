@@ -57,11 +57,13 @@ class AircraftComponent extends React.Component {
                                         </Link>
                                     </td>
                                     <td>
-                                        <Link to="/aircraft/add">
-                                            <button type="button">
+                                            <button type="button"
+                                            onClick={() => {
+                                                AircraftService.deleteAircraft(aircraft.aircraftId);
+                                                window.location.reload(false);
+                                            }}>
                                                 Delete
                                             </button>
-                                        </Link>
                                     </td>
                                 </tr>
                         )
@@ -75,9 +77,7 @@ class AircraftComponent extends React.Component {
                         Add Aircraft
                     </button>
                 </Link>
-
             </div>
-
         )
     }
 }
