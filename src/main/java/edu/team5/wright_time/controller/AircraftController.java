@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/aircraft")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AircraftController {
-    private AircraftRepository aircraftRepository;
+    private final AircraftRepository aircraftRepository;
 
     @Autowired
     public AircraftController(AircraftRepository aircraftRepository) {
@@ -22,8 +22,7 @@ public class AircraftController {
     }
 
     @PostMapping
-    public void addAircraft(Aircraft aircraft)
-    {
+    public void addAircraft(@RequestBody Aircraft aircraft) {
         aircraftRepository.save(aircraft);
     }
 
