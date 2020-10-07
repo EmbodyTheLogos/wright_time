@@ -51,13 +51,13 @@ class AddAircraftComponent extends React.Component {
                            value={this.state.year} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label for="maintenance">Maintenance Day:</label>
-                    <input type="text" id="maintenance" name="maintenance"
+                    <label for="maintenanceDay">Maintenance Day:</label>
+                    <input type="text" id="maintenanceDay" name="maintenanceDay"
                            value={this.state.maintenanceDay} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label htmlFor="min_training">Min. Training Duration:</label>
-                    <input type="text" id="min_training" name="min_training"
+                    <label htmlFor="minimumTrainingDuration">Min. Training Duration:</label>
+                    <input type="text" id="minimumTrainingDuration" name="minimumTrainingDuration"
                            value={this.state.minimumTrainingDuration} onChange={this.changeHandler}/>
                     <br/>
 
