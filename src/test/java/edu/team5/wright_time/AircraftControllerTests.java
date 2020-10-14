@@ -64,12 +64,12 @@ class AircraftControllerTests {
         var aircraft3 = new Aircraft("Man3", "Nam3", "Mod3", 2001, 4, 5);
         this.mvc.perform(post("/api/aircraft")
                 .contentType("application/json")
-                .param("aircraft3.getManufacturer()", "Man3")
-                .param("aircraft3.getName()", "Nam3")
-                .param("aircraft3.getModel()", "Mod3")
-                .param("aircraft3.getYear()", "2001")
-                .param("aircraft3.getMaintenanceDay()", "4")
-                .param("aircraft3.getMinimumTrainingDuration()", "5")
+//                .param("aircraft3.getManufacturer()", "Man3")
+//                .param("aircraft3.getName()", "Nam3")
+//                .param("aircraft3.getModel()", "Mod3")
+//                .param("aircraft3.getYear()", "2001")
+//                .param("aircraft3.getMaintenanceDay()", "4")
+//                .param("aircraft3.getMinimumTrainingDuration()", "5")
                 .content(objectMapper.writeValueAsString(aircraft3)))
                 .andExpect(status().isOk());
     }
