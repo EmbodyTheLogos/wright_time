@@ -3,21 +3,29 @@ import {Link} from "react-router-dom";
 
 class HomeComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
     }
 
-    render (){
+    render() {
         return (
-            <Link to="/aircraft">
-                <button type="button">
-                    Aircraft
-                </button>
-            </Link>
+            <div>
+                <Link to="/aircraft">
+                    <button type="button">
+                        Aircraft
+                    </button>
+                </Link>
+
+                <Link to="/users">
+                    <button type="button">
+                        Users
+                    </button>
+                </Link>
+            </div>
         )
     }
 }
