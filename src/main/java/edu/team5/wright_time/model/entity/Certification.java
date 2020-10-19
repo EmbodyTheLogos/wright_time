@@ -18,22 +18,18 @@ public class Certification {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @NotEmpty(message="userId cannot be empty")
+//    @NotEmpty(message="userId cannot be empty")
     public int userId;
 
-    @NotEmpty(message="aircraftId cannot be empty")
+//    @NotEmpty(message="aircraftId cannot be empty")
     public int aircraftId;
 
-    @PastOrPresent(message="Must enter a valid date")
+//    @PastOrPresent(message="Must enter a valid date")
     private Date dateObtained;
 
     public Certification(int userId, int aircraftId, Date dateObtained) {
         this.userId = userId;
         this.aircraftId = aircraftId;
-        this.dateObtained = dateObtained;
-    }
-
-    public Certification(@PastOrPresent(message = "Must enter a valid date") Date dateObtained) {
         this.dateObtained = dateObtained;
     }
 
