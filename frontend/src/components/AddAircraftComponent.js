@@ -14,7 +14,9 @@ class AddAircraftComponent extends React.Component {
                 model: "",
                 year: "",
                 maintenanceDay: "",
-                minimumTrainingDuration: ""};
+                minimumTrainingDuration: "",
+                errorMessage: ""
+            };
         } else {
             this.state = {
                 mode: "edit",
@@ -24,7 +26,8 @@ class AddAircraftComponent extends React.Component {
                 model: "",
                 year: "",
                 maintenanceDay: "",
-                minimumTrainingDuration: ""
+                minimumTrainingDuration: "",
+                errorMessage: ""
             };
         }
 
@@ -66,10 +69,22 @@ class AddAircraftComponent extends React.Component {
         if(this.state.mode === "add") {
             AircraftService.postAircraft(aircraft).then(res => {
                 this.props.history.push('/aircraft')
+            }).catch(res => {
+                if(res.response) {
+                    this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                } else {
+                    this.setState({errorMessage: res.message});
+                }
             })
         } else {
             AircraftService.putAircraft(this.state.aircraftId, aircraft).then(res => {
                 this.props.history.push('/aircraft')
+            }).catch(res => {
+                if(res.response) {
+                    this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                } else {
+                    this.setState({errorMessage: res.message});
+                }
             })
         }
 
@@ -79,27 +94,27 @@ class AddAircraftComponent extends React.Component {
         return (
             <div>
                 <form>
-                    <label For="manufacturer">Manufacturer:</label>
+                    <label htmlFor="manufacturer">Manufacturer:</label>
                     <input type="text" id="manufacturer" name="manufacturer"
                            value={this.state.manufacturer} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label For="name">Name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input type="text" id="name" name="name"
                            value={this.state.name} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label For="model">Model:</label>
+                    <label htmlFor="model">Model:</label>
                     <input type="text" id="model" name="model"
                            value={this.state.model} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label For="year">Year:</label>
+                    <label htmlFor="year">Year:</label>
                     <input type="text" id="year" name="year"
                            value={this.state.year} onChange={this.changeHandler}/>
                     <br/>
 
-                    <label For="maintenanceDay">Maintenance Day:</label>
+                    <label htmlFor="maintenanceDay">Maintenance Day:</label>
                     <input type="text" id="maintenanceDay" name="maintenanceDay"
                            value={this.state.maintenanceDay} onChange={this.changeHandler}/>
                     <br/>
@@ -108,6 +123,8 @@ class AddAircraftComponent extends React.Component {
                     <input type="text" id="minimumTrainingDuration" name="minimumTrainingDuration"
                            value={this.state.minimumTrainingDuration} onChange={this.changeHandler}/>
                     <br/>
+
+                    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
 
                     <input type="submit" value="Submit" onClick={this.submitHandler}/>
                 </form>
