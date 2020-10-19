@@ -28,23 +28,20 @@ public class AircraftController {
 
 
     @PostMapping
-    public void addAircraft(@RequestBody @Valid Aircraft aircraft) {
-        aircraftRepository.save(aircraft);
+    public Aircraft addAircraft(@RequestBody @Valid Aircraft aircraft) {
+        return aircraftRepository.save(aircraft);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getOneAircraft(@PathVariable int id)
-    {
-        return (ResponseEntity<?>) aircraftRepository.findById(id)
-                .map(aircraft -> new ResponseEntity(aircraft, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity("Aircraft not found.", HttpStatus.NOT_FOUND));
-
+    public Aircraft getOneAircraft(@PathVariable int id) throws AircraftNotFoundException {
+        return aircraftRepository.findById(id).orElseThrow(() -> new AircraftNotFoundException(id));
     }
 
 
+
     @PutMapping("/{id}")
-    public void updateAircraft(@PathVariable int id, @RequestBody @Valid Aircraft aircraft) {
-        aircraftRepository.findById(id).map(toUpdate -> {
+    public Aircraft updateAircraft(@PathVariable int id, @RequestBody @Valid Aircraft aircraft) {
+        return aircraftRepository.findById(id).map(toUpdate -> {
             toUpdate.setManufacturer(aircraft.getManufacturer());
             toUpdate.setName(aircraft.getName());
             toUpdate.setModel(aircraft.getModel());

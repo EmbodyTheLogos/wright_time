@@ -27,7 +27,7 @@ public class Aircraft {
     @NotNull(message="Must enter a year")
     @Positive(message="Must enter a valid year")
     @Digits(integer = 4, fraction=0, message="Must enter a valid year")
-    @PastOrPresent(message="Must enter a valid year")
+//    @PastOrPresent(message="Must enter a valid year")
     private int year;
 
     @NotNull(message="Must enter a maintenance day")
