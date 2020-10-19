@@ -3,9 +3,6 @@ package edu.team5.wright_time.controller;
 import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.repository.AircraftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,7 +23,6 @@ public class AircraftController {
         return aircraftRepository.findAll();
     }
 
-
     @PostMapping
     public Aircraft addAircraft(@RequestBody @Valid Aircraft aircraft) {
         return aircraftRepository.save(aircraft);
@@ -36,8 +32,6 @@ public class AircraftController {
     public Aircraft getOneAircraft(@PathVariable int id) throws AircraftNotFoundException {
         return aircraftRepository.findById(id).orElseThrow(() -> new AircraftNotFoundException(id));
     }
-
-
 
     @PutMapping("/{id}")
     public Aircraft updateAircraft(@PathVariable int id, @RequestBody @Valid Aircraft aircraft) {
