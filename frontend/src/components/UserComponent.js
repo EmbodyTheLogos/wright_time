@@ -52,7 +52,7 @@ class UserComponent extends React.Component {
                                     <td> {user.dateOfBirth}</td>
                                     <td> {user.dateJoined}</td>
                                     <td>
-                                        <Link to={"/users/edit/" + user.aircraftId}>
+                                        <Link to={"/users/edit/" + user.userId}>
                                             <button type="button">
                                                 Edit
                                             </button>
