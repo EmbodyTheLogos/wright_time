@@ -7,6 +7,7 @@ import edu.team5.wright_time.model.repository.AircraftRepository;
 import edu.team5.wright_time.model.repository.CertificationRepository;
 import edu.team5.wright_time.model.repository.SessionRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,14 @@ public class DatabaseLoader implements CommandLineRunner {
     private UserRepository userRepository;
     private CertificationRepository certRepository;
     private SessionRepository sessionRepository;
+
+    @Autowired
+    public DatabaseLoader(AircraftRepository aircraftRepository, UserRepository userRepository, CertificationRepository certRepository, SessionRepository sessionRepository) {
+        this.aircraftRepository = aircraftRepository;
+        this.userRepository = userRepository;
+        this.certRepository = certRepository;
+        this.sessionRepository = sessionRepository;
+    }
 
     @Override
     public void run(String... args) throws Exception {
