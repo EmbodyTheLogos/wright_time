@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import java.io.Serializable;
@@ -13,29 +12,30 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Certifications {
+public class Certification {
     @EmbeddedId
-    private CertificationsId certId;
+    private CertificationId certId;
 
     @PastOrPresent(message="Must enter a valid date")
     private Date dateObtained;
 
-    public Certifications(CertificationsId certId, @PastOrPresent(message = "Must enter a valid date") Date dateObtained) {
+    public Certification(CertificationId certId, @PastOrPresent(message = "Must enter a valid date") Date dateObtained) {
         this.certId = certId;
         this.dateObtained = dateObtained;
     }
 
-    public Certifications(@PastOrPresent(message = "Must enter a valid date") Date dateObtained) {
+    public Certification(@PastOrPresent(message = "Must enter a valid date") Date dateObtained) {
         this.dateObtained = dateObtained;
     }
 
-    public Certifications(){
+    public Certification(){
 
     }
 }
 
 @Embeddable
-class CertificationsId implements Serializable {
+
+class CertificationId implements Serializable {
     @NotEmpty(message="userId cannot be empty")
     int userId;
 
