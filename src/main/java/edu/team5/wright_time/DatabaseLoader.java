@@ -2,6 +2,7 @@ package edu.team5.wright_time;
 
 import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.entity.Certification;
+import edu.team5.wright_time.model.entity.Session;
 import edu.team5.wright_time.model.entity.User;
 import edu.team5.wright_time.model.repository.AircraftRepository;
 import edu.team5.wright_time.model.repository.CertificationRepository;
@@ -41,7 +42,7 @@ public class DatabaseLoader implements CommandLineRunner {
             userRepository.save(new User("username2", "role2", "fname2", "lname2", "email2@gmail.com", new Date(2000, 2, 2), new Date(2000, 2, 2)));
         }
 
-        if(!sessionRepository.findAll().iterator().hasNext()) {
+        if(!certRepository.findAll().iterator().hasNext()) {
             var allAircraft = aircraftRepository.findAll().iterator();
             var allUsers = userRepository.findAll().iterator();
             for(int i = 0; i < 2; i++) {
@@ -49,6 +50,11 @@ public class DatabaseLoader implements CommandLineRunner {
                 var user = allUsers.next();
                 certRepository.save(new Certification(user.getUserId(), aircraft.getAircraftId(), new Date(2000, 2, 2)));
             }
+        }
+
+        if(!sessionRepository.findAll().iterator().hasNext()) {
+            sessionRepository.save(new Session(1, 1, 1, "2300", "2300", new Date(2000, 2, 2), "pending", "ok", 2));
+            sessionRepository.save(new Session(2, 3, 3, "2359", "2359", new Date(2000, 2, 2), "pending", "ok", 2));
         }
 
     }
