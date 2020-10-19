@@ -1,17 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Route, BrowserRouter, Switch} from "react-router-dom";
 import AircraftComponent from "./components/AircraftComponent";
 import AddAircraftComponent from "./components/AddAircraftComponent";
+import HomeComponent from "./components/HomeComponent";
 
 function App() {
   return (
       <div className="App">
           <BrowserRouter>
               <Switch>
-                  <Route path="/aircraft" exact component={AircraftComponent}></Route>
-                  <Route path="/aircraft/:id" exact component={AddAircraftComponent}></Route>
+                  <Route path={"/"} exact component={HomeComponent}/>
+                  <Route path={"/aircraft"} exact component={AircraftComponent}/>
+                  <Route path={"/aircraft/:id"} exact component={AddAircraftComponent}/>
               </Switch>
           </BrowserRouter>
       </div>
