@@ -2,10 +2,7 @@ package edu.team5.wright_time.model.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
@@ -30,6 +27,7 @@ public class Aircraft {
     @NotNull(message="Must enter a year")
     @Positive(message="Must enter a valid year")
     @Digits(integer = 4, fraction=0, message="Must enter a valid year")
+    @PastOrPresent(message="Must enter a valid year")
     private int year;
 
     @NotNull(message="Must enter a maintenance day")
