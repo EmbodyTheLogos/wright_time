@@ -29,7 +29,7 @@ public class CertificationController {
     }
 
     @GetMapping("/{id}")
-    public Certification getOneCertification(@PathVariable int id) throws CertificationNotFoundException {
+    public Certification getOneCertification(@PathVariable long id) throws CertificationNotFoundException {
         return certificationRepository.findById(id).orElseThrow(() -> new CertificationNotFoundException(id));
     }
 
@@ -37,15 +37,17 @@ public class CertificationController {
     public Certification updateCertification(@PathVariable long id, @RequestBody @Valid Certification certification) {
         return certificationRepository.findById(id).map(toUpdate -> {
             toUpdate.setDateObtained(certification.getDateObtained());
+            toUpdate.setUserId(certification.getUserId());
+            toUpdate.setAircraftId(certification.getAircraftId());
             return certificationRepository.save(toUpdate);
         }).orElseGet(() -> {
-            certification.setCertId(id);
+            certification.setId(id);
             return certificationRepository.save(certification);
         });
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCertification(@PathVariable int id) {
+    public void deleteCertification(@PathVariable long id) {
         certificationRepository.deleteById(id);
     }
 

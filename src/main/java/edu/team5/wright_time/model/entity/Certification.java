@@ -16,7 +16,7 @@ public class Certification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
 //    @NotEmpty(message="userId cannot be empty")
     public int userId;
