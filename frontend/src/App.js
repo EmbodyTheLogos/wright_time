@@ -12,7 +12,8 @@ function App() {
               <Switch>
                   <Route path={"/"} exact component={HomeComponent}/>
                   <Route path={"/aircraft"} exact component={AircraftComponent}/>
-                  <Route path={"/aircraft/:id"} exact component={AddAircraftComponent}/>
+                  <Route path={"/aircraft/add"} exact component={AddAircraftComponent}/>
+                  <Route path={"/aircraft/edit/:id"} exact component={AddAircraftComponent}/>
               </Switch>
           </BrowserRouter>
       </div>

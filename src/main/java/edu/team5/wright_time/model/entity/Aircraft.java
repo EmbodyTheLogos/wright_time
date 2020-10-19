@@ -27,7 +27,7 @@ public class Aircraft {
     @Size(min=0,max=255,message="Model cannot exceed 255 characters")
     private String model;
 
-    @NotNull(message="Must enter a year")
+    @NotNull(message="Must enter a year") //TODO: handled by int
     @Positive(message="Must enter a valid year")
     @Digits(integer = 4, fraction=0, message="Must enter a valid year")
 //    @PastOrPresent(message="Must enter a valid year")

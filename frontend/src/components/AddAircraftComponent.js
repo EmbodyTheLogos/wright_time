@@ -6,12 +6,32 @@ class AddAircraftComponent extends React.Component {
 
     constructor(props){
         super(props)
-        this.state = {aircraftId: props.match.params.id, manufacturer: "", name: "", model: "", year: "",
-            maintenanceDay: "", minimumTrainingDuration: ""};
+        if(!props.match.params.id) {
+            this.state = {
+                mode: "add",
+                manufacturer: "",
+                name: "",
+                model: "",
+                year: "",
+                maintenanceDay: "",
+                minimumTrainingDuration: ""};
+        } else {
+            this.state = {
+                mode: "edit",
+                aircraftId: props.match.params.id,
+                manufacturer: "",
+                name: "",
+                model: "",
+                year: "",
+                maintenanceDay: "",
+                minimumTrainingDuration: ""
+            };
+        }
+
     }
 
     componentDidMount(){
-        if(this.props.match.params.id != "add") {
+        if(this.state.mode === "edit") {
             AircraftService.getOneAircraft(this.props.match.params.id).then(res => {
                 this.setState({
                     manufacturer: res.data.manufacturer,
@@ -33,11 +53,17 @@ class AddAircraftComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        let aircraft = {manufacturer: this.state.manufacturer, name: this.state.name, model: this.state.model,
-            year: this.state.year, maintenanceDay: this.state.maintenanceDay,
-            minimumTrainingDuration: this.state.minimumTrainingDuration};
+        let aircraft = {
+            manufacturer: this.state.manufacturer,
+            name: this.state.name,
+            model: this.state.model,
+            year: this.state.year,
+            maintenanceDay: this.state.maintenanceDay,
+            minimumTrainingDuration: this.state.minimumTrainingDuration
+        };
+
         console.log(JSON.stringify(aircraft));
-        if(this.state.aircraftId == "add") {
+        if(this.state.mode === "add") {
             AircraftService.postAircraft(aircraft).then(res => {
                 this.props.history.push('/aircraft')
             })
