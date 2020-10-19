@@ -1,8 +1,6 @@
 package edu.team5.wright_time.controller;
 
-import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.entity.User;
-import edu.team5.wright_time.model.repository.AircraftRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

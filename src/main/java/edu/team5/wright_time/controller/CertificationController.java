@@ -1,7 +1,6 @@
 package edu.team5.wright_time.controller;
 
 import edu.team5.wright_time.model.entity.Certification;
-import edu.team5.wright_time.model.entity.CertificationId;
 import edu.team5.wright_time.model.repository.CertificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
