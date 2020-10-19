@@ -40,7 +40,7 @@ public class Aircraft {
     private int maintenanceDay;
 
     @NotNull(message="Must enter a positive integer")
-    @Min(value=1, message="Must enter a positive integer")
+    @Min(value=1, message="Must enter a positive integer") //TODO: this needs a maximum
     @Digits(integer = 10, fraction = 0, message="Must enter a positive integer")
     private int minimumTrainingDuration;
 

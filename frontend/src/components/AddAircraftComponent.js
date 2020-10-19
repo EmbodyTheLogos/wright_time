@@ -27,7 +27,6 @@ class AddAircraftComponent extends React.Component {
                 minimumTrainingDuration: ""
             };
         }
-
     }
 
     componentDidMount(){
