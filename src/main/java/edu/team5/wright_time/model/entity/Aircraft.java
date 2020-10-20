@@ -27,21 +27,15 @@ public class Aircraft {
     @Size(min=0,max=255,message="Model cannot exceed 255 characters")
     private String model;
 
-    @NotNull(message="Must enter a year") //TODO: handled by int
-    @Positive(message="Must enter a valid year")
-    @Digits(integer = 4, fraction=0, message="Must enter a valid year")
-//    @PastOrPresent(message="Must enter a valid year") //TODO: why is this breaking.
+    @Positive(message="Must enter a valid year")    //TODO: Check year in backend
     private int year;
 
-    @NotNull(message="Must enter a maintenance day") //TODO: handled by int
     @Min(value=1, message="Must enter an integer between 1 and 28")
     @Max(value=28, message="Must enter an integer between 1 and 28")
-    @Digits(integer=2, fraction=0, message="Must enter an integer between 1 and 28")
     private int maintenanceDay;
 
-    @NotNull(message="Must enter a positive integer") //TODO: handled by int
-    @Min(value=1, message="Must enter a positive integer") //TODO: this needs a maximum
-    @Digits(integer = 10, fraction = 0, message="Must enter a positive integer")
+    @Min(value=1, message="Must enter an integer between 1 and 24")
+    @Max(value=24, message="Must enter an integer between 1 and 24")
     private int minimumTrainingDuration;
 
     public Aircraft(String manufacturer, String name, String model, int year, int maintenanceDay, int minimumTrainingDuration) {

@@ -1,5 +1,6 @@
 package edu.team5.wright_time.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,7 +23,8 @@ public class Certification {
     @JoinColumn(name="aircraftId")
     private Aircraft aircraft;
 
-    @PastOrPresent(message="Must enter a valid date") //TODO: empty does not work on ints
+    @PastOrPresent(message="Must enter a valid date")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateObtained;
 
     public Certification(User user, Aircraft aircraft, Date dateObtained) {
