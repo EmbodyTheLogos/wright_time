@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
@@ -37,19 +39,19 @@ public class DatabaseLoader implements CommandLineRunner {
             aircraftRepository.save(new Aircraft("Manufacturer 1", "Name 1", "Model 1", 1999, 10, 10));
             aircraftRepository.save(new Aircraft("Manufacturer 2", "Name 2", "Model 2", 2019, 6, 15));
 
-            userRepository.save(new User("username1", "role1", "fname1", "lname2", "email1@gmail.com", new Date(2000, 2, 2), new Date(2000, 2, 2)));
-            userRepository.save(new User("username2", "role2", "fname2", "lname2", "email2@gmail.com", new Date(2000, 2, 2), new Date(2000, 2, 2)));
+            userRepository.save(new User("username1", "role1", "fname1", "lname2", "email1@gmail.com", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), new GregorianCalendar(2000, Calendar.MARCH, 2).getTime()));
+            userRepository.save(new User("username2", "role2", "fname2", "lname2", "email2@gmail.com", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), new GregorianCalendar(2000, Calendar.MARCH, 2).getTime()));
 
             var allAircraft = aircraftRepository.findAll().iterator();
             var allUsers = userRepository.findAll().iterator();
             for (int i = 0; i < 2; i++) {
                 var aircraft = allAircraft.next();
                 var user = allUsers.next();
-                certRepository.save(new Certification(user.getUserId(), aircraft.getAircraftId(), new Date(2000, 2, 2)));
+                certRepository.save(new Certification(user.getUserId(), aircraft.getAircraftId(), new GregorianCalendar(2000, Calendar.MARCH, 2).getTime()));
             }
 
-            sessionRepository.save(new Session(1, 1, 1, "2300", "2300", new Date(2000, 2, 2), "pending", "ok", 2));
-            sessionRepository.save(new Session(2, 3, 3, "2359", "2359", new Date(2000, 2, 2), "pending", "ok", 2));
+            sessionRepository.save(new Session(1, 1, 1, "2300", "2300", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), "pending", "ok", 2));
+            sessionRepository.save(new Session(2, 3, 3, "2359", "2359", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), "pending", "ok", 2));
         }
     }
 }
