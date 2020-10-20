@@ -2,10 +2,7 @@ package edu.team5.wright_time.model.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
@@ -18,16 +15,24 @@ public class Certification {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public int userId;
+//    private int userId;
+//
+//    private int aircraftId;
 
-    public int aircraftId;
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name="aircraftId")
+    private Aircraft aircraft;
 
     @PastOrPresent(message="Must enter a valid date") //TODO: empty does not work on ints
     private Date dateObtained;
 
-    public Certification(int userId, int aircraftId, Date dateObtained) {
-        this.userId = userId;
-        this.aircraftId = aircraftId;
+    public Certification(User user, Aircraft aircraft, Date dateObtained) {
+        this.user = user;
+        this.aircraft = aircraft;
         this.dateObtained = dateObtained;
     }
 

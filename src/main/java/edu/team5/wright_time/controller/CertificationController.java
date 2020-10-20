@@ -38,8 +38,8 @@ public class CertificationController {
     public Certification updateCertification(@PathVariable long id, @RequestBody @Valid Certification certification) {
         return certificationRepository.findById(id).map(toUpdate -> {
             toUpdate.setDateObtained(certification.getDateObtained());
-            toUpdate.setUserId(certification.getUserId());
-            toUpdate.setAircraftId(certification.getAircraftId());
+//            toUpdate.setUserId(certification.getUserId());
+//            toUpdate.setAircraftId(certification.getAircraftId());
             return certificationRepository.save(toUpdate);
         }).orElseGet(() -> {
             certification.setId(id);

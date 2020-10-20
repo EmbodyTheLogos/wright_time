@@ -25,9 +25,21 @@ public class Session {
     @Positive(message="aircraftId must be positive") //TODO: proper foreign key
     private int aircraftId;
 
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User student;
+
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User instructor;
+
+    @ManyToOne
+    @JoinColumn(name="aircraftId")
+    private Aircraft aircraft;
+
     @Digits(integer=4,fraction=0,message="Must enter a valid time")
     @Max(value=2359,message="Must enter a valid time")
-    private int startTime; //TODO: this should be an integer
+    private int startTime;
 
     @Digits(integer=4,fraction=0,message="Must enter a valid time")
     @Max(value=2359,message="Must enter a valid time")
@@ -47,10 +59,10 @@ public class Session {
     @Digits(integer=1, fraction=0, message="Score must be an integer between 1 and 5") //is this needed.
     private int score;
 
-    public Session(int studentId, int instructorId, int aircraftId, int startTime, int endTime, Date date, State state, String comments, int score) {
-        this.studentId = studentId;
-        this.instructorId = instructorId;
-        this.aircraftId = aircraftId;
+    public Session(User student, User instructor, Aircraft aircraft, int startTime, int endTime, Date date, State state, String comments, int score) {
+        this.student = student;
+        this.instructor = instructor;
+        this.aircraft = aircraft;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
