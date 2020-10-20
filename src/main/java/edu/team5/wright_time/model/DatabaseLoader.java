@@ -36,22 +36,28 @@ public class DatabaseLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         String type = System.getenv("database.type");
         if(type.equals("h2")) {
-            aircraftRepository.save(new Aircraft("Manufacturer 1", "Name 1", "Model 1", 1999, 10, 10));
-            aircraftRepository.save(new Aircraft("Manufacturer 2", "Name 2", "Model 2", 2019, 6, 15));
+            var date = new GregorianCalendar(2000, Calendar.MARCH, 2).getTime();
 
-            userRepository.save(new User("username1", "role1", "fname1", "lname2", "email1@gmail.com", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), new GregorianCalendar(2000, Calendar.MARCH, 2).getTime()));
-            userRepository.save(new User("username2", "role2", "fname2", "lname2", "email2@gmail.com", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), new GregorianCalendar(2000, Calendar.MARCH, 2).getTime()));
+            var aircraft1 = new Aircraft("Manufacturer 1", "Name 1", "Model 1", 1999, 10, 10);
+            var aircraft2 = new Aircraft("Manufacturer 2", "Name 2", "Model 2", 2019, 6, 15);
+            var user1 = new User("username1", "role1", "fname1", "lname2", "email1@gmail.com", (Date) date.clone(), (Date) date.clone());
+            var user2 = new User("username2", "role2", "fname2", "lname2", "email2@gmail.com", (Date) date.clone(), (Date) date.clone());
+            var cert1 = new Certification(user1, aircraft1, (Date) date.clone());
+            var cert2 = new Certification(user2, aircraft2, (Date) date.clone());
+            var session1 = new Session(user1, user2, aircraft1, 2300, 2359, (Date) date.clone(), Session.State.PENDING, "ok", 2);
+            var session2 = new Session(user1, user2, aircraft2, 2300, 2359, (Date) date.clone(), Session.State.PENDING, "bad", 1);
 
-            var allAircraft = aircraftRepository.findAll().iterator();
-            var allUsers = userRepository.findAll().iterator();
-            for (int i = 0; i < 2; i++) {
-                var aircraft = allAircraft.next();
-                var user = allUsers.next();
-                certRepository.save(new Certification(user.getUserId(), aircraft.getAircraftId(), new GregorianCalendar(2000, Calendar.MARCH, 2).getTime()));
-            }
+            aircraftRepository.save(aircraft1);
+            aircraftRepository.save(aircraft2);
 
-            sessionRepository.save(new Session(1, 1, 1, 2300, 2300, new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), Session.State.PENDING, "ok", 2));
-            sessionRepository.save(new Session(2, 3, 3, 2359, 2359, new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), Session.State.PENDING, "ok", 2));
+            userRepository.save(user1);
+            userRepository.save(user2);
+
+            certRepository.save(cert1);
+            certRepository.save(cert2);
+
+            sessionRepository.save(session1);
+            sessionRepository.save(session2);
         }
     }
 }
