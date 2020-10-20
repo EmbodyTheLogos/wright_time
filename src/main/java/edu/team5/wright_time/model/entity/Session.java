@@ -16,29 +16,31 @@ public class Session {
     private int sessionId;
 
 //    @NotEmpty(message="studentId cannot be empty")
-    @Positive(message="studentId must be positive")
+    @Positive(message="studentId must be positive") //TODO: proper foreign key
     private int studentId;
 
 //    @NotEmpty(message="instructorId cannot be empty")
-    @Positive(message="instructorId must be positive")
+    @Positive(message="instructorId must be positive") //TODO: proper foreign key
     private int instructorId;
 
 //    @NotEmpty(message="aircraftId cannot be empty")
-    @Positive(message="aircraftId must be positive")
+    @Positive(message="aircraftId must be positive") //TODO: proper foreign key
     private int aircraftId;
 
-    @NotEmpty(message="startTime cannot be empty")
+    @NotEmpty(message="startTime cannot be empty") //TODO: this should be an integer
     @Digits(integer=4,fraction=0,message="Must enter a valid time")
     @Max(value=2359,message="Must enter a valid time")
     private String startTime; //TODO: this should be an integer
 
-    @NotEmpty(message="endTime cannot be empty")
+    @NotEmpty(message="endTime cannot be empty") //TODO: this should be an integer
     @Digits(integer=4,fraction=0,message="Must enter a valid time")
     @Max(value=2359,message="Must enter a valid time")
     private String endTime;
 
+    //TODO: date format
     private Date date;
 
+    //TODO: restrict to certain states.
     private String state;
 
     @NotEmpty(message="Comments cannot be empty")
@@ -46,7 +48,7 @@ public class Session {
 
     @Min(value=1, message="Score must be an integer between 1 and 5")
     @Max(value=5, message="Score must be an integer between 1 and 5")
-    @Digits(integer=1, fraction=0, message="Score must be an integer between 1 and 5")
+    @Digits(integer=1, fraction=0, message="Score must be an integer between 1 and 5") //is this needed.
     private int score;
 
     public Session(int studentId, int instructorId, int aircraftId, String startTime, String endTime, Date date, String state, String comments, int score) {

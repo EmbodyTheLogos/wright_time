@@ -22,7 +22,7 @@ public class User {
     private String username;
 
     @NotEmpty(message="User role cannot be empty")
-    @Size(min=0,max=255,message="User role cannot exceed 255 characters")
+    @Size(min=0,max=255,message="User role cannot exceed 255 characters") //TODO: restrict to ROLE_ADMIN, ROLE_STUDENT, ROLE_INSTRUCTOR
     private String role;
 
     @NotEmpty(message="First name cannot be empty")

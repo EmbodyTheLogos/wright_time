@@ -1,4 +1,4 @@
-package edu.team5.wright_time.controller;
+package edu.team5.wright_time.controller.advice;
 
 public class AircraftNotFoundException extends Exception{
     public AircraftNotFoundException(long id)

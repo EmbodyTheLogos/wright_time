@@ -1,4 +1,4 @@
-package edu.team5.wright_time.controller;
+package edu.team5.wright_time.controller.advice;
 
 public class CertificationNotFoundException extends Exception{
     public CertificationNotFoundException(long id)

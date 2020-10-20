@@ -1,7 +1,7 @@
 package edu.team5.wright_time.controller;
 
+import edu.team5.wright_time.controller.advice.SessionNotFoundException;
 import edu.team5.wright_time.model.entity.Session;
-import edu.team5.wright_time.model.repository.AircraftRepository;
 import edu.team5.wright_time.model.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

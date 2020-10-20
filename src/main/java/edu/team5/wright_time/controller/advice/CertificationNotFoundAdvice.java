@@ -1,4 +1,4 @@
-package edu.team5.wright_time.controller;
+package edu.team5.wright_time.controller.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class AircraftNotFoundAdvice {
+public class CertificationNotFoundAdvice {
     @ResponseBody
-    @ExceptionHandler(AircraftNotFoundException.class)
+    @ExceptionHandler(CertificationNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String aircraftNotfoundHandler(AircraftNotFoundException aircraftNotFoundException)
+    public String certificationNotfoundHandler(CertificationNotFoundException certificationNotFoundException)
     {
-        return aircraftNotFoundException.getMessage();
+        return certificationNotFoundException.getMessage();
     }
 
 }
