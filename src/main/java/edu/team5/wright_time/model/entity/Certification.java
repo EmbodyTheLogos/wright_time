@@ -18,13 +18,11 @@ public class Certification {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-//    @NotEmpty(message="userId cannot be empty") //TODO: empty does not work on ints
     public int userId;
 
-//    @NotEmpty(message="aircraftId cannot be empty") //TODO: empty does not work on ints
     public int aircraftId;
 
-//    @PastOrPresent(message="Must enter a valid date") //TODO: empty does not work on ints
+    @PastOrPresent(message="Must enter a valid date") //TODO: empty does not work on ints
     private Date dateObtained;
 
     public Certification(int userId, int aircraftId, Date dateObtained) {

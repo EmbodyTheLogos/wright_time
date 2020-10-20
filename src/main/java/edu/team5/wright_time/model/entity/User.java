@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -37,10 +35,10 @@ public class User {
     @Email(message="Must enter a valid email address")
     private String email;
 
-//    @Past(message="Must enter a valid date")
+    @Past(message="Must enter a valid date")
     private Date dateOfBirth;
 
-//    @PastOrPresent(message="Must enter a valid date")
+    @PastOrPresent(message="Must enter a valid date")
     private Date dateJoined;
 
     public User(String username, String role, String firstName, String lastName, String email, Date dateOfBirth, Date dateJoined) {

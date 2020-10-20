@@ -50,8 +50,8 @@ public class DatabaseLoader implements CommandLineRunner {
                 certRepository.save(new Certification(user.getUserId(), aircraft.getAircraftId(), new GregorianCalendar(2000, Calendar.MARCH, 2).getTime()));
             }
 
-            sessionRepository.save(new Session(1, 1, 1, "2300", "2300", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), "pending", "ok", 2));
-            sessionRepository.save(new Session(2, 3, 3, "2359", "2359", new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), "pending", "ok", 2));
+            sessionRepository.save(new Session(1, 1, 1, 2300, 2300, new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), Session.State.PENDING, "ok", 2));
+            sessionRepository.save(new Session(2, 3, 3, 2359, 2359, new GregorianCalendar(2000, Calendar.MARCH, 2).getTime(), Session.State.PENDING, "ok", 2));
         }
     }
 }
