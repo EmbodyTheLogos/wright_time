@@ -3,7 +3,6 @@ package edu.team5.wright_time.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
 
@@ -14,10 +13,6 @@ public class Certification {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-//    private int userId;
-//
-//    private int aircraftId;
 
     @ManyToOne
     @JoinColumn(name="userId")

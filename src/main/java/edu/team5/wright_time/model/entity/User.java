@@ -1,5 +1,6 @@
 package edu.team5.wright_time.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -36,9 +37,11 @@ public class User {
     private String email;
 
     @Past(message="Must enter a valid date")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateOfBirth;
 
     @PastOrPresent(message="Must enter a valid date")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dateJoined;
 
     public User(String username, String role, String firstName, String lastName, String email, Date dateOfBirth, Date dateJoined) {

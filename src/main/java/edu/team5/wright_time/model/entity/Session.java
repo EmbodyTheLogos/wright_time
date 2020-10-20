@@ -1,4 +1,5 @@
 package edu.team5.wright_time.model.entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,21 +17,12 @@ public class Session {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int sessionId;
 
-    @Positive(message="studentId must be positive") //TODO: proper foreign key
-    private int studentId;
-
-    @Positive(message="instructorId must be positive") //TODO: proper foreign key
-    private int instructorId;
-
-    @Positive(message="aircraftId must be positive") //TODO: proper foreign key
-    private int aircraftId;
-
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="studentId")
     private User student;
 
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="instructorId")
     private User instructor;
 
     @ManyToOne
@@ -45,8 +37,12 @@ public class Session {
     @Max(value=2359,message="Must enter a valid time")
     private int endTime;
 
-    //TODO: date format
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @PastOrPresent(message="Must have a valid date")
+    private Date dateCreated;
 
     @Enumerated(EnumType.STRING)
     private State state;
