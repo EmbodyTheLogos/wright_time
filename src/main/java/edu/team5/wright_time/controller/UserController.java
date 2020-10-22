@@ -1,7 +1,9 @@
 package edu.team5.wright_time.controller;
 
 import edu.team5.wright_time.controller.advice.UserNotFoundException;
+import edu.team5.wright_time.model.entity.Session;
 import edu.team5.wright_time.model.entity.User;
+import edu.team5.wright_time.model.repository.SessionRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,12 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     private final UserRepository userRepository;
+    private final SessionRepository sessionRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, SessionRepository sessionRepository) {
         this.userRepository = userRepository;
+        this.sessionRepository = sessionRepository;
     }
 
     @GetMapping
