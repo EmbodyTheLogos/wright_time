@@ -40,8 +40,8 @@ public class DatabaseLoader implements CommandLineRunner {
 
             var aircraft1 = new Aircraft("Manufacturer 1", "Name 1", "Model 1", 1999, 10, 10);
             var aircraft2 = new Aircraft("Manufacturer 2", "Name 2", "Model 2", 2019, 6, 15);
-            var user1 = new User("username1", "role1", "fname1", "lname2", "email1@gmail.com", (Date) date.clone(), (Date) date.clone());
-            var user2 = new User("username2", "role2", "fname2", "lname2", "email2@gmail.com", (Date) date.clone(), (Date) date.clone());
+            var user1 = new User("username1", "role1", "fname1", "lname2", "email1@gmail.com", (Date) date.clone());
+            var user2 = new User("username2", "role2", "fname2", "lname2", "email2@gmail.com", (Date) date.clone());
             var cert1 = new Certification(user1, aircraft1, (Date) date.clone());
             var cert2 = new Certification(user2, aircraft2, (Date) date.clone());
             var session1 = new Session(user1, user2, aircraft1, 2300, 2359, (Date) date.clone(), Session.State.PENDING, "ok", 2);

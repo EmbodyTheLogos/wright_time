@@ -41,7 +41,6 @@ public class UserController {
             toUpdate.setFirstName(user.getFirstName());
             toUpdate.setLastName(user.getLastName());
             toUpdate.setRole(user.getRole());
-            toUpdate.setDateJoined(user.getDateJoined());
             toUpdate.setDateOfBirth(user.getDateOfBirth());
             toUpdate.setEmail(user.getEmail());
 

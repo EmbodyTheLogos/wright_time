@@ -40,18 +40,17 @@ public class User {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateOfBirth;
 
-    @PastOrPresent(message="Must enter a valid date")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date dateJoined;
+//    @PastOrPresent(message="Must enter a valid date")
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+//    private Date dateJoined;
 
-    public User(String username, String role, String firstName, String lastName, String email, Date dateOfBirth, Date dateJoined) {
+    public User(String username, String role, String firstName, String lastName, String email, Date dateOfBirth) {
         this.username = username;
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
-        this.dateJoined = dateJoined;
     }
 
     public User() {
