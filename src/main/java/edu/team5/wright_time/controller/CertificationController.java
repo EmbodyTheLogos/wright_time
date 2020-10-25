@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/certification")
+@RequestMapping("/api/certifications")
 @CrossOrigin(origins = "http://localhost:3000")
 public class CertificationController {
     private final CertificationRepository certificationRepository;

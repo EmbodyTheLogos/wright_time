@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/session")
+@RequestMapping("/api/sessions")
 @CrossOrigin(origins = "http://localhost:3000")
 public class SessionController {
     private final SessionRepository sessionRepository;
