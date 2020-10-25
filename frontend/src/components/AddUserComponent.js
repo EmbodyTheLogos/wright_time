@@ -1,6 +1,5 @@
 import React from 'react';
 import UserService from '../services/UserService';
-import {Link} from "react-router-dom";
 
 class AddUserComponent extends React.Component {
 
@@ -97,45 +96,52 @@ class AddUserComponent extends React.Component {
     render (){
         return (
             <div>
-                <form>
-                    <label htmlFor="username">Username:</label>
-                    <input type="text" id="username" name="username"
-                           value={this.state.username} onChange={this.changeHandler}/>
-                    <br/>
+                <form className={"form-horizontal"}>
+                    <div className={"form-group"}>
+                        <label>Username: <input type="text" name="username" value={this.state.username}
+                                                className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
 
-                    <label htmlFor="role">Role:</label>
-                    <input type="text" id="role" name="role"
-                           value={this.state.role} onChange={this.changeHandler}/>
-                    <br/>
 
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName"
-                           value={this.state.firstName} onChange={this.changeHandler}/>
-                    <br/>
+                    <div className={"form-group"}>
+                        <label>Role: <input type="text" name="role" value={this.state.role}
+                                            className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
 
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName"
-                           value={this.state.lastName} onChange={this.changeHandler}/>
-                    <br/>
 
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" id="email" name="email"
-                           value={this.state.email} onChange={this.changeHandler}/>
-                    <br/>
+                    <div className={"form-group"}>
+                        <label>First Name: <input type="text" name="firstName" value={this.state.firstName}
+                                                  className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
 
-                    <label htmlFor="dateOfBirth">Date of Birth:</label>
-                    <input type="text" id="dateOfBirth" name="dateOfBirth"
-                           value={this.state.dateOfBirth} onChange={this.changeHandler}/>
-                    <br/>
 
-                    <label htmlFor="dateJoined">Date Joined:</label>
-                    <input type="text" id="dateJoined" name="dateJoined"
-                           value={this.state.dateJoined} onChange={this.changeHandler}/>
-                    <br/>
+                    <div className={"form-group"}>
+                        <label>Last Name: <input type="text" name="lastName" value={this.state.lastName}
+                                                 className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
+
+
+                    <div className={"form-group"}>
+                        <label>Email: <input type="text" name="email" value={this.state.email}
+                                             className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
+
+
+                    <div className={"form-group"}>
+                        <label>Date of Birth: <input type="text" name="dateOfBirth" value={this.state.dateOfBirth}
+                                                     className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
+
+
+                    <div className={"form-group"}>
+                        <label>Date Joined: <input type="text" name="dateJoined" value={this.state.dateJoined}
+                                                   className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
+
 
                     {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
 
-                    <input type="submit" value="Submit" onClick={this.submitHandler}/>
+                    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>
                 </form>
             </div>
 
