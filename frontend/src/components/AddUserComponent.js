@@ -108,6 +108,14 @@ class AddUserComponent extends React.Component {
                                             className={"from-control"} onChange={this.changeHandler}/></label>
                     </div>
 
+                    <div className="form-group">
+                        <label>Role: <select multiple className="form-control">
+                            <option>Student</option>
+                            <option>Instructor</option>
+                            <option>Administrator</option>
+                        </select></label>
+                    </div>
+
 
                     <div className={"form-group"}>
                         <label>First Name: <input type="text" name="firstName" value={this.state.firstName}
