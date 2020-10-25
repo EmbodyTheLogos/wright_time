@@ -28,28 +28,28 @@ class HomeComponent extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class={"table-primary"}>
+                        <tr className={"table-primary"}>
                             <td>Aircraft</td>
                             <td>View</td>
                             <td>View</td>
                             <td>Edit, View</td>
                             <td><a href={"/aircraft"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
                         </tr>
-                        <tr class={"table-info"}>
+                        <tr className={"table-info"}>
                             <td>Users</td>
                             <td>No Access</td>
                             <td>No Access</td>
                             <td>Edit, View</td>
                             <td><a href={"/users"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
                         </tr>
-                        <tr class={"table-warning"}>
+                        <tr className={"table-warning"}>
                             <td>Sessions</td>
                             <td>Limited View</td>
                             <td>Limited View</td>
                             <td>Edit, View</td>
                             <td><a href={"/aircraft"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
                         </tr>
-                        <tr class={"table-danger"}>
+                        <tr className={"table-danger"}>
                             <td>Certifications</td>
                             <td>Limited View</td>
                             <td>Limited View</td>

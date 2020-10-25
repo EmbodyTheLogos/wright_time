@@ -92,40 +92,52 @@ class AddAircraftComponent extends React.Component {
     render (){
         return (
             <div>
-                <form>
-                    <label htmlFor="manufacturer">Manufacturer:</label>
-                    <input type="text" id="manufacturer" name="manufacturer"
-                           value={this.state.manufacturer} onChange={this.changeHandler}/>
-                    <br/>
 
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name"
-                           value={this.state.name} onChange={this.changeHandler}/>
-                    <br/>
+                <br/>
 
-                    <label htmlFor="model">Model:</label>
-                    <input type="text" id="model" name="model"
-                           value={this.state.model} onChange={this.changeHandler}/>
-                    <br/>
+                <form className={"form-horizontal"}>
+                    <div className={"form-group"}>
+                        <label>Manufacturer: <input type="text" name="manufacturer" value={this.state.manufacturer}
+                                                    className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
 
-                    <label htmlFor="year">Year:</label>
-                    <input type="text" id="year" name="year"
-                           value={this.state.year} onChange={this.changeHandler}/>
-                    <br/>
 
-                    <label htmlFor="maintenanceDay">Maintenance Day:</label>
-                    <input type="text" id="maintenanceDay" name="maintenanceDay"
-                           value={this.state.maintenanceDay} onChange={this.changeHandler}/>
-                    <br/>
+                    <div className={"form-group"}>
+                        <label>Name: <input type="text" name="name" value={this.state.name}
+                                            className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
 
-                    <label htmlFor="minimumTrainingDuration">Min. Training Duration:</label>
-                    <input type="text" id="minimumTrainingDuration" name="minimumTrainingDuration"
-                           value={this.state.minimumTrainingDuration} onChange={this.changeHandler}/>
-                    <br/>
+
+                    <div className={"form-group"}>
+                        <label>Model: <input type="text" name="model" value={this.state.model}
+                                             className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
+
+
+                    <div className={"form-group"}>
+                        <label>Year: <input type="text" name="year" value={this.state.year}
+                                            className={"from-control"} onChange={this.changeHandler}/></label>
+                    </div>
+
+
+                    <div className={"form-group"}>
+                        <label>Maintenance Day: <input type="text" name="maintenanceDay"
+                                                       value={this.state.maintenanceDay} className={"from-control"}
+                                                       onChange={this.changeHandler}/></label>
+                    </div>
+
+
+                    <div className={"form-group"}>
+                        <label>Min. Training Duration: <input type="text" name="minimumTrainingDuration"
+                                                              value={this.state.minimumTrainingDuration}
+                                                              className={"from-control"}
+                                                              onChange={this.changeHandler}/></label>
+                    </div>
+
 
                     {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
 
-                    <input type="submit" value="Submit" onClick={this.submitHandler}/>
+                    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>
                 </form>
             </div>
 
