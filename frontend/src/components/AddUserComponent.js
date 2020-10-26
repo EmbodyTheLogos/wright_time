@@ -107,6 +107,8 @@ class AddUserComponent extends React.Component {
     render (){
         return (
             <div>
+                <br/>
+
                 <form className={"form-horizontal"}>
                     <div className={"form-group"}>
                         <label>Username: <input type="text" name="username" value={this.state.username}
@@ -157,6 +159,7 @@ class AddUserComponent extends React.Component {
 
                     <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>
                 </form>
+
             </div>
 
         )
