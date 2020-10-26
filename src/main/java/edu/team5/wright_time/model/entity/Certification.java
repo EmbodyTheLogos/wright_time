@@ -16,11 +16,11 @@ public class Certification {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="aircraftId")
+    @JoinColumn(name="aircraft_id")
     private Aircraft aircraft;
 
     @PastOrPresent(message="Must enter a valid date")
