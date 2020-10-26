@@ -146,12 +146,12 @@ class AddUserComponent extends React.Component {
                     </div>
 
                     <div className="form-group">
-                        <DatePicker
+                        <label>Date of Birth: <DatePicker
                             selected={this.state.dateOfBirth}
                             onChange={this.handleDateChange}
                             name="dateOfBirth"
                             dateFormat="MM/dd/yyyy"
-                        />
+                        /></label>
                     </div>
 
 
