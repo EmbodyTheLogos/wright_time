@@ -1,6 +1,9 @@
 import React from 'react';
 import UserService from '../services/UserService';
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 class AddUserComponent extends React.Component {
 
     constructor(props){
@@ -13,7 +16,7 @@ class AddUserComponent extends React.Component {
                 firstName: "",
                 lastName: "",
                 email: "",
-                dateOfBirth: "",
+                dateOfBirth: Date.now(),
                 errorMessage: ""
             };
         } else {
@@ -25,7 +28,7 @@ class AddUserComponent extends React.Component {
                 firstName: "",
                 lastName: "",
                 email: "",
-                dateOfBirth: "",
+                dateOfBirth: Date.now(),
                 errorMessage: ""
             };
         }
@@ -35,13 +38,19 @@ class AddUserComponent extends React.Component {
     componentDidMount(){
         if(this.state.mode === "edit") {
             UserService.getOneUser(this.props.match.params.id).then(res => {
+                let dataOfBirth = res.data.dateOfBirth.split('-')
+                console.log(dataOfBirth)
+                let year = parseInt(dataOfBirth[0])
+                let month = parseInt(dataOfBirth[1]) - 1
+                let day = parseInt(dataOfBirth[2])
+
                 this.setState({
                     username: res.data.username,
                     role: res.data.role,
                     firstName: res.data.firstName,
                     lastName: res.data.lastName,
                     email: res.data.email,
-                    dateOfBirth: res.data.dateOfBirth,
+                    dateOfBirth: new Date(year, month, day),
                 });
             })
         }
@@ -51,6 +60,12 @@ class AddUserComponent extends React.Component {
         let name = event.target.name;
         let value = event.target.value;
         this.setState({[name]:value})
+    }
+
+    handleDateChange = (date) => {
+        this.setState({
+            'dateOfBirth': date
+        })
     }
 
     submitHandler = (event) => {
@@ -128,10 +143,13 @@ class AddUserComponent extends React.Component {
                                              className={"from-control"} onChange={this.changeHandler}/></label>
                     </div>
 
-
-                    <div className={"form-group"}>
-                        <label>Date of Birth: <input type="text" name="dateOfBirth" value={this.state.dateOfBirth}
-                                                     className={"from-control"} onChange={this.changeHandler}/></label>
+                    <div className="form-group">
+                        <DatePicker
+                            selected={this.state.dateOfBirth}
+                            onChange={this.handleDateChange}
+                            name="dateOfBirth"
+                            dateFormat="MM/dd/yyyy"
+                        />
                     </div>
 
 
