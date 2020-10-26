@@ -18,15 +18,15 @@ public class Session {
     private int sessionId;
 
     @ManyToOne
-    @JoinColumn(name="studentId")
+    @JoinColumn(name="student_id")
     private User student;
 
     @ManyToOne
-    @JoinColumn(name="instructorId")
+    @JoinColumn(name="instructor_id")
     private User instructor;
 
     @ManyToOne
-    @JoinColumn(name="aircraftId")
+    @JoinColumn(name="aircraft_id")
     private Aircraft aircraft;
 
     @Positive(message="Must enter a valid time")
