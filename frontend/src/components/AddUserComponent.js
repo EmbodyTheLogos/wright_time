@@ -99,17 +99,15 @@ class AddUserComponent extends React.Component {
                     </div>
 
 
-                    <div className={"form-group"}>
-                        <label>Role: <input type="text" name="role" value={this.state.role}
-                                            className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
-
                     <div className="form-group">
-                        <label>Role: <select multiple className="form-control">
-                            <option>Student</option>
-                            <option>Instructor</option>
-                            <option>Administrator</option>
-                        </select></label>
+                        <label>Role: <select value={this.state.role} onChange={this.changeHandler}
+                                             name="role" className={"form-control"}>
+                            <option value="empty"> </option>
+                            <option value="ROLE_ADMIN">Administrator</option>
+                            <option value="ROLE_INSTRUCTOR">Instructor</option>
+                            <option value="ROLE_STUDENT">Student</option>
+                        </select>
+                        </label>
                     </div>
 
 
@@ -135,6 +133,7 @@ class AddUserComponent extends React.Component {
                         <label>Date of Birth: <input type="text" name="dateOfBirth" value={this.state.dateOfBirth}
                                                      className={"from-control"} onChange={this.changeHandler}/></label>
                     </div>
+
 
                     {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
 
