@@ -1,0 +1,70 @@
+import React from 'react';
+import CertificationService from '../services/CertificationService';
+
+class CertificationComponent extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            certifications:[]
+        }
+    }
+
+    componentDidMount(){
+        CertificationService.getCertifications().then((response) => {
+            this.setState({ certifications: response.data})
+        });
+    }
+
+    render (){
+        return (
+            <div>
+                <h1>Certification List</h1>
+                <div className="container mt-4">
+                    <table className="table table-bordered table-hover">
+                        <thead className="thead-dark">
+                        <tr>
+                            <th scope={"col"}> Certification ID</th>
+                            <th scope={"col"}> User ID</th>
+                            <th scope={"col"}> Aircraft ID</th>
+                            <th scope={"col"}> Date Obtained</th>
+                            <th scope={"col"}> </th>
+                            <th scope={"col"}> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            this.state.certifications.map(
+                                cert =>
+                                    <tr key = {cert.id}>
+                                        <th scope={"row"}> {cert.id}</th>
+                                        <td> {cert.user.userId}</td>
+                                        <td> {cert.aircraft.aircraftId}</td>
+                                        <td> {cert.dateObtained}</td>
+                                        <td>
+                                            <a href={"/certifications/edit/" + cert.id}
+                                               className={"btn btn-warning btn-block"}>Edit Certification</a>
+                                        </td>
+                                        <td>
+                                            <a className={"btn btn-danger btn-block"}
+                                               onClick={() => {
+                                                   CertificationService.deleteCertification(cert.id);
+                                                   window.location.reload(false);
+                                               }}>
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                            )
+                        }
+                        </tbody>
+                    </table>
+
+                    <br/>
+                    <a href={"/certifications/add"} className={"btn btn-dark"}>Add Certification</a>
+                </div>
+            </div>
+        )
+    }
+}
+export default CertificationComponent

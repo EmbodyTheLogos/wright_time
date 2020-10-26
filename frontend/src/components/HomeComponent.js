@@ -53,7 +53,7 @@ class HomeComponent extends React.Component {
                             <td>Limited View</td>
                             <td>Limited View</td>
                             <td>Edit, View</td>
-                            <td><a href={"/aircraft"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
+                            <td><a href={"/certifications"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
                         </tr>
                         </tbody>
                     </table>

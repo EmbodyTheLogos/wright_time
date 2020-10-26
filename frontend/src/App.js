@@ -8,6 +8,8 @@ import AddUserComponent from "./components/AddUserComponent";
 import HomeComponent from "./components/HomeComponent";
 import SessionComponent from "./components/SessionComponent";
 import AddSessionComponent from "./components/AddSessionComponent";
+import CertificationComponent from "./components/CertificationComponent";
+import AddCertificationComponent from "./components/AddCertificationComponent";
 
 function App() {
   return (
@@ -27,6 +29,10 @@ function App() {
                   <Route path={"/sessions"} exact component={SessionComponent}/>
                   <Route path={"/sessions/add"} exact component={AddSessionComponent}/>
                   <Route path={"/sessions/edit/:id"} exact component={AddSessionComponent}/>
+
+                  <Route path={"/certifications"} exact component={CertificationComponent}/>
+                  <Route path={"/certifications/add"} exact component={AddCertificationComponent}/>
+                  <Route path={"/certifications/edit/:id"} exact component={AddCertificationComponent}/>
 
               </Switch>
           </BrowserRouter>
