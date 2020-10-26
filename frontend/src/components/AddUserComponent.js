@@ -14,7 +14,6 @@ class AddUserComponent extends React.Component {
                 lastName: "",
                 email: "",
                 dateOfBirth: "",
-                dateJoined: "",
                 errorMessage: ""
             };
         } else {
@@ -27,7 +26,6 @@ class AddUserComponent extends React.Component {
                 lastName: "",
                 email: "",
                 dateOfBirth: "",
-                dateJoined: "",
                 errorMessage: ""
             };
         }
@@ -44,7 +42,6 @@ class AddUserComponent extends React.Component {
                     lastName: res.data.lastName,
                     email: res.data.email,
                     dateOfBirth: res.data.dateOfBirth,
-                    dateJoined: res.data.dateJoined
                 });
             })
         }
@@ -65,7 +62,6 @@ class AddUserComponent extends React.Component {
             lastName: this.state.lastName,
             email: this.state.email,
             dateOfBirth: this.state.dateOfBirth,
-            dateJoined: this.state.dateJoined
         };
 
         console.log(JSON.stringify(user));
@@ -139,13 +135,6 @@ class AddUserComponent extends React.Component {
                         <label>Date of Birth: <input type="text" name="dateOfBirth" value={this.state.dateOfBirth}
                                                      className={"from-control"} onChange={this.changeHandler}/></label>
                     </div>
-
-
-                    <div className={"form-group"}>
-                        <label>Date Joined: <input type="text" name="dateJoined" value={this.state.dateJoined}
-                                                   className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
-
 
                     {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
 

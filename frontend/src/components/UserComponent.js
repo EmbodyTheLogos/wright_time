@@ -31,7 +31,6 @@ class UserComponent extends React.Component {
                             <th scope={"col"}> Last Name</th>
                             <th scope={"col"}> Email</th>
                             <th scope={"col"}> D.O.B.</th>
-                            <th scope={"col"}> Date Joined</th>
                             <th scope={"col"}> </th>
                             <th scope={"col"}> </th>
                         </tr>
@@ -48,7 +47,6 @@ class UserComponent extends React.Component {
                                         <td> {user.lastName}</td>
                                         <td> {user.email}</td>
                                         <td> {user.dateOfBirth}</td>
-                                        <td> {user.dateJoined}</td>
                                         <td>
                                             <a href={"/users/edit/" + user.userId}
                                                className={"btn btn-warning btn-block"}>Edit User</a>
