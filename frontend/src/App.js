@@ -6,6 +6,8 @@ import AddAircraftComponent from "./components/AddAircraftComponent";
 import UserComponent from "./components/UserComponent";
 import AddUserComponent from "./components/AddUserComponent";
 import HomeComponent from "./components/HomeComponent";
+import SessionComponent from "./components/SessionComponent";
+import AddSessionComponent from "./components/AddSessionComponent";
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
                   <Route path={"/users"} exact component={UserComponent}/>
                   <Route path={"/users/add"} exact component={AddUserComponent}/>
                   <Route path={"/users/edit/:id"} exact component={AddUserComponent}/>
+
+                  <Route path={"/sessions"} exact component={SessionComponent}/>
+                  <Route path={"/sessions/add"} exact component={AddSessionComponent}/>
+                  <Route path={"/sessions/edit/:id"} exact component={AddSessionComponent}/>
 
               </Switch>
           </BrowserRouter>

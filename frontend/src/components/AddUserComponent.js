@@ -38,11 +38,11 @@ class AddUserComponent extends React.Component {
     componentDidMount(){
         if(this.state.mode === "edit") {
             UserService.getOneUser(this.props.match.params.id).then(res => {
-                let dataOfBirth = res.data.dateOfBirth.split('-')
-                console.log(dataOfBirth)
-                let year = parseInt(dataOfBirth[0])
-                let month = parseInt(dataOfBirth[1]) - 1
-                let day = parseInt(dataOfBirth[2])
+                let dateOfBirth = res.data.dateOfBirth.split('-')
+                console.log(dateOfBirth)
+                let year = parseInt(dateOfBirth[0])
+                let month = parseInt(dateOfBirth[1]) - 1
+                let day = parseInt(dateOfBirth[2])
 
                 this.setState({
                     username: res.data.username,
