@@ -37,18 +37,18 @@ public class SessionController {
     @PutMapping("/{id}")
     public Session updateSessionAircraft(@PathVariable int id, @RequestBody @Valid Session session) {
         return sessionRepository.findById(id).map(toUpdate -> {
-            //toUpdate.setAircraftId(session.getAircraftId());
+            toUpdate.setAircraft(session.getAircraft());
+            toUpdate.setStudent(session.getStudent());
+            toUpdate.setInstructor(session.getInstructor());
             toUpdate.setComments(session.getComments());
             toUpdate.setDate(session.getDate());
             toUpdate.setEndTime(session.getEndTime());
-            //toUpdate.setInstructorId(session.getInstructorId());
             toUpdate.setScore(session.getScore());
             toUpdate.setStartTime(session.getStartTime());
             toUpdate.setState(session.getState());
-            //toUpdate.setStudentId(session.getStudentId());
             return sessionRepository.save(toUpdate);
         }).orElseGet(() -> {
-            session.setSessionId(id);
+            session.setId(id);
             return sessionRepository.save(session);
         });
     }

@@ -11,7 +11,7 @@ class AircraftComponent extends React.Component {
     }
 
     componentDidMount(){
-        AircraftService.getAircrafts().then((response) => {
+        AircraftService.getAll().then((response) => {
             this.setState({ aircrafts: response.data})
         });
     }
@@ -39,8 +39,8 @@ class AircraftComponent extends React.Component {
                         {
                             this.state.aircrafts.map(
                                 aircraft =>
-                                    <tr key = {aircraft.aircraftId}>
-                                        <th scope={"row"}> {aircraft.aircraftId}</th>
+                                    <tr key = {aircraft.id}>
+                                        <th scope={"row"}> {aircraft.id}</th>
                                         <td> {aircraft.manufacturer}</td>
                                         <td> {aircraft.name}</td>
                                         <td> {aircraft.model}</td>
@@ -48,13 +48,14 @@ class AircraftComponent extends React.Component {
                                         <td> {aircraft.maintenanceDay}</td>
                                         <td> {aircraft.minimumTrainingDuration}</td>
                                         <td>
-                                            <a href={"/aircraft/edit/" + aircraft.aircraftId}
+                                            {/*TODO replace this with link*/}
+                                            <a href={"/aircraft/edit/" + aircraft.id}
                                                className={"btn btn-warning btn-block"}>Edit Aircraft</a>
                                         </td>
                                         <td>
                                             <a className={"btn btn-danger btn-block"}
                                                     onClick={() => {
-                                                        AircraftService.deleteAircraft(aircraft.aircraftId);
+                                                        AircraftService.delete(aircraft.aircraftId);
                                                         window.location.reload(false);
                                                     }}>
                                                 Delete

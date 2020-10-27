@@ -47,10 +47,9 @@ public class UserController {
             toUpdate.setRole(user.getRole());
             toUpdate.setDateOfBirth(user.getDateOfBirth());
             toUpdate.setEmail(user.getEmail());
-
             return userRepository.save(toUpdate);
         }).orElseGet(() -> {
-            user.setUserId(id);
+            user.setId(id);
             return userRepository.save(user);
         });
     }

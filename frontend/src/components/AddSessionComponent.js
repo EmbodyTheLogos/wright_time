@@ -43,7 +43,7 @@ class AddSessionComponent extends React.Component {
 
     componentDidMount(){
         if(this.state.mode === "edit") {
-            SessionService.getOneSession(this.props.match.params.id).then(res => {
+            SessionService.getOne(this.props.match.params.id).then(res => {
                 let date = res.data.date.split('-')
                 console.log(date)
                 let year = parseInt(date[0])
@@ -93,7 +93,7 @@ class AddSessionComponent extends React.Component {
 
         console.log(JSON.stringify(session));
         if(this.state.mode === "add") {
-            SessionService.postSession(session).then(res => {
+            SessionService.post(session).then(res => {
                 this.props.history.push('/sessions')
             }).catch(res => {
                 if(res.response) {
@@ -103,7 +103,7 @@ class AddSessionComponent extends React.Component {
                 }
             })
         } else {
-            SessionService.putSession(this.state.sessionId, session).then(res => {
+            SessionService.put(this.state.sessionId, session).then(res => {
                 this.props.history.push('/sessions')
             }).catch(res => {
                 if(res.response) {

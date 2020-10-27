@@ -33,7 +33,7 @@ class AddAircraftComponent extends React.Component {
 
     componentDidMount(){
         if(this.state.mode === "edit") {
-            AircraftService.getOneAircraft(this.props.match.params.id).then(res => {
+            AircraftService.getOne(this.props.match.params.id).then(res => {
                 this.setState({
                     manufacturer: res.data.manufacturer,
                     name: res.data.name,
@@ -65,7 +65,7 @@ class AddAircraftComponent extends React.Component {
 
         console.log(JSON.stringify(aircraft));
         if(this.state.mode === "add") {
-            AircraftService.postAircraft(aircraft).then(res => {
+            AircraftService.post(aircraft).then(res => {
                 this.props.history.push('/aircraft')
             }).catch(res => {
                 if(res.response) {
@@ -75,7 +75,7 @@ class AddAircraftComponent extends React.Component {
                 }
             })
         } else {
-            AircraftService.putAircraft(this.state.aircraftId, aircraft).then(res => {
+            AircraftService.put(this.state.aircraftId, aircraft).then(res => {
                 this.props.history.push('/aircraft')
             }).catch(res => {
                 if(res.response) {

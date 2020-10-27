@@ -15,7 +15,7 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int userId;
+    private int id;
 
     @NotEmpty(message="Username cannot be empty")
     private String username;

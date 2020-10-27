@@ -15,7 +15,7 @@ public class Session {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int sessionId;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name="student_id")

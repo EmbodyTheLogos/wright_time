@@ -31,8 +31,8 @@ class AddCertificationComponent extends React.Component {
 
     componentDidMount(){
         if(this.state.mode === "edit") {
-            CertificationService.getOneCertification(this.props.match.params.id).then(res => {
-                let date = res.data.date.split('-')
+            CertificationService.getOne(this.props.match.params.id).then(res => {
+                let date = res.data.dateObtained.split('-')
                 console.log(date)
                 let year = parseInt(date[0])
                 let month = parseInt(date[1]) - 1
@@ -41,7 +41,7 @@ class AddCertificationComponent extends React.Component {
                 this.setState({
                     aircraftId: res.data.aircraft.aircraftId,
                     userId: res.data.user.userId,
-                    date: new Date(year, month, day),
+                    dateObtained: new Date(year, month, day),
                 });
             })
         }
@@ -64,12 +64,12 @@ class AddCertificationComponent extends React.Component {
         let cert = {
             aircraft:{aircraftId:this.state.aircraftId},
             user:{userId:this.state.userId},
-            dateObtained: this.state.date,
+            dateObtained: this.state.dateObtained,
         };
 
         console.log(JSON.stringify(cert));
         if(this.state.mode === "add") {
-            CertificationService.postCertification(cert).then(res => {
+            CertificationService.post(cert).then(res => {
                 this.props.history.push('/certifications')
             }).catch(res => {
                 if(res.response) {
@@ -79,7 +79,7 @@ class AddCertificationComponent extends React.Component {
                 }
             })
         } else {
-            CertificationService.putCertification(this.state.userId, cert).then(res => {
+            CertificationService.put(this.state.userId, cert).then(res => {
                 this.props.history.push('/certifications')
             }).catch(res => {
                 if(res.response) {

@@ -37,7 +37,7 @@ class AddUserComponent extends React.Component {
 
     componentDidMount(){
         if(this.state.mode === "edit") {
-            UserService.getOneUser(this.props.match.params.id).then(res => {
+            UserService.getOne(this.props.match.params.id).then(res => {
                 let dateOfBirth = res.data.dateOfBirth.split('-')
                 console.log(dateOfBirth)
                 let year = parseInt(dateOfBirth[0])
@@ -81,7 +81,7 @@ class AddUserComponent extends React.Component {
 
         console.log(JSON.stringify(user));
         if(this.state.mode === "add") {
-            UserService.postUser(user).then(res => {
+            UserService.post(user).then(res => {
                 this.props.history.push('/users')
             }).catch(res => {
                 if(res.response) {
@@ -91,7 +91,7 @@ class AddUserComponent extends React.Component {
                 }
             })
         } else {
-            UserService.putUser(this.state.userId, user).then(res => {
+            UserService.put(this.state.userId, user).then(res => {
                 this.props.history.push('/users')
             }).catch(res => {
                 if(res.response) {

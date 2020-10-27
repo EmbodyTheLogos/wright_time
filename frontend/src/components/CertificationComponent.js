@@ -11,7 +11,7 @@ class CertificationComponent extends React.Component {
     }
 
     componentDidMount(){
-        CertificationService.getCertifications().then((response) => {
+        CertificationService.getAll().then((response) => {
             this.setState({ certifications: response.data})
         });
     }
@@ -38,17 +38,18 @@ class CertificationComponent extends React.Component {
                                 cert =>
                                     <tr key = {cert.id}>
                                         <th scope={"row"}> {cert.id}</th>
-                                        <td> {cert.user.userId}</td>
-                                        <td> {cert.aircraft.aircraftId}</td>
+                                        <td> {cert.user.id}</td>
+                                        <td> {cert.aircraft.id}</td>
                                         <td> {cert.dateObtained}</td>
                                         <td>
+                                            {/*TODO replace this with link*/}
                                             <a href={"/certifications/edit/" + cert.id}
                                                className={"btn btn-warning btn-block"}>Edit Certification</a>
                                         </td>
                                         <td>
                                             <a className={"btn btn-danger btn-block"}
                                                onClick={() => {
-                                                   CertificationService.deleteCertification(cert.id);
+                                                   CertificationService.delete(cert.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete

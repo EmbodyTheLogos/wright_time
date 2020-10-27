@@ -3,23 +3,23 @@ import axios from 'axios'
 const AIRCRAFT_REST_API_URL = 'http://localhost:8080/api/aircraft';
 
 class AircraftService {
-    getAircrafts(){
+    getAll(){
         return axios.get(AIRCRAFT_REST_API_URL);
     }
 
-    getOneAircraft(id) {
+    getOne(id) {
         return axios.get(AIRCRAFT_REST_API_URL + '/' + id)
     }
 
-    postAircraft(aircraft) {
+    post(aircraft) {
         return axios.post(AIRCRAFT_REST_API_URL, aircraft)
     }
 
-    putAircraft(id, aircraft) {
+    put(id, aircraft) {
         return axios.put(AIRCRAFT_REST_API_URL + '/' + id, aircraft)
     }
 
-    deleteAircraft(id) {
+    delete(id) {
         return axios.delete(AIRCRAFT_REST_API_URL + '/' + id)
     }
 }

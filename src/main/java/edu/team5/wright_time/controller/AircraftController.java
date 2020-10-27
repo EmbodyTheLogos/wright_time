@@ -45,7 +45,7 @@ public class AircraftController {
             toUpdate.setMinimumTrainingDuration(aircraft.getMinimumTrainingDuration());
             return aircraftRepository.save(toUpdate);
         }).orElseGet(() -> {
-            aircraft.setAircraftId(id);
+            aircraft.setId(id);
             return aircraftRepository.save(aircraft);
         });
     }

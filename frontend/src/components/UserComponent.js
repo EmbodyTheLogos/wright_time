@@ -11,7 +11,7 @@ class UserComponent extends React.Component {
     }
 
     componentDidMount(){
-        UserService.getUsers().then((response) => {
+        UserService.getAll().then((response) => {
             this.setState({ users: response.data})
         });
     }
@@ -39,8 +39,8 @@ class UserComponent extends React.Component {
                         {
                             this.state.users.map(
                                 user =>
-                                    <tr key = {user.userId}>
-                                        <th scope={"row"}> {user.userId}</th>
+                                    <tr key = {user.id}>
+                                        <th scope={"row"}> {user.id}</th>
                                         <td> {user.username}</td>
                                         <td> {user.role}</td>
                                         <td> {user.firstName}</td>
@@ -48,13 +48,14 @@ class UserComponent extends React.Component {
                                         <td> {user.email}</td>
                                         <td> {user.dateOfBirth}</td>
                                         <td>
-                                            <a href={"/users/edit/" + user.userId}
+                                            {/*TODO replace this with link*/}
+                                            <a href={"/users/edit/" + user.id}
                                                className={"btn btn-warning btn-block"}>Edit User</a>
                                         </td>
                                         <td>
                                             <a className={"btn btn-danger btn-block"}
                                                onClick={() => {
-                                                   UserService.deleteUser(user.userId);
+                                                   UserService.delete(user.userId);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete

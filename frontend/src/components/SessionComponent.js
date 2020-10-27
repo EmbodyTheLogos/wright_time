@@ -11,7 +11,7 @@ class SessionComponent extends React.Component {
     }
 
     componentDidMount(){
-        SessionService.getSessions().then((response) => {
+        SessionService.getAll().then((response) => {
             this.setState({ sessions: response.data})
         });
     }
@@ -42,11 +42,11 @@ class SessionComponent extends React.Component {
                         {
                             this.state.sessions.map(
                                 session =>
-                                    <tr key = {session.sessionId}>
-                                        <th scope={"row"}> {session.sessionId}</th>
-                                        <td> {session.aircraft.aircraftId}</td>
-                                        <td> {session.instructor.userId}</td>
-                                        <td> {session.student.userId}</td>
+                                    <tr key = {session.id}>
+                                        <th scope={"row"}> {session.id}</th>
+                                        <td> {session.aircraft.id}</td>
+                                        <td> {session.instructor.id}</td>
+                                        <td> {session.student.id}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
                                         <td> {session.endTime}</td>
@@ -54,13 +54,14 @@ class SessionComponent extends React.Component {
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
                                         <td>
+                                            {/*TODO replace this with link*/}
                                             <a href={"/sessions/edit/" + session.sessionId}
                                                className={"btn btn-warning btn-block"}>Edit Session</a>
                                         </td>
                                         <td>
                                             <a className={"btn btn-danger btn-block"}
                                                onClick={() => {
-                                                   SessionService.deleteSession(session.sessionId);
+                                                   SessionService.delete(session.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete
