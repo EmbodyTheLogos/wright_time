@@ -1,5 +1,6 @@
 import React from 'react';
 import AircraftService from '../services/AircraftService';
+import {Link} from "react-router-dom";
 
 class AircraftComponent extends React.Component {
 
@@ -48,8 +49,8 @@ class AircraftComponent extends React.Component {
                                         <td> {aircraft.maintenanceDay}</td>
                                         <td> {aircraft.minimumTrainingDuration}</td>
                                         <td>
-                                            <link to={"/aircraft/edit/" + aircraft.id}
-                                               className={"btn btn-warning btn-block"}>Edit Aircraft</link>
+                                            <Link to={"/aircraft/edit/" + aircraft.id}
+                                               className={"btn btn-warning btn-block"}>Edit Aircraft</Link>
                                         </td>
                                         <td>
                                             <button className={"btn btn-danger btn-block"}
@@ -67,7 +68,7 @@ class AircraftComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <a href={"/aircraft/add"} className={"btn btn-dark"}>Add Aircraft</a>
+                    <Link to={"/aircraft/add"} className={"btn btn-dark"}>Add Aircraft</Link>
                 </div>
 
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class HomeComponent extends React.Component {
 
@@ -32,28 +33,28 @@ class HomeComponent extends React.Component {
                             <td>View</td>
                             <td>View</td>
                             <td>Edit, View</td>
-                            <td><a href={"/aircraft"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
+                            <td><Link to={"/aircraft"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>
                         </tr>
                         <tr className={"table-info"}>
                             <td>Users</td>
                             <td>No Access</td>
                             <td>No Access</td>
                             <td>Edit, View</td>
-                            <td><a href={"/users"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
+                            <td><Link to={"/users"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>
                         </tr>
                         <tr className={"table-warning"}>
                             <td>Sessions</td>
                             <td>Limited View</td>
                             <td>Limited View</td>
                             <td>Edit, View</td>
-                            <td><a href={"/sessions"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
+                            <td><Link to={"/sessions"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>
                         </tr>
                         <tr className={"table-danger"}>
                             <td>Certifications</td>
                             <td>Limited View</td>
                             <td>Limited View</td>
                             <td>Edit, View</td>
-                            <td><a href={"/certifications"} className={"btn btn-secondary btn-block"}>Check it out!</a></td>
+                            <td><Link to={"/certifications"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>
                         </tr>
                         </tbody>
                     </table>

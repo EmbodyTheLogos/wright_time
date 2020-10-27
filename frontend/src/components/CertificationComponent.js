@@ -1,5 +1,6 @@
 import React from 'react';
 import CertificationService from '../services/CertificationService';
+import {Link} from "react-router-dom";
 
 class CertificationComponent extends React.Component {
 
@@ -42,8 +43,8 @@ class CertificationComponent extends React.Component {
                                         <td> {cert.aircraft.id}</td>
                                         <td> {cert.dateObtained}</td>
                                         <td>
-                                            <link to={"/certifications/edit/" + cert.id}
-                                               className={"btn btn-warning btn-block"}>Edit Certification</link>
+                                            <Link to={"/certifications/edit/" + cert.id}
+                                               className={"btn btn-warning btn-block"}>Edit Certification</Link>
                                         </td>
                                         <td>
                                             <button className={"btn btn-danger btn-block"}
@@ -61,7 +62,7 @@ class CertificationComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <a href={"/certifications/add"} className={"btn btn-dark"}>Add Certification</a>
+                    <Link to={"/certifications/add"} className={"btn btn-dark"}>Add Certification</Link>
                 </div>
             </div>
         )

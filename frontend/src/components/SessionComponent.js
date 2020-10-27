@@ -1,5 +1,6 @@
 import React from 'react';
 import SessionService from '../services/SessionService';
+import {Link} from "react-router-dom";
 
 class SessionComponent extends React.Component {
 
@@ -55,8 +56,8 @@ class SessionComponent extends React.Component {
                                         <td> {session.state}</td>
                                         <td>
                                             {/*TODO replace this with link*/}
-                                            <link to={"/sessions/edit/" + session.id}
-                                               className={"btn btn-warning btn-block"}>Edit Session</link>
+                                            <Link to={"/sessions/edit/" + session.id}
+                                               className={"btn btn-warning btn-block"}>Edit Session</Link>
                                         </td>
                                         <td>
                                             <button className={"btn btn-danger btn-block"}
@@ -74,7 +75,7 @@ class SessionComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <a href={"/sessions/add"} className={"btn btn-dark"}>Add Session</a>
+                    <Link to={"/sessions/add"} className={"btn btn-dark"}>Add Session</Link>
                 </div>
 
             </div>

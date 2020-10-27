@@ -68,7 +68,7 @@ class UserComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <a href={"/users/add"} className={"btn btn-dark"}>Add User</a>
+                    <Link to={"/users/add"} className={"btn btn-dark"}>Add User</Link>
                 </div>
             </div>
         )
