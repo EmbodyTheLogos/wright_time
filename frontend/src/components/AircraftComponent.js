@@ -48,18 +48,17 @@ class AircraftComponent extends React.Component {
                                         <td> {aircraft.maintenanceDay}</td>
                                         <td> {aircraft.minimumTrainingDuration}</td>
                                         <td>
-                                            {/*TODO replace this with link*/}
-                                            <a href={"/aircraft/edit/" + aircraft.id}
-                                               className={"btn btn-warning btn-block"}>Edit Aircraft</a>
+                                            <link to={"/aircraft/edit/" + aircraft.id}
+                                               className={"btn btn-warning btn-block"}>Edit Aircraft</link>
                                         </td>
                                         <td>
-                                            <a className={"btn btn-danger btn-block"}
+                                            <button className={"btn btn-danger btn-block"}
                                                     onClick={() => {
-                                                        AircraftService.delete(aircraft.aircraftId);
+                                                        AircraftService.delete(aircraft.id);
                                                         window.location.reload(false);
                                                     }}>
                                                 Delete
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                             )

@@ -55,17 +55,17 @@ class SessionComponent extends React.Component {
                                         <td> {session.state}</td>
                                         <td>
                                             {/*TODO replace this with link*/}
-                                            <a href={"/sessions/edit/" + session.sessionId}
-                                               className={"btn btn-warning btn-block"}>Edit Session</a>
+                                            <link to={"/sessions/edit/" + session.id}
+                                               className={"btn btn-warning btn-block"}>Edit Session</link>
                                         </td>
                                         <td>
-                                            <a className={"btn btn-danger btn-block"}
+                                            <button className={"btn btn-danger btn-block"}
                                                onClick={() => {
                                                    SessionService.delete(session.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                             )

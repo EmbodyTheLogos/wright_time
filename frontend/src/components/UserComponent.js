@@ -1,5 +1,7 @@
 import React from 'react';
 import UserService from '../services/UserService';
+import {Link} from "react-router-dom";
+
 
 class UserComponent extends React.Component {
 
@@ -48,18 +50,16 @@ class UserComponent extends React.Component {
                                         <td> {user.email}</td>
                                         <td> {user.dateOfBirth}</td>
                                         <td>
-                                            {/*TODO replace this with link*/}
-                                            <a href={"/users/edit/" + user.id}
-                                               className={"btn btn-warning btn-block"}>Edit User</a>
+                                            <Link to={"/users/edit/" + user.id} className={"btn btn-warning btn-block"}>Edit User</Link>
                                         </td>
                                         <td>
-                                            <a className={"btn btn-danger btn-block"}
+                                            <button className={"btn btn-danger btn-block"}
                                                onClick={() => {
-                                                   UserService.delete(user.userId);
+                                                   UserService.delete(user.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                             )

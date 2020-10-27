@@ -42,18 +42,17 @@ class CertificationComponent extends React.Component {
                                         <td> {cert.aircraft.id}</td>
                                         <td> {cert.dateObtained}</td>
                                         <td>
-                                            {/*TODO replace this with link*/}
-                                            <a href={"/certifications/edit/" + cert.id}
-                                               className={"btn btn-warning btn-block"}>Edit Certification</a>
+                                            <link to={"/certifications/edit/" + cert.id}
+                                               className={"btn btn-warning btn-block"}>Edit Certification</link>
                                         </td>
                                         <td>
-                                            <a className={"btn btn-danger btn-block"}
+                                            <button className={"btn btn-danger btn-block"}
                                                onClick={() => {
                                                    CertificationService.delete(cert.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                             )
