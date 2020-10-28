@@ -52,9 +52,9 @@ class AddSessionComponent extends React.Component {
                 let day = parseInt(date[2])
 
                 this.setState({
-                    aircraftId: res.data.aircraft.aircraftId,
-                    instructorId: res.data.instructor.userId,
-                    studentId: res.data.student.userId,
+                    aircraftId: res.data.aircraft.id,
+                    instructorId: res.data.instructor.id,
+                    studentId: res.data.student.id,
                     startTime: res.data.startTime,
                     endTime: res.data.endTime,
                     score: res.data.score,
@@ -81,9 +81,9 @@ class AddSessionComponent extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
         let session = {
-            aircraft:{aircraftId:this.state.aircraftId},
-            instructor:{userId:this.state.instructorId},
-            student:{userId:this.state.studentId},
+            aircraft:{id:this.state.aircraftId},
+            instructor:{id:this.state.instructorId},
+            student:{id:this.state.studentId},
             startTime: this.state.startTime,
             endTime: this.state.endTime,
             date: this.state.date,

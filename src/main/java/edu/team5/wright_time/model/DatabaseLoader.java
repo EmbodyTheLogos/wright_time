@@ -35,31 +35,36 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String type = System.getenv("database.type");
-        if(type.equals("h2")) {
-            var date = new GregorianCalendar(2000, Calendar.MARCH, 2).getTime();
+        var date = new GregorianCalendar(2000, Calendar.MARCH, 2).getTime();
 
-            var aircraft1 = new Aircraft("Manufacturer 1", "Name 1", "Model 1", 1999, 10, 10);
-            var aircraft2 = new Aircraft("Manufacturer 2", "Name 2", "Model 2", 2019, 6, 15);
-            var user1 = new User("jdellock", "ROLE_ADMIN", "Jeremy", "Dellock", "jeremydellock570@gmail.com", (Date) date.clone());
-            var user2 = new User("bwarner", "ROLE_INSTRUCTOR", "Benjamin", "Warner", "email2@gmail.com", (Date) date.clone());
-            var user3 = new User("lnguyen", "ROLE_STUDENT", "Long", "Nguyen", "email3@gmail.com", (Date) date.clone());
-            var cert1 = new Certification(user1, aircraft1, (Date) date.clone());
-            var cert2 = new Certification(user2, aircraft2, (Date) date.clone());
-            var session1 = new Session(user1, user2, aircraft1, 2300, 2359, (Date) date.clone(), Session.State.PENDING, "ok", 2);
-            var session2 = new Session(user1, user2, aircraft2, 2300, 2359, (Date) date.clone(), Session.State.PENDING, "bad", 1);
+        var aircraft1 = new Aircraft("Cessna", "Skyhawk", "172", 1997, 6, 3);
+        var aircraft2 = new Aircraft("Piper Aircraft", "Cherokee", "PA-28", 2002, 19, 3);
+        var aircraft3 = new Aircraft("Beechcraft", "Bonanza", "S35", 2007, 20, 4);
+        var aircraft4 = new Aircraft("Douglas", "Skytrain", "C-47", 1945, 28, 6);
+        var user1 = new User("jdellock", "ROLE_ADMIN", "Jeremy", "Dellock", "jmd6724@psu.edu", (Date) date.clone());
+        var user2 = new User("bwarner", "ROLE_INSTRUCTOR", "Benjamin", "Warner", "bdw5230@psu.edu", (Date) date.clone());
+        var user3 = new User("lnguyen", "ROLE_STUDENT", "Long", "Nguyen", "lhn5032@psu.edu", (Date) date.clone());
+        var user4 = new User("nnetznik", "ROLE_STUDENT", "Nathaniel", "Netznik", "nhn5049@psu.edu", (Date) date.clone());
+        var cert1 = new Certification(user1, aircraft1, (Date) date.clone());
+        var cert2 = new Certification(user2, aircraft2, (Date) date.clone());
+        var session1 = new Session(user1, user2, aircraft1, 1100, 1400, (Date) date.clone(), Session.State.PENDING, "Rough Landing, work on approach. ", 2);
+        var session2 = new Session(user1, user2, aircraft2, 1400, 1700, (Date) date.clone(), Session.State.APPROVED, "No outstanding issues. ", 4);
 
-            aircraftRepository.save(aircraft1);
-            aircraftRepository.save(aircraft2);
+        aircraftRepository.save(aircraft1);
+        aircraftRepository.save(aircraft2);
+        aircraftRepository.save(aircraft3);
+        aircraftRepository.save(aircraft4);
 
-            userRepository.save(user1);
-            userRepository.save(user2);
-            userRepository.save(user3);
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
+        userRepository.save(user4);
 
-            certRepository.save(cert1);
-            certRepository.save(cert2);
+        certRepository.save(cert1);
+        certRepository.save(cert2);
 
-            sessionRepository.save(session1);
-            sessionRepository.save(session2);
-        }
+        sessionRepository.save(session1);
+        sessionRepository.save(session2);
+
     }
 }
