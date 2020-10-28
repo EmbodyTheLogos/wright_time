@@ -154,11 +154,11 @@ class AddCertificationComponent extends React.Component {
                                               name={"aircraftId"}/>
                             </Form.Group>
 
-                            <Form.Group controlId={"date"}>
+                            <Form.Group controlId={"dateObtained"}>
                                 <DatePicker
-                                    selected={this.state.date}
+                                    selected={this.state.dateObtained}
                                     onChange={this.handleDateChange}
-                                    name="date"
+                                    name="dateObtained"
                                     dateFormat="MM/dd/yyyy"
                                 />
                             </Form.Group>
