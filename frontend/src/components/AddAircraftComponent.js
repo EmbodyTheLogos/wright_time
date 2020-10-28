@@ -104,6 +104,8 @@ class AddAircraftComponent extends React.Component {
                 </Navbar>
                 <br/>
 
+                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+
                 <Container>
                     <Center>
                         <Form>

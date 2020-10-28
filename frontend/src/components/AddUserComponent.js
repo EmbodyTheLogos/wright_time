@@ -1,9 +1,10 @@
 import React from 'react';
 import UserService from '../services/UserService';
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Center from "react-center";
 
 class AddUserComponent extends React.Component {
 
@@ -119,56 +120,58 @@ class AddUserComponent extends React.Component {
                 </Navbar>
                 <br/>
 
-                <form className={"form-horizontal"}>
-                    <div className={"form-group"}>
-                        <label>Username: <input type="text" name="username" value={this.state.username}
-                                                className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
 
+                <Container>
+                    <Center>
+                        <Form>
+                            <Form.Group controlId={"username"}>
+                                <Form.Control type={"text"} placeholder={"Username"}
+                                              value={this.state.username} onChange={this.changeHandler}
+                                              name={"username"}/>
+                            </Form.Group>
 
-                    <div className="form-group">
-                        <label>Role: <select value={this.state.role} onChange={this.changeHandler}
-                                             name="role" className={"form-control"}>
-                            <option value="empty"> </option>
-                            <option value="ROLE_ADMIN">Administrator</option>
-                            <option value="ROLE_INSTRUCTOR">Instructor</option>
-                            <option value="ROLE_STUDENT">Student</option>
-                        </select>
-                        </label>
-                    </div>
+                            <Form.Group controlId={"role"}>
+                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.role}
+                                              onChange={this.changeHandler} name={"role"}>
+                                    <option value="empty"></option>
+                                    <option value="ROLE_ADMIN">Administrator</option>
+                                    <option value="ROLE_INSTRUCTOR">Instructor</option>
+                                    <option value="ROLE_STUDENT">Student</option>
+                                </Form.Control>
+                            </Form.Group>
 
+                            <Form.Group controlId={"firstName"}>
+                                <Form.Control type={"text"} placeholder={"First Name"}
+                                              value={this.state.firstName} onChange={this.changeHandler}
+                                              name={"firstName"}/>
+                            </Form.Group>
 
-                    <div className={"form-group"}>
-                        <label>First Name: <input type="text" name="firstName" value={this.state.firstName}
-                                                  className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                            <Form.Group controlId={"lastName"}>
+                                <Form.Control type={"text"} placeholder={"Last Name"}
+                                              value={this.state.lastName} onChange={this.changeHandler}
+                                              name={"lastName"}/>
+                            </Form.Group>
 
+                            <Form.Group controlId={"email"}>
+                                <Form.Control type={"email"} placeholder={"Email"}
+                                              value={this.state.email} onChange={this.changeHandler}
+                                              name={"email"}/>
+                            </Form.Group>
 
-                    <div className={"form-group"}>
-                        <label>Last Name: <input type="text" name="lastName" value={this.state.lastName}
-                                                 className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                            <Form.Group controlId={"dateOfBirth"}>
+                                <DatePicker
+                                    selected={this.state.dateOfBirth}
+                                    onChange={this.handleDateChange}
+                                    name="dateOfBirth"
+                                    dateFormat="MM/dd/yyyy"
+                                />
+                            </Form.Group>
 
-
-                    <div className={"form-group"}>
-                        <label>Email: <input type="text" name="email" value={this.state.email}
-                                             className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Date of Birth: <DatePicker
-                            selected={this.state.dateOfBirth}
-                            onChange={this.handleDateChange}
-                            name="dateOfBirth"
-                            dateFormat="MM/dd/yyyy"
-                        /></label>
-                    </div>
-
-
-                    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
-
-                    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>
-                </form>
+                            <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
+                        </Form>
+                    </Center>
+                </Container>
 
             </div>
 
