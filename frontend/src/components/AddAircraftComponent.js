@@ -1,5 +1,6 @@
 import React from 'react';
 import AircraftService from '../services/AircraftService';
+import {Nav, Navbar} from 'react-bootstrap'
 
 class AddAircraftComponent extends React.Component {
 
@@ -91,7 +92,15 @@ class AddAircraftComponent extends React.Component {
     render (){
         return (
             <div>
-
+                <Navbar bg="dark" variant="dark" expand="lg">
+                    <Navbar.Brand href="/">Home</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/aircraft">Aircraft View</Nav.Link>
+                        <Nav.Link href="/users">Users View</Nav.Link>
+                        <Nav.Link href="/sessions">Sessions View</Nav.Link>
+                        <Nav.Link href="/certifications">Certifications View</Nav.Link>
+                    </Nav>
+                </Navbar>
                 <br/>
 
                 <form className={"form-horizontal"}>
