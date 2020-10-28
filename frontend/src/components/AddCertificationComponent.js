@@ -15,7 +15,7 @@ class AddCertificationComponent extends React.Component {
                 mode: "add",
                 userId: "",
                 aircraftId: "",
-                date: Date.now(),
+                dateObtained: Date.now(),
                 errorMessage: ""
             };
         } else {
@@ -24,7 +24,7 @@ class AddCertificationComponent extends React.Component {
                 id: props.match.params.id,
                 userId: "",
                 aircraftId: "",
-                date: Date.now(),
+                dateObtained: Date.now(),
                 errorMessage: ""
             };
         }
@@ -41,8 +41,8 @@ class AddCertificationComponent extends React.Component {
                 let day = parseInt(date[2])
 
                 this.setState({
-                    aircraftId: res.data.aircraft.aircraftId,
-                    userId: res.data.user.userId,
+                    aircraftId: res.data.aircraft.id,
+                    userId: res.data.user.id,
                     dateObtained: new Date(year, month, day),
                 });
             })
@@ -64,8 +64,8 @@ class AddCertificationComponent extends React.Component {
     submitHandler = (event) => {
         event.preventDefault();
         let cert = {
-            aircraft:{aircraftId:this.state.aircraftId},
-            user:{userId:this.state.userId},
+            aircraft:{id:this.state.aircraftId},
+            user:{id:this.state.userId},
             dateObtained: this.state.dateObtained,
         };
 
