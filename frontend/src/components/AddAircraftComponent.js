@@ -1,12 +1,13 @@
 import React from 'react';
 import AircraftService from '../services/AircraftService';
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
+import Center from 'react-center';
 
 class AddAircraftComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        if(!props.match.params.id) {
+        if (!props.match.params.id) {
             this.state = {
                 mode: "add",
                 manufacturer: "",
@@ -32,8 +33,8 @@ class AddAircraftComponent extends React.Component {
         }
     }
 
-    componentDidMount(){
-        if(this.state.mode === "edit") {
+    componentDidMount() {
+        if (this.state.mode === "edit") {
             AircraftService.getOne(this.props.match.params.id).then(res => {
                 this.setState({
                     manufacturer: res.data.manufacturer,
@@ -50,7 +51,7 @@ class AddAircraftComponent extends React.Component {
     changeHandler = (event) => {
         let name = event.target.name;
         let value = event.target.value;
-        this.setState({[name]:value})
+        this.setState({[name]: value})
     }
 
     submitHandler = (event) => {
@@ -65,11 +66,11 @@ class AddAircraftComponent extends React.Component {
         };
 
         console.log(JSON.stringify(aircraft));
-        if(this.state.mode === "add") {
+        if (this.state.mode === "add") {
             AircraftService.post(aircraft).then(res => {
                 this.props.history.push('/aircraft')
             }).catch(res => {
-                if(res.response) {
+                if (res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
                 } else {
                     this.setState({errorMessage: res.message});
@@ -79,7 +80,7 @@ class AddAircraftComponent extends React.Component {
             AircraftService.put(this.state.aircraftId, aircraft).then(res => {
                 this.props.history.push('/aircraft')
             }).catch(res => {
-                if(res.response) {
+                if (res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
                 } else {
                     this.setState({errorMessage: res.message});
@@ -89,7 +90,7 @@ class AddAircraftComponent extends React.Component {
 
     }
 
-    render (){
+    render() {
         return (
             <div>
                 <Navbar bg="dark" variant="dark" expand="lg">
@@ -103,50 +104,49 @@ class AddAircraftComponent extends React.Component {
                 </Navbar>
                 <br/>
 
-                <form className={"form-horizontal"}>
-                    <div className={"form-group"}>
-                        <label>Manufacturer: <input type="text" name="manufacturer" value={this.state.manufacturer}
-                                                    className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                <Container>
+                    <Center>
+                        <Form>
+                            <Form.Group controlId={"manufacturer"}>
+                                    <Form.Control type={"text"} placeholder={"Manufacturer"}
+                                                  value={this.state.manufacturer} onChange={this.changeHandler}
+                                                  name={"manufacturer"}/>
+                            </Form.Group>
 
+                            <Form.Group controlId={"name"}>
+                                <Form.Control type={"text"} placeholder={"Name"}
+                                              value={this.state.name} onChange={this.changeHandler}
+                                              name={"name"}/>
+                            </Form.Group>
 
-                    <div className={"form-group"}>
-                        <label>Name: <input type="text" name="name" value={this.state.name}
-                                            className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                            <Form.Group controlId={"model"}>
+                                <Form.Control type={"text"} placeholder={"Model"}
+                                              value={this.state.model} onChange={this.changeHandler}
+                                              name={"model"}/>
+                            </Form.Group>
 
+                            <Form.Group controlId={"year"}>
+                                <Form.Control type={"text"} placeholder={"Year(YYYY)"}
+                                              value={this.state.year} onChange={this.changeHandler}
+                                              name={"year"}/>
+                            </Form.Group>
 
-                    <div className={"form-group"}>
-                        <label>Model: <input type="text" name="model" value={this.state.model}
-                                             className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                            <Form.Group controlId={"maintenanceDay"}>
+                                <Form.Control type={"text"} placeholder={"Maintenance Day"}
+                                              value={this.state.maintenanceDay} onChange={this.changeHandler}
+                                              name={"maintenanceDay"}/>
+                            </Form.Group>
 
+                            <Form.Group controlId={"minimumTrainingDuration"}>
+                                <Form.Control type={"text"} placeholder={"Min. Training Duration"}
+                                              value={this.state.minimumTrainingDuration} onChange={this.changeHandler}
+                                              name={"minimumTrainingDuration"}/>
+                            </Form.Group>
 
-                    <div className={"form-group"}>
-                        <label>Year: <input type="text" name="year" value={this.state.year}
-                                            className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
-
-
-                    <div className={"form-group"}>
-                        <label>Maintenance Day: <input type="text" name="maintenanceDay"
-                                                       value={this.state.maintenanceDay} className={"from-control"}
-                                                       onChange={this.changeHandler}/></label>
-                    </div>
-
-
-                    <div className={"form-group"}>
-                        <label>Min. Training Duration: <input type="text" name="minimumTrainingDuration"
-                                                              value={this.state.minimumTrainingDuration}
-                                                              className={"from-control"}
-                                                              onChange={this.changeHandler}/></label>
-                    </div>
-
-
-                    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
-
-                    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>
-                </form>
+                            <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
+                        </Form>
+                    </Center>
+                </Container>
             </div>
 
         )
