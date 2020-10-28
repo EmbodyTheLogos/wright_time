@@ -1,6 +1,7 @@
 import React from 'react';
 import CertificationService from '../services/CertificationService';
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
+import Center from "react-center";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -107,34 +108,65 @@ class AddCertificationComponent extends React.Component {
                 </Navbar>
                 <br/>
 
-                <form className={"form-horizontal"}>
-                    {/*want these to be dropdowns in the future*/}
-                    <div className={"form-group"}>
-                        <label>User ID: <input type="text" name="userId" value={this.state.userId}
-                                                   className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*<form className={"form-horizontal"}>*/}
+                {/*    /!*want these to be dropdowns in the future*!/*/}
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>User ID: <input type="text" name="userId" value={this.state.userId}*/}
+                {/*                                   className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className={"form-group"}>
-                        <label>Aircraft ID: <input type="text" name="aircraftId" value={this.state.aircraftId}
-                                                     className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>Aircraft ID: <input type="text" name="aircraftId" value={this.state.aircraftId}*/}
+                {/*                                     className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className="form-group">
-                        <label>Date Obtained: <DatePicker
-                            selected={this.state.date}
-                            onChange={this.handleDateChange}
-                            name="date"
-                            dateFormat="MM/dd/yyyy"
-                        /></label>
-                    </div>
+                {/*    <div className="form-group">*/}
+                {/*        <label>Date Obtained: <DatePicker*/}
+                {/*            selected={this.state.date}*/}
+                {/*            onChange={this.handleDateChange}*/}
+                {/*            name="date"*/}
+                {/*            dateFormat="MM/dd/yyyy"*/}
+                {/*        /></label>*/}
+                {/*    </div>*/}
 
 
-                    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+                {/*    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}*/}
 
-                    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>
-                </form>
+                {/*    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>*/}
+                {/*</form>*/}
+
+                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+
+                <Container>
+                    <Center>
+                        <Form>
+                            <Form.Group controlId={"userId"}>
+                                <Form.Control type={"text"} placeholder={"User ID"}
+                                              value={this.state.userId} onChange={this.changeHandler}
+                                              name={"userId"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"aircraftId"}>
+                                <Form.Control type={"text"} placeholder={"Aircraft ID"}
+                                              value={this.state.aircraftId} onChange={this.changeHandler}
+                                              name={"aircraftId"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"date"}>
+                                <DatePicker
+                                    selected={this.state.date}
+                                    onChange={this.handleDateChange}
+                                    name="date"
+                                    dateFormat="MM/dd/yyyy"
+                                />
+                            </Form.Group>
+
+                            <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
+                        </Form>
+                    </Center>
+                </Container>
 
             </div>
 

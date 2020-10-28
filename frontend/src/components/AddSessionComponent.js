@@ -1,9 +1,10 @@
 import React from 'react';
 import SessionService from '../services/SessionService';
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Center from "react-center";
 
 class AddSessionComponent extends React.Component {
 
@@ -131,79 +132,152 @@ class AddSessionComponent extends React.Component {
                 </Navbar>
                 <br/>
 
-                <form className={"form-horizontal"}>
+                {/*<form className={"form-horizontal"}>*/}
 
-                    {/*want these to be dropdowns in the future*/}
-                    <div className={"form-group"}>
-                        <label>Aircraft ID: <input type="text" name="aircraftId" value={this.state.aircraftId}
-                                                className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
-
-
-                    <div className={"form-group"}>
-                        <label>Instructor ID: <input type="text" name="instructorId" value={this.state.instructorId}
-                                                   className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*    /!*want these to be dropdowns in the future*!/*/}
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>Aircraft ID: <input type="text" name="aircraftId" value={this.state.aircraftId}*/}
+                {/*                                className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className={"form-group"}>
-                        <label>Student ID: <input type="text" name="studentId" value={this.state.studentId}
-                                                   className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>Instructor ID: <input type="text" name="instructorId" value={this.state.instructorId}*/}
+                {/*                                   className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className="form-group">
-                        <label>Date of Session: <DatePicker
-                            selected={this.state.date}
-                            onChange={this.handleDateChange}
-                            name="date"
-                            dateFormat="MM/dd/yyyy"
-                        /></label>
-                    </div>
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>Student ID: <input type="text" name="studentId" value={this.state.studentId}*/}
+                {/*                                   className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className={"form-group"}>
-                        <label>Start Time: <input type="text" name="startTime" value={this.state.startTime}
-                                                  className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*    <div className="form-group">*/}
+                {/*        <label>Date of Session: <DatePicker*/}
+                {/*            selected={this.state.date}*/}
+                {/*            onChange={this.handleDateChange}*/}
+                {/*            name="date"*/}
+                {/*            dateFormat="MM/dd/yyyy"*/}
+                {/*        /></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className={"form-group"}>
-                        <label>End Time: <input type="text" name="endTime" value={this.state.endTime}
-                                                 className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>Start Time: <input type="text" name="startTime" value={this.state.startTime}*/}
+                {/*                                  className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className={"form-group"}>
-                        <label>Score: <input type="text" name="score" value={this.state.score}
-                                             className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>End Time: <input type="text" name="endTime" value={this.state.endTime}*/}
+                {/*                                 className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className={"form-group"}>
-                        <label>Comments: <input type="text" name="comments" value={this.state.comments}
-                                             className={"from-control"} onChange={this.changeHandler}/></label>
-                    </div>
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>Score: <input type="text" name="score" value={this.state.score}*/}
+                {/*                             className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    <div className="form-group">
-                        <label>State: <select value={this.state.state} onChange={this.changeHandler}
-                                             name="state" className={"form-control"}>
-                            <option value="empty"> </option>
-                            <option value="PENDING">Pending</option>
-                            <option value="APPROVED">Approved</option>
-                            <option value="DECLINED">Declined</option>
-                            <option value="CANCELLED">Cancelled</option>
-                            <option value="COMPLETE">Completed</option>
-                        </select>
-                        </label>
-                    </div>
+                {/*    <div className={"form-group"}>*/}
+                {/*        <label>Comments: <input type="text" name="comments" value={this.state.comments}*/}
+                {/*                             className={"from-control"} onChange={this.changeHandler}/></label>*/}
+                {/*    </div>*/}
 
 
-                    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+                {/*    <div className="form-group">*/}
+                {/*        <label>State: <select value={this.state.state} onChange={this.changeHandler}*/}
+                {/*                             name="state" className={"form-control"}>*/}
+                {/*            <option value="empty"> </option>*/}
+                {/*            <option value="PENDING">Pending</option>*/}
+                {/*            <option value="APPROVED">Approved</option>*/}
+                {/*            <option value="DECLINED">Declined</option>*/}
+                {/*            <option value="CANCELLED">Cancelled</option>*/}
+                {/*            <option value="COMPLETE">Completed</option>*/}
+                {/*        </select>*/}
+                {/*        </label>*/}
+                {/*    </div>*/}
 
-                    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>
-                </form>
+
+                {/*    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}*/}
+
+                {/*    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>*/}
+                {/*</form>*/}
+
+                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+
+                <Container>
+                    <Center>
+                        <Form>
+                            <Form.Group controlId={"aircraftId"}>
+                                <Form.Control type={"text"} placeholder={"Aircraft ID"}
+                                              value={this.state.aircraftId} onChange={this.changeHandler}
+                                              name={"aircraftId"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"instructorId"}>
+                                <Form.Control type={"text"} placeholder={"Instructor ID"}
+                                              value={this.state.instructorId} onChange={this.changeHandler}
+                                              name={"instructorId"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"studentId"}>
+                                <Form.Control type={"text"} placeholder={"Student ID"}
+                                              value={this.state.studentId} onChange={this.changeHandler}
+                                              name={"studentId"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"date"}>
+                                <DatePicker
+                                    selected={this.state.date}
+                                    onChange={this.handleDateChange}
+                                    name="date"
+                                    dateFormat="MM/dd/yyyy"
+                                />
+                            </Form.Group>
+
+                            <Form.Group controlId={"startTime"}>
+                                <Form.Control type={"text"} placeholder={"Start Time"}
+                                              value={this.state.startTime} onChange={this.changeHandler}
+                                              name={"startTime"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"endTime"}>
+                                <Form.Control type={"text"} placeholder={"End Time"}
+                                              value={this.state.endTime} onChange={this.changeHandler}
+                                              name={"endTime"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"score"}>
+                                <Form.Control type={"text"} placeholder={"Score"}
+                                              value={this.state.score} onChange={this.changeHandler}
+                                              name={"score"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"comments"}>
+                                <Form.Control type={"text"} placeholder={"Comments"}
+                                              value={this.state.comments} onChange={this.changeHandler}
+                                              name={"comments"}/>
+                            </Form.Group>
+
+                            <Form.Group controlId={"state"}>
+                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.state}
+                                              onChange={this.changeHandler} name={"state"}>
+                                    <option value="empty"> </option>
+                                    <option value="PENDING">Pending</option>
+                                    <option value="APPROVED">Approved</option>
+                                    <option value="DECLINED">Declined</option>
+                                    <option value="CANCELLED">Cancelled</option>
+                                    <option value="COMPLETE">Completed</option>
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
+                        </Form>
+                    </Center>
+                </Container>
 
             </div>
 
