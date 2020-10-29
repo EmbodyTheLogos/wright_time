@@ -108,35 +108,6 @@ class AddCertificationComponent extends React.Component {
                 </Navbar>
                 <br/>
 
-                {/*<form className={"form-horizontal"}>*/}
-                {/*    /!*want these to be dropdowns in the future*!/*/}
-                {/*    <div className={"form-group"}>*/}
-                {/*        <label>User ID: <input type="text" name="userId" value={this.state.userId}*/}
-                {/*                                   className={"from-control"} onChange={this.changeHandler}/></label>*/}
-                {/*    </div>*/}
-
-
-                {/*    <div className={"form-group"}>*/}
-                {/*        <label>Aircraft ID: <input type="text" name="aircraftId" value={this.state.aircraftId}*/}
-                {/*                                     className={"from-control"} onChange={this.changeHandler}/></label>*/}
-                {/*    </div>*/}
-
-
-                {/*    <div className="form-group">*/}
-                {/*        <label>Date Obtained: <DatePicker*/}
-                {/*            selected={this.state.date}*/}
-                {/*            onChange={this.handleDateChange}*/}
-                {/*            name="date"*/}
-                {/*            dateFormat="MM/dd/yyyy"*/}
-                {/*        /></label>*/}
-                {/*    </div>*/}
-
-
-                {/*    {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}*/}
-
-                {/*    <button type="submit" className={"btn btn-dark"} onClick={this.submitHandler}>Submit</button>*/}
-                {/*</form>*/}
-
                 {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
 
                 <Container>
