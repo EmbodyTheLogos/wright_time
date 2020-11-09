@@ -38,7 +38,7 @@ public class User {
     @Email(message="Must enter a valid email address")
     private String email;
 
-    @Past(message="Must enter a valid date")
+    @PastOrPresent(message="Must enter a valid date")
     private LocalDate dateOfBirth;
 
     public User(String username, String role, String firstName, String lastName, String email, LocalDate dateOfBirth) {

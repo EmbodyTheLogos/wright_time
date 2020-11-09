@@ -15,7 +15,7 @@ class AddCertificationComponent extends React.Component {
                 mode: "add",
                 userId: "",
                 aircraftId: "",
-                dateObtained: Date.now(),
+                dateObtained: new Date(),
                 errorMessage: ""
             };
         } else {
@@ -24,7 +24,7 @@ class AddCertificationComponent extends React.Component {
                 id: props.match.params.id,
                 userId: "",
                 aircraftId: "",
-                dateObtained: Date.now(),
+                dateObtained: new Date(),
                 errorMessage: ""
             };
         }

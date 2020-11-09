@@ -18,7 +18,7 @@ class AddUserComponent extends React.Component {
                 firstName: "",
                 lastName: "",
                 email: "",
-                dateOfBirth: Date.now(),
+                dateOfBirth: new Date(),
                 errorMessage: ""
             };
         } else {
@@ -30,7 +30,7 @@ class AddUserComponent extends React.Component {
                 firstName: "",
                 lastName: "",
                 email: "",
-                dateOfBirth: Date.now(),
+                dateOfBirth: new Date(),
                 errorMessage: ""
             };
         }
@@ -71,6 +71,7 @@ class AddUserComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        console.log(this.state.dateOfBirth)
         let dateOfBirth = this.state.dateOfBirth.getFullYear() + "-"+ (this.state.dateOfBirth.getMonth() + 1) +"-"+ this.state.dateOfBirth.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let user = {
             username: this.state.username,
