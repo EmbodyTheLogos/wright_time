@@ -87,9 +87,6 @@ class PendingSessionsComponent extends React.Component {
                         }
                         </tbody>
                     </table>
-
-                    <br/>
-                    <Link to={"/sessions/add"} className={"btn btn-dark"}>Add Session</Link>
                 </div>
 
             </div>
