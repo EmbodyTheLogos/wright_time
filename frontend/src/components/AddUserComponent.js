@@ -41,7 +41,6 @@ class AddUserComponent extends React.Component {
         if(this.state.mode === "edit") {
             UserService.getOne(this.props.match.params.id).then(res => {
                 let dateOfBirth = res.data.dateOfBirth.split('-')
-                console.log(dateOfBirth)
                 let year = parseInt(dateOfBirth[0])
                 let month = parseInt(dateOfBirth[1]) - 1
                 let day = parseInt(dateOfBirth[2])
@@ -72,13 +71,14 @@ class AddUserComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        let dateOfBirth = this.state.dateOfBirth.getFullYear() + "-"+ (this.state.dateOfBirth.getMonth() + 1) +"-"+ this.state.dateOfBirth.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let user = {
             username: this.state.username,
             role: this.state.role,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
-            dateOfBirth: this.state.dateOfBirth,
+            dateOfBirth: dateOfBirth
         };
 
         console.log(JSON.stringify(user));

@@ -12,17 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
-    private AircraftRepository aircraftRepository;
-    private UserRepository userRepository;
-    private CertificationRepository certRepository;
-    private SessionRepository sessionRepository;
+    private final AircraftRepository aircraftRepository;
+    private final UserRepository userRepository;
+    private final CertificationRepository certRepository;
+    private final SessionRepository sessionRepository;
 
     @Autowired
     public DatabaseLoader(AircraftRepository aircraftRepository, UserRepository userRepository, CertificationRepository certRepository, SessionRepository sessionRepository) {
@@ -35,20 +33,18 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String type = System.getenv("database.type");
-        var date = new GregorianCalendar(2000, Calendar.MARCH, 2).getTime();
-
         var aircraft1 = new Aircraft("Cessna", "Skyhawk", "172", 1997, 6, 3);
         var aircraft2 = new Aircraft("Piper Aircraft", "Cherokee", "PA-28", 2002, 19, 3);
         var aircraft3 = new Aircraft("Beechcraft", "Bonanza", "S35", 2007, 20, 4);
         var aircraft4 = new Aircraft("Douglas", "Skytrain", "C-47", 1945, 28, 6);
-        var user1 = new User("jdellock", "ROLE_ADMIN", "Jeremy", "Dellock", "jmd6724@psu.edu", (Date) date.clone());
-        var user2 = new User("bwarner", "ROLE_INSTRUCTOR", "Benjamin", "Warner", "bdw5230@psu.edu", (Date) date.clone());
-        var user3 = new User("lnguyen", "ROLE_STUDENT", "Long", "Nguyen", "lhn5032@psu.edu", (Date) date.clone());
-        var user4 = new User("nnetznik", "ROLE_STUDENT", "Nathaniel", "Netznik", "nhn5049@psu.edu", (Date) date.clone());
-        var cert1 = new Certification(user1, aircraft1, (Date) date.clone());
-        var cert2 = new Certification(user2, aircraft2, (Date) date.clone());
-        var session1 = new Session(user1, user2, aircraft1, 1100, 1400, (Date) date.clone(), Session.State.PENDING, "Rough Landing, work on approach. ", 2);
-        var session2 = new Session(user1, user2, aircraft2, 1400, 1700, (Date) date.clone(), Session.State.APPROVED, "No outstanding issues. ", 4);
+        var user1 = new User("jdellock", "ROLE_ADMIN", "Jeremy", "Dellock", "jmd6724@psu.edu", LocalDate.now().minusDays(3));
+        var user2 = new User("bwarner", "ROLE_INSTRUCTOR", "Benjamin", "Warner", "bdw5230@psu.edu", LocalDate.now().minusDays(3));
+        var user3 = new User("lnguyen", "ROLE_STUDENT", "Long", "Nguyen", "lhn5032@psu.edu", LocalDate.now().minusDays(3));
+        var user4 = new User("nnetznik", "ROLE_STUDENT", "Nathaniel", "Netznik", "nhn5049@psu.edu", LocalDate.now().minusDays(3));
+        var cert1 = new Certification(user1, aircraft1, LocalDate.now().minusDays(3));
+        var cert2 = new Certification(user2, aircraft2, LocalDate.now().minusDays(2));
+        var session1 = new Session(user1, user2, aircraft1, 1100, 1400, LocalDate.now().minusDays(1), Session.State.PENDING, "Rough Landing, work on approach. ", 2);
+        var session2 = new Session(user1, user2, aircraft2, 1400, 1700, LocalDate.now(), Session.State.APPROVED, "No outstanding issues. ", 4);
 
         aircraftRepository.save(aircraft1);
         aircraftRepository.save(aircraft2);

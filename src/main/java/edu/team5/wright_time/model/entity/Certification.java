@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.PastOrPresent;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -24,10 +25,9 @@ public class Certification {
     private Aircraft aircraft;
 
     @PastOrPresent(message="Must enter a valid date")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date dateObtained;
+    private LocalDate dateObtained;
 
-    public Certification(User user, Aircraft aircraft, Date dateObtained) {
+    public Certification(User user, Aircraft aircraft, LocalDate dateObtained) {
         this.user = user;
         this.aircraft = aircraft;
         this.dateObtained = dateObtained;

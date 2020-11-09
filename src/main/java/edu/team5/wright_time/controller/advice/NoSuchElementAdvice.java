@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.NoSuchElementException;
+
 @ControllerAdvice
-public class SessionNotFoundAdvice {
+public class NoSuchElementAdvice {
     @ResponseBody
-    @ExceptionHandler(SessionNotFoundException.class)
+    @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String userNotfoundHandler(SessionNotFoundException sessionNotFoundException)
-    {
-        return sessionNotFoundException.getMessage();
+    public String noSuchElement(NoSuchElementException e) {
+        return e.getMessage();
     }
 
 }

@@ -63,10 +63,11 @@ class AddCertificationComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        let dateObtained = this.state.dateObtained.getFullYear() + "-"+ (this.state.dateObtained.getMonth() + 1) +"-"+ this.state.dateObtained.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let cert = {
             aircraft:{id:this.state.aircraftId},
             user:{id:this.state.userId},
-            dateObtained: this.state.dateObtained,
+            dateObtained: dateObtained,
         };
 
         console.log(JSON.stringify(cert));
@@ -81,7 +82,7 @@ class AddCertificationComponent extends React.Component {
                 }
             })
         } else {
-            CertificationService.put(this.state.userId, cert).then(res => {
+            CertificationService.put(this.state.id, cert).then(res => {
                 this.props.history.push('/certifications')
             }).catch(res => {
                 if(res.response) {

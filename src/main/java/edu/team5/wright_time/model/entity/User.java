@@ -2,12 +2,14 @@ package edu.team5.wright_time.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,7 +17,7 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @NotEmpty(message="Username cannot be empty")
     private String username;
@@ -37,14 +39,9 @@ public class User {
     private String email;
 
     @Past(message="Must enter a valid date")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
-//    @PastOrPresent(message="Must enter a valid date")
-//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-//    private Date dateJoined;
-
-    public User(String username, String role, String firstName, String lastName, String email, Date dateOfBirth) {
+    public User(String username, String role, String firstName, String lastName, String email, LocalDate dateOfBirth) {
         this.username = username;
         this.role = role;
         this.firstName = firstName;

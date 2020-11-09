@@ -1,12 +1,12 @@
 package edu.team5.wright_time.controller;
 
-import edu.team5.wright_time.controller.advice.CertificationNotFoundException;
 import edu.team5.wright_time.model.entity.Certification;
 import edu.team5.wright_time.model.repository.CertificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/certifications")
@@ -24,14 +24,14 @@ public class CertificationController {
         return certificationRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Certification getOneCertification(@PathVariable long id) throws NoSuchElementException {
+        return certificationRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No certification with id: " + id));
+    }
+
     @PostMapping
     public Certification addCertification(@RequestBody @Valid Certification certification) {
         return certificationRepository.save(certification);
-    }
-
-    @GetMapping("/{id}")
-    public Certification getOneCertification(@PathVariable long id) throws CertificationNotFoundException {
-        return certificationRepository.findById(id).orElseThrow(() -> new CertificationNotFoundException(id));
     }
 
     @PutMapping("/{id}")
@@ -41,10 +41,7 @@ public class CertificationController {
             toUpdate.setUser(certification.getUser());
             toUpdate.setAircraft(certification.getAircraft());
             return certificationRepository.save(toUpdate);
-        }).orElseGet(() -> {
-            certification.setId(id);
-            return certificationRepository.save(certification);
-        });
+        }).orElseThrow(() -> new NoSuchElementException("No certification with id: " + id));
     }
 
     @DeleteMapping("/{id}")

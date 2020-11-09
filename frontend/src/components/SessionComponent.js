@@ -66,7 +66,6 @@ class SessionComponent extends React.Component {
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
                                         <td>
-                                            {/*TODO replace this with link*/}
                                             <Link to={"/sessions/edit/" + session.id}
                                                className={"btn btn-warning btn-block"}>Edit Session</Link>
                                         </td>

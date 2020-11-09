@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,7 +16,7 @@ public class Session {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name="student_id")
@@ -37,12 +38,7 @@ public class Session {
     @Max(value=2359,message="Must enter a valid time")
     private int endTime;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date date;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @PastOrPresent(message="Must have a valid date")
-    private Date dateCreated;
+    private LocalDate date;
 
     @Enumerated(EnumType.STRING)
     private State state;
@@ -54,7 +50,7 @@ public class Session {
     @Max(value=5, message="Score must be an integer between 1 and 5")
     private int score;
 
-    public Session(User student, User instructor, Aircraft aircraft, int startTime, int endTime, Date date, State state, String comments, int score) {
+    public Session(User student, User instructor, Aircraft aircraft, int startTime, int endTime, LocalDate date, State state, String comments, int score) {
         this.student = student;
         this.instructor = instructor;
         this.aircraft = aircraft;

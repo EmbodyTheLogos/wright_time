@@ -1,12 +1,12 @@
 package edu.team5.wright_time.controller;
 
-import edu.team5.wright_time.controller.advice.AircraftNotFoundException;
 import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.repository.AircraftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/aircraft")
@@ -30,12 +30,12 @@ public class AircraftController {
     }
 
     @GetMapping("/{id}")
-    public Aircraft getOneAircraft(@PathVariable int id) throws AircraftNotFoundException {
-        return aircraftRepository.findById(id).orElseThrow(() -> new AircraftNotFoundException(id));
+    public Aircraft getOneAircraft(@PathVariable long id) throws NoSuchElementException {
+        return aircraftRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No aircraft with id: " + id));
     }
 
     @PutMapping("/{id}")
-    public Aircraft updateAircraft(@PathVariable int id, @RequestBody @Valid Aircraft aircraft) {
+    public Aircraft updateAircraft(@PathVariable long id, @RequestBody @Valid Aircraft aircraft) {
         return aircraftRepository.findById(id).map(toUpdate -> {
             toUpdate.setManufacturer(aircraft.getManufacturer());
             toUpdate.setName(aircraft.getName());
@@ -44,14 +44,11 @@ public class AircraftController {
             toUpdate.setMaintenanceDay(aircraft.getMaintenanceDay());
             toUpdate.setMinimumTrainingDuration(aircraft.getMinimumTrainingDuration());
             return aircraftRepository.save(toUpdate);
-        }).orElseGet(() -> {
-            aircraft.setId(id);
-            return aircraftRepository.save(aircraft);
-        });
+        }).orElseThrow(() -> new NoSuchElementException("No aircraft with id: " + id));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAircraft(@PathVariable int id) {
+    public void deleteAircraft(@PathVariable long id) {
         aircraftRepository.deleteById(id);
     }
 

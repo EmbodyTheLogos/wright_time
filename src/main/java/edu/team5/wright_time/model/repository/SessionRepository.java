@@ -5,10 +5,11 @@ import edu.team5.wright_time.model.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public interface SessionRepository extends CrudRepository<Session,Integer> {
+public interface SessionRepository extends CrudRepository<Session, Long> {
     //List<Session> findSessionByStateAndDateBetween(Session.State state, Date begin, Date end);
 
     List<Session> findSessionByInstructor(User instructor);
@@ -20,7 +21,7 @@ public interface SessionRepository extends CrudRepository<Session,Integer> {
     //I could not figure out how to calculate hours flown given startTime and endTime,
     //so I just return the values for each assuming another function can take them in and calculate
     //flight time from them.
-    List<Session> findStartTimeAndEndTimeByStudentAndDateBetween(User student, Date begin, Date end);
+    List<Session> findSessionByStudentAndDateBetween(User student, LocalDate begin, LocalDate end);
 //    @Query('SELECT * from Session where State = ')
 //    int findStudentHoursInWeek(Date begin, Date end);
 }

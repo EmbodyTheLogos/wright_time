@@ -47,7 +47,6 @@ class AddSessionComponent extends React.Component {
         if(this.state.mode === "edit") {
             SessionService.getOne(this.props.match.params.id).then(res => {
                 let date = res.data.date.split('-')
-                console.log(date)
                 let year = parseInt(date[0])
                 let month = parseInt(date[1]) - 1
                 let day = parseInt(date[2])
@@ -81,13 +80,14 @@ class AddSessionComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        let date = this.state.date.getFullYear() + "-"+ (this.state.date.getMonth() + 1) +"-"+ this.state.date.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let session = {
             aircraft:{id:this.state.aircraftId},
             instructor:{id:this.state.instructorId},
             student:{id:this.state.studentId},
             startTime: this.state.startTime,
             endTime: this.state.endTime,
-            date: this.state.date,
+            date: date,
             score: this.state.score,
             comments: this.state.comments,
             state: this.state.state,

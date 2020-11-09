@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 public class Aircraft {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @NotEmpty(message = "Manufacturer cannot be empty")
     @Size(min=0, max=255,message="Manufacturer cannot exceed 255 characters")
