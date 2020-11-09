@@ -8,7 +8,7 @@ class AdministratorNavbar extends React.Component {
         return (
             <div>
                 <Navbar bg="dark" variant="dark" expand="lg">
-                    <Navbar.Brand style={{fontWeight:"bold", color:"LightSkyBlue"}}>Wright Time</Navbar.Brand>
+                    <Navbar.Brand style={{fontWeight:"bold",color:"LightSkyBlue"}} href={'/'}>Wright Time</Navbar.Brand>
                     <Nav className="mr-auto">
                         <NavLink exact to="/admin/home" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Home</NavLink>
