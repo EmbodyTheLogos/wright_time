@@ -1,11 +1,11 @@
 import React from 'react';
-import CertificationService from '../services/CertificationService';
+import CertificationService from '../../services/CertificationService';
 import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
 import Center from "react-center";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import AdministratorNavbar from "./AdministratorNavbar";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 
 class AddCertificationComponent extends React.Component {
 

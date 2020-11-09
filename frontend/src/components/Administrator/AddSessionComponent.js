@@ -1,12 +1,12 @@
 import React from 'react';
-import SessionService from '../services/SessionService';
+import SessionService from '../../services/SessionService';
 import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Center from "react-center";
-import AdministratorNavbar from "./AdministratorNavbar";
-import UserService from "../services/UserService";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import UserService from "../../services/UserService";
 
 class AddSessionComponent extends React.Component {
 

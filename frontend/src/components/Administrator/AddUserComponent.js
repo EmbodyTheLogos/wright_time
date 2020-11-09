@@ -1,11 +1,11 @@
 import React from 'react';
-import UserService from '../services/UserService';
+import UserService from '../../services/UserService';
 import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Center from "react-center";
-import AdministratorNavbar from "./AdministratorNavbar";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 
 class AddUserComponent extends React.Component {
 

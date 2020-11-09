@@ -1,8 +1,8 @@
 import React from 'react';
-import AircraftService from '../services/AircraftService';
+import AircraftService from '../../services/AircraftService';
 import {Link} from "react-router-dom";
 import {Button} from 'react-bootstrap'
-import AdministratorNavbar from "./AdministratorNavbar";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 
 class AircraftComponent extends React.Component {
 

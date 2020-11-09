@@ -1,22 +1,16 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {Nav, Navbar} from 'react-bootstrap'
-import AdministratorNavbar from "./AdministratorNavbar";
+import UserNavbar from "../Navbars/UserNavbar";
 
-class HomeComponent extends React.Component {
+class UserHomeComponent extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-
-    }
-
     render() {
         return (
             <div>
-                <AdministratorNavbar/>
+                <UserNavbar/>
 
                 <div className="container mt-4">
                     <h3>Database Tables Details</h3>
@@ -27,7 +21,6 @@ class HomeComponent extends React.Component {
                             <th scope="col" width="150">Students</th>
                             <th scope="col" width="150">Instructors</th>
                             <th scope="col" width="150">Administrators</th>
-                            {/*<th scope="col" width="150">Link</th>*/}
                         </tr>
                         </thead>
                         <tbody>
@@ -36,28 +29,24 @@ class HomeComponent extends React.Component {
                             <td>View</td>
                             <td>View</td>
                             <td>Edit, View</td>
-                            {/*<td><Link to={"/aircraft"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>*/}
                         </tr>
                         <tr className={"table-info"}>
                             <td>Users</td>
                             <td>No Access</td>
                             <td>No Access</td>
                             <td>Edit, View</td>
-                            {/*<td><Link to={"/users"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>*/}
                         </tr>
                         <tr className={"table-warning"}>
                             <td>Sessions</td>
                             <td>Limited View</td>
                             <td>Limited View</td>
                             <td>Edit, View</td>
-                            {/*<td><Link to={"/sessions"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>*/}
                         </tr>
                         <tr className={"table-danger"}>
                             <td>Certifications</td>
                             <td>Limited View</td>
                             <td>Limited View</td>
                             <td>Edit, View</td>
-                            {/*<td><Link to={"/certifications"} className={"btn btn-secondary btn-block"}>Check it out!</Link></td>*/}
                         </tr>
                         </tbody>
                     </table>
@@ -68,4 +57,4 @@ class HomeComponent extends React.Component {
     }
 }
 
-export default HomeComponent
+export default UserHomeComponent

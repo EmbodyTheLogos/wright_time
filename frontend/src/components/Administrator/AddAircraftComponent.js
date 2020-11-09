@@ -1,8 +1,8 @@
 import React from 'react';
-import AircraftService from '../services/AircraftService';
+import AircraftService from '../../services/AircraftService';
 import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
 import Center from 'react-center';
-import AdministratorNavbar from "./AdministratorNavbar";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 
 class AddAircraftComponent extends React.Component {
 

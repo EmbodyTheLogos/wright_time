@@ -1,7 +1,7 @@
 import React from 'react';
-import SessionService from '../services/SessionService';
+import SessionService from '../../services/SessionService';
 import {Link} from "react-router-dom";
-import AdministratorNavbar from "./AdministratorNavbar";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {Button} from 'react-bootstrap'
 
 class SessionComponent extends React.Component {

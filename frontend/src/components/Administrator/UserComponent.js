@@ -1,8 +1,8 @@
 import React from 'react';
-import UserService from '../services/UserService';
+import UserService from '../../services/UserService';
 import {Link} from "react-router-dom";
 import {Button} from 'react-bootstrap'
-import AdministratorNavbar from "./AdministratorNavbar";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 
 
 class UserComponent extends React.Component {

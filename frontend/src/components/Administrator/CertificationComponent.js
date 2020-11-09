@@ -1,8 +1,8 @@
 import React from 'react';
-import CertificationService from '../services/CertificationService';
+import CertificationService from '../../services/CertificationService';
 import {Link} from "react-router-dom";
 import {Button} from 'react-bootstrap'
-import AdministratorNavbar from "./AdministratorNavbar";
+import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 
 class CertificationComponent extends React.Component {
 
