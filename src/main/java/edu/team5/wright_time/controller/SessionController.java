@@ -71,7 +71,7 @@ public class SessionController {
     }
 
     @PutMapping("/{id}/approve")
-    public Session approve(@PathVariable long id) {
+    public Session approve(@PathVariable long id) throws NoSuchElementException {
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setState(Session.State.APPROVED);
             return sessionRepository.save(toUpdate);
@@ -79,7 +79,7 @@ public class SessionController {
     }
 
     @PutMapping("/{id}/decline")
-    public Session decline(@PathVariable long id) {
+    public Session decline(@PathVariable long id) throws NoSuchElementException {
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setState(Session.State.DECLINED);
             return sessionRepository.save(toUpdate);
