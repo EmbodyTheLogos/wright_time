@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Center from "react-center";
 import AdministratorNavbar from "./AdministratorNavbar";
+import UserService from "../services/UserService";
 
 class AddSessionComponent extends React.Component {
 
@@ -23,6 +24,7 @@ class AddSessionComponent extends React.Component {
                 score: "",
                 comments: "",
                 state: "",
+                users: [],
                 errorMessage: ""
             };
         } else {
@@ -38,6 +40,7 @@ class AddSessionComponent extends React.Component {
                 score: "",
                 comments: "",
                 state: "",
+                users: [],
                 errorMessage: ""
             };
         }
@@ -65,6 +68,9 @@ class AddSessionComponent extends React.Component {
                 });
             })
         }
+        UserService.getAll().then((response) => {
+            this.setState({ users: response.data})
+        })
     }
 
     changeHandler = (event) => {
@@ -136,10 +142,24 @@ class AddSessionComponent extends React.Component {
                                               name={"aircraftId"}/>
                             </Form.Group>
 
+                            {/*<Form.Group controlId={"instructorId"}>*/}
+                            {/*    <Form.Control type={"text"} placeholder={"Instructor ID"}*/}
+                            {/*                  value={this.state.instructorId} onChange={this.changeHandler}*/}
+                            {/*                  name={"instructorId"}/>*/}
+                            {/*</Form.Group>*/}
+
                             <Form.Group controlId={"instructorId"}>
-                                <Form.Control type={"text"} placeholder={"Instructor ID"}
-                                              value={this.state.instructorId} onChange={this.changeHandler}
-                                              name={"instructorId"}/>
+                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.instructorId}
+                                              onChange={this.changeHandler} name={"instructorId"}>
+                                    <option value="empty"> </option>
+                                    {this.state.users.map(user => <option value={user.id}>
+                                        {user.firstName + " " + user.lastName}</option>)}
+                                    {/*<option value="PENDING">Pending</option>*/}
+                                    {/*<option value="APPROVED">Approved</option>*/}
+                                    {/*<option value="DECLINED">Declined</option>*/}
+                                    {/*<option value="CANCELLED">Cancelled</option>*/}
+                                    {/*<option value="COMPLETE">Completed</option>*/}
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group controlId={"studentId"}>
