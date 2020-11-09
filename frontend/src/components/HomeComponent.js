@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {Nav, Navbar} from 'react-bootstrap'
+import AdministratorNavbar from "./AdministratorNavbar";
 
 class HomeComponent extends React.Component {
 
@@ -15,15 +16,7 @@ class HomeComponent extends React.Component {
     render() {
         return (
             <div>
-                <Navbar bg="dark" variant="dark" expand="lg">
-                    <Navbar.Brand href="/">Home</Navbar.Brand>
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/aircraft">Aircraft View</Nav.Link>
-                        <Nav.Link href="/users">Users View</Nav.Link>
-                        <Nav.Link href="/sessions">Sessions View</Nav.Link>
-                        <Nav.Link href="/certifications">Certifications View</Nav.Link>
-                    </Nav>
-                </Navbar>
+                <AdministratorNavbar/>
 
                 <div className="container mt-4">
                     <h3>Database Tables Details</h3>
