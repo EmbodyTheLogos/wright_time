@@ -29,7 +29,7 @@ public class SessionController {
 
     @GetMapping("/pending")
     public Iterable<Session> getPendingSessions() {
-        return sessionRepository.findPendingSessions();
+        return sessionRepository.findSessionsByState(Session.State.PENDING);
     }
 
     @GetMapping("/instructor/{id}")
