@@ -55,7 +55,7 @@ public class SessionController {
     }
 
     @PutMapping("/{id}")
-    public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) {
+    public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws NoSuchElementException {
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setAircraft(session.getAircraft());
             toUpdate.setStudent(session.getStudent());
@@ -67,10 +67,23 @@ public class SessionController {
             toUpdate.setStartTime(session.getStartTime());
             toUpdate.setState(session.getState());
             return sessionRepository.save(toUpdate);
-        }).orElseGet(() -> {
-            session.setId(id);
-            return sessionRepository.save(session);
-        });
+        }).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
+    }
+
+    @PutMapping("/{id}/approve")
+    public Session approve(@PathVariable long id) {
+        return sessionRepository.findById(id).map(toUpdate -> {
+            toUpdate.setState(Session.State.APPROVED);
+            return sessionRepository.save(toUpdate);
+        }).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
+    }
+
+    @PutMapping("/{id}/decline")
+    public Session decline(@PathVariable long id) {
+        return sessionRepository.findById(id).map(toUpdate -> {
+            toUpdate.setState(Session.State.DECLINED);
+            return sessionRepository.save(toUpdate);
+        }).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
     }
 
     @DeleteMapping("/{id}")
