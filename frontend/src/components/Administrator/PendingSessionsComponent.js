@@ -53,30 +53,15 @@ class PendingSessionsComponent extends React.Component {
                                         <td> {session.startTime}</td>
                                         <td> {session.endTime}</td>
                                         <td>
-                                            {/*<button className={"btn btn-danger btn-block"}*/}
-                                            {/*        onClick={() => {*/}
-                                            {/*            SessionService.delete(session.id);*/}
-                                            {/*            window.location.reload(false);*/}
-                                            {/*        }}>*/}
-                                            {/*    Approve*/}
-                                            {/*</button>*/}
                                             <Button variant={"success"}
                                                     onClick={() => {
-                                                        console.log("Hello World");
                                                         SessionService.approve(session.id);
-                                                        //window.location.reload(false);
+                                                        window.location.reload(false);
                                                     }}>
                                                 Approve
                                             </Button>
                                         </td>
                                         <td>
-                                            {/*<button className={"btn btn-danger btn-block"}*/}
-                                            {/*        onClick={() => {*/}
-                                            {/*            SessionService.delete(session.id);*/}
-                                            {/*            window.location.reload(false);*/}
-                                            {/*        }}>*/}
-                                            {/*    Decline*/}
-                                            {/*</button>*/}
                                             <Button variant={"danger"}
                                                     onClick={() => {
                                                         SessionService.decline(session.id);
