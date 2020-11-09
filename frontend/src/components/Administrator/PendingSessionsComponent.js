@@ -6,20 +6,20 @@ import {Button} from 'react-bootstrap'
 
 class PendingSessionsComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            sessions:[]
+            sessions: []
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         SessionService.getPending().then((response) => {
-            this.setState({ sessions: response.data})
+            this.setState({sessions: response.data})
         });
     }
 
-    render (){
+    render() {
         return (
             <div>
                 <AdministratorNavbar/>
@@ -36,15 +36,15 @@ class PendingSessionsComponent extends React.Component {
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
                             <th scope={"col"}> End Time</th>
-                            <th scope={"col"}> </th>
-                            <th scope={"col"}> </th>
+                            <th scope={"col"}></th>
+                            <th scope={"col"}></th>
                         </tr>
                         </thead>
                         <tbody>
                         {
                             this.state.sessions.map(
                                 session =>
-                                    <tr key = {session.id}>
+                                    <tr key={session.id}>
                                         <th scope={"row"}> {session.id}</th>
                                         <td> {session.aircraft.id}</td>
                                         <td> {session.instructor.id}</td>
@@ -60,7 +60,12 @@ class PendingSessionsComponent extends React.Component {
                                             {/*        }}>*/}
                                             {/*    Approve*/}
                                             {/*</button>*/}
-                                            <Button variant={"success"}>
+                                            <Button variant={"success"}
+                                                    onClick={() => {
+                                                        console.log("Hello World");
+                                                        SessionService.approve(session.id);
+                                                        //window.location.reload(false);
+                                                    }}>
                                                 Approve
                                             </Button>
                                         </td>
@@ -72,7 +77,11 @@ class PendingSessionsComponent extends React.Component {
                                             {/*        }}>*/}
                                             {/*    Decline*/}
                                             {/*</button>*/}
-                                            <Button variant={"danger"}>
+                                            <Button variant={"danger"}
+                                                    onClick={() => {
+                                                        SessionService.decline(session.id);
+                                                        window.location.reload(false);
+                                                    }}>
                                                 Decline
                                             </Button>
                                         </td>
@@ -87,4 +96,5 @@ class PendingSessionsComponent extends React.Component {
         )
     }
 }
+
 export default PendingSessionsComponent

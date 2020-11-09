@@ -53,7 +53,7 @@ class AircraftComponent extends React.Component {
                                         <td> {aircraft.maintenanceDay}</td>
                                         <td> {aircraft.minimumTrainingDuration}</td>
                                         <td>
-                                            <Link to={"/aircraft/edit/" + aircraft.id}
+                                            <Link to={"/admin/aircraft/edit/" + aircraft.id}
                                                className={"btn btn-warning btn-block"}>Edit Aircraft</Link>
                                         </td>
                                         <td>
@@ -72,7 +72,7 @@ class AircraftComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <Link to={"/aircraft/add"} className={"btn btn-dark"}>Add Aircraft</Link>
+                    <Link to={"/admin/aircraft/add"} className={"btn btn-dark"}>Add Aircraft</Link>
                 </div>
 
             </div>

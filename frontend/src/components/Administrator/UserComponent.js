@@ -54,7 +54,7 @@ class UserComponent extends React.Component {
                                         <td> {user.email}</td>
                                         <td> {user.dateOfBirth}</td>
                                         <td>
-                                            <Link to={"/users/edit/" + user.id} className={"btn btn-warning btn-block"}>Edit User</Link>
+                                            <Link to={"/admin/users/edit/" + user.id} className={"btn btn-warning btn-block"}>Edit User</Link>
                                         </td>
                                         <td>
                                             <Button variant={"danger"}
@@ -72,7 +72,7 @@ class UserComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <Link to={"/users/add"} className={"btn btn-dark"}>Add User</Link>
+                    <Link to={"/admin/users/add"} className={"btn btn-dark"}>Add User</Link>
                 </div>
             </div>
         )

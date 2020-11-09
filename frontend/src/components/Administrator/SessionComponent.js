@@ -59,7 +59,7 @@ class SessionComponent extends React.Component {
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
                                         <td>
-                                            <Link to={"/sessions/edit/" + session.id}
+                                            <Link to={"/admin/sessions/edit/" + session.id}
                                                className={"btn btn-warning btn-block"}>Edit Session</Link>
                                         </td>
                                         <td>
@@ -78,7 +78,7 @@ class SessionComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <Link to={"/sessions/add"} className={"btn btn-dark"}>Add Session</Link>
+                    <Link to={"/admin/sessions/add"} className={"btn btn-dark"}>Add Session</Link>
                 </div>
 
             </div>

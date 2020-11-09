@@ -103,7 +103,7 @@ class AddSessionComponent extends React.Component {
         console.log(JSON.stringify(session));
         if(this.state.mode === "add") {
             SessionService.post(session).then(res => {
-                this.props.history.push('/sessions')
+                this.props.history.push('/admin/sessions')
             }).catch(res => {
                 if(res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
@@ -113,7 +113,7 @@ class AddSessionComponent extends React.Component {
             })
         } else {
             SessionService.put(this.state.sessionId, session).then(res => {
-                this.props.history.push('/sessions')
+                this.props.history.push('/admin/sessions')
             }).catch(res => {
                 if(res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});

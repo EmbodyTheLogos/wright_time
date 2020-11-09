@@ -47,7 +47,7 @@ class CertificationComponent extends React.Component {
                                         <td> {cert.aircraft.id}</td>
                                         <td> {cert.dateObtained}</td>
                                         <td>
-                                            <Link to={"/certifications/edit/" + cert.id}
+                                            <Link to={"/admin/certifications/edit/" + cert.id}
                                                className={"btn btn-warning btn-block"}>Edit Certification</Link>
                                         </td>
                                         <td>
@@ -66,7 +66,7 @@ class CertificationComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <Link to={"/certifications/add"} className={"btn btn-dark"}>Add Certification</Link>
+                    <Link to={"/admin/certifications/add"} className={"btn btn-dark"}>Add Certification</Link>
                 </div>
             </div>
         )

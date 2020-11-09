@@ -86,7 +86,7 @@ class AddUserComponent extends React.Component {
         console.log(JSON.stringify(user));
         if(this.state.mode === "add") {
             UserService.post(user).then(res => {
-                this.props.history.push('/users')
+                this.props.history.push('/admin/users')
             }).catch(res => {
                 if(res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
@@ -96,7 +96,7 @@ class AddUserComponent extends React.Component {
             })
         } else {
             UserService.put(this.state.userId, user).then(res => {
-                this.props.history.push('/users')
+                this.props.history.push('/admin/users')
             }).catch(res => {
                 if(res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});

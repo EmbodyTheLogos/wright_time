@@ -74,7 +74,7 @@ class AddCertificationComponent extends React.Component {
         console.log(JSON.stringify(cert));
         if(this.state.mode === "add") {
             CertificationService.post(cert).then(res => {
-                this.props.history.push('/certifications')
+                this.props.history.push('/admin/certifications')
             }).catch(res => {
                 if(res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
@@ -84,7 +84,7 @@ class AddCertificationComponent extends React.Component {
             })
         } else {
             CertificationService.put(this.state.id, cert).then(res => {
-                this.props.history.push('/certifications')
+                this.props.history.push('/admin/certifications')
             }).catch(res => {
                 if(res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});

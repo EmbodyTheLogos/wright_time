@@ -26,6 +26,14 @@ class SessionService {
     getPending() {
         return axios.get(SESSION_REST_API_URL + '/pending');
     }
+
+    approve(id) {
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/approve')
+    }
+
+    decline(id) {
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/decline')
+    }
 }
 
 export default new SessionService();
