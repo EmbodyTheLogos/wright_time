@@ -1,7 +1,7 @@
 import React from 'react';
 import CertificationService from '../services/CertificationService';
 import {Link} from "react-router-dom";
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "./AdministratorNavbar";
 
 class CertificationComponent extends React.Component {
@@ -51,13 +51,13 @@ class CertificationComponent extends React.Component {
                                                className={"btn btn-warning btn-block"}>Edit Certification</Link>
                                         </td>
                                         <td>
-                                            <button className={"btn btn-danger btn-block"}
+                                            <Button variant={"danger"}
                                                onClick={() => {
                                                    CertificationService.delete(cert.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete
-                                            </button>
+                                            </Button>
                                         </td>
                                     </tr>
                             )

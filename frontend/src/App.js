@@ -10,6 +10,7 @@ import SessionComponent from "./components/SessionComponent";
 import AddSessionComponent from "./components/AddSessionComponent";
 import CertificationComponent from "./components/CertificationComponent";
 import AddCertificationComponent from "./components/AddCertificationComponent";
+import PendingSessionsComponent from "./components/PendingSessionsComponent";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                   <Route path={"/sessions"} exact component={SessionComponent}/>
                   <Route path={"/sessions/add"} exact component={AddSessionComponent}/>
                   <Route path={"/sessions/edit/:id"} exact component={AddSessionComponent}/>
+                  <Route path={"/pending"} exact component={PendingSessionsComponent}/>
 
                   <Route path={"/certifications"} exact component={CertificationComponent}/>
                   <Route path={"/certifications/add"} exact component={AddCertificationComponent}/>

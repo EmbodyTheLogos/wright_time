@@ -13,13 +13,15 @@ class AdministratorNavbar extends React.Component {
                         <NavLink exact to="/" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Home</NavLink>
                         <NavLink to="/aircraft" style={{marginRight: '15px', color:"grey"}}
-                                 activeStyle={{marginRight: '15px', color:"white"}}>Aircraft View</NavLink>
+                                 activeStyle={{marginRight: '15px', color:"white"}}>Aircraft Table</NavLink>
                         <NavLink to="/users" style={{marginRight: '15px', color:"grey"}}
-                                 activeStyle={{marginRight: '15px', color:"white"}}>Users View</NavLink>
+                                 activeStyle={{marginRight: '15px', color:"white"}}>Users Table</NavLink>
                         <NavLink to="/sessions" style={{marginRight: '15px', color:"grey"}}
-                                 activeStyle={{marginRight: '15px', color:"white"}}>Sessions View</NavLink>
+                                 activeStyle={{marginRight: '15px', color:"white"}}>All Sessions</NavLink>
+                        <NavLink to="/pending" style={{marginRight: '15px', color:"grey"}}
+                                 activeStyle={{marginRight: '15px', color:"white"}}>Pending Sessions</NavLink>
                         <NavLink to="/certifications" style={{marginRight: '15px', color:"grey"}}
-                                 activeStyle={{marginRight: '15px', color:"white"}}>Certifications View</NavLink>
+                                 activeStyle={{marginRight: '15px', color:"white"}}>Certifications Table</NavLink>
                     </Nav>
                 </Navbar>
             </div>

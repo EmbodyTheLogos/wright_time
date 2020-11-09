@@ -1,7 +1,7 @@
 import React from 'react';
 import UserService from '../services/UserService';
 import {Link} from "react-router-dom";
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "./AdministratorNavbar";
 
 
@@ -57,13 +57,13 @@ class UserComponent extends React.Component {
                                             <Link to={"/users/edit/" + user.id} className={"btn btn-warning btn-block"}>Edit User</Link>
                                         </td>
                                         <td>
-                                            <button className={"btn btn-danger btn-block"}
+                                            <Button variant={"danger"}
                                                onClick={() => {
                                                    UserService.delete(user.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete
-                                            </button>
+                                            </Button>
                                         </td>
                                     </tr>
                             )

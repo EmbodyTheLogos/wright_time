@@ -22,6 +22,10 @@ class SessionService {
     delete(id) {
         return axios.delete(SESSION_REST_API_URL + '/' + id)
     }
+
+    getPending() {
+        return axios.get(SESSION_REST_API_URL + '/pending');
+    }
 }
 
 export default new SessionService();

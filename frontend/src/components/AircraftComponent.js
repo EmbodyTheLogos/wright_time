@@ -1,7 +1,7 @@
 import React from 'react';
 import AircraftService from '../services/AircraftService';
 import {Link} from "react-router-dom";
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "./AdministratorNavbar";
 
 class AircraftComponent extends React.Component {
@@ -57,13 +57,13 @@ class AircraftComponent extends React.Component {
                                                className={"btn btn-warning btn-block"}>Edit Aircraft</Link>
                                         </td>
                                         <td>
-                                            <button className={"btn btn-danger btn-block"}
+                                            <Button variant={"danger"}
                                                     onClick={() => {
                                                         AircraftService.delete(aircraft.id);
                                                         window.location.reload(false);
                                                     }}>
                                                 Delete
-                                            </button>
+                                            </Button>
                                         </td>
                                     </tr>
                             )

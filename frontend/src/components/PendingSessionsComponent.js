@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import AdministratorNavbar from "./AdministratorNavbar";
 import {Button} from 'react-bootstrap'
 
-class SessionComponent extends React.Component {
+class PendingSessionsComponent extends React.Component {
 
     constructor(props){
         super(props)
@@ -14,7 +14,7 @@ class SessionComponent extends React.Component {
     }
 
     componentDidMount(){
-        SessionService.getAll().then((response) => {
+        SessionService.getPending().then((response) => {
             this.setState({ sessions: response.data})
         });
     }
@@ -24,7 +24,7 @@ class SessionComponent extends React.Component {
             <div>
                 <AdministratorNavbar/>
 
-                <h1>Session List</h1>
+                <h1>Pending Sessions List</h1>
                 <div className="container mt-4">
                     <table className="table table-bordered table-hover">
                         <thead className="thead-dark">
@@ -59,16 +59,27 @@ class SessionComponent extends React.Component {
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
                                         <td>
-                                            <Link to={"/sessions/edit/" + session.id}
-                                               className={"btn btn-warning btn-block"}>Edit Session</Link>
+                                            {/*<button className={"btn btn-danger btn-block"}*/}
+                                            {/*        onClick={() => {*/}
+                                            {/*            SessionService.delete(session.id);*/}
+                                            {/*            window.location.reload(false);*/}
+                                            {/*        }}>*/}
+                                            {/*    Approve*/}
+                                            {/*</button>*/}
+                                            <Button variant={"success"}>
+                                                Approve
+                                            </Button>
                                         </td>
                                         <td>
-                                            <Button variant={"danger"}
-                                                    onClick={() => {
-                                                        SessionService.delete(session.id);
-                                                        window.location.reload(false);
-                                                    }}>
-                                                Delete
+                                            {/*<button className={"btn btn-danger btn-block"}*/}
+                                            {/*        onClick={() => {*/}
+                                            {/*            SessionService.delete(session.id);*/}
+                                            {/*            window.location.reload(false);*/}
+                                            {/*        }}>*/}
+                                            {/*    Decline*/}
+                                            {/*</button>*/}
+                                            <Button variant={"danger"}>
+                                                Decline
                                             </Button>
                                         </td>
                                     </tr>
@@ -85,4 +96,4 @@ class SessionComponent extends React.Component {
         )
     }
 }
-export default SessionComponent
+export default PendingSessionsComponent
