@@ -15,6 +15,8 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<Session> findSessionByInstructor(User instructor);
     List<Session> findSessionByStudent(User student);
 
+    List<User> findUserByRole(String role);
+
     // TODO: this does not work. It does not seem to find Session.State.Pending. But I can't seem to fix it.
 //    @Query(value = "SELECT * from Session where state = Session.State.PENDING", nativeQuery = true)
 //    List<Session> findPendingSessions();
