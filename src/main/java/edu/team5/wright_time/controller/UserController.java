@@ -49,7 +49,7 @@ public class UserController {
         final var sessions = sessionRepository.findSessionByStudentAndDateBetween(student, begin, end);
         var total = 0;
         for (Session session : sessions) {
-            total += session.getEndTime() - session.getStartTime();
+            total += session.getAircraft().getTrainingDuration();
         }
         return total;
     }

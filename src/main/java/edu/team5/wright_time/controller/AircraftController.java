@@ -42,7 +42,7 @@ public class AircraftController {
             toUpdate.setModel(aircraft.getModel());
             toUpdate.setYear(aircraft.getYear());
             toUpdate.setMaintenanceDay(aircraft.getMaintenanceDay());
-            toUpdate.setMinimumTrainingDuration(aircraft.getMinimumTrainingDuration());
+            toUpdate.setTrainingDuration(aircraft.getTrainingDuration());
             return aircraftRepository.save(toUpdate);
         }).orElseThrow(() -> new NoSuchElementException("No aircraft with id: " + id));
     }

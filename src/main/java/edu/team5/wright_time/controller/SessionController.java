@@ -62,7 +62,6 @@ public class SessionController {
             toUpdate.setInstructor(session.getInstructor());
             toUpdate.setComments(session.getComments());
             toUpdate.setDate(session.getDate());
-            toUpdate.setEndTime(session.getEndTime());
             toUpdate.setScore(session.getScore());
             toUpdate.setStartTime(session.getStartTime());
             toUpdate.setState(session.getState());

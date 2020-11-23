@@ -36,15 +36,15 @@ public class Aircraft {
 
     @Min(value=1, message="Must enter an integer between 1 and 24")
     @Max(value=24, message="Must enter an integer between 1 and 24")
-    private int minimumTrainingDuration;
+    private int trainingDuration;
 
-    public Aircraft(String manufacturer, String name, String model, int year, int maintenanceDay, int minimumTrainingDuration) {
+    public Aircraft(String manufacturer, String name, String model, int year, int maintenanceDay, int trainingDuration) {
         this.manufacturer = manufacturer;
         this.name = name;
         this.model = model;
         this.year = year;
         this.maintenanceDay = maintenanceDay;
-        this.minimumTrainingDuration = minimumTrainingDuration;
+        this.trainingDuration = trainingDuration;
     }
 
     public Aircraft() {
