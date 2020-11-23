@@ -29,7 +29,7 @@ public class Session {
     private Aircraft aircraft;
 
     @Positive(message="Must enter a valid time")
-    @Max(value=2359,message="Must enter a valid time")
+    @Max(value=23,message="Must enter a valid time")
     private int startTime;
 
     private LocalDate date;
