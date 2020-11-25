@@ -3,7 +3,7 @@ import SessionService from '../../services/SessionService';
 import {Link} from "react-router-dom";
 import UserNavbar from "../Navbars/UserNavbar";
 
-class RecentSessionsComponent extends React.Component {
+class PerformanceReviewComponent extends React.Component {
 
     constructor(props){
         super(props)
@@ -71,4 +71,4 @@ class RecentSessionsComponent extends React.Component {
         )
     }
 }
-export default RecentSessionsComponent
+export default PerformanceReviewComponent

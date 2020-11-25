@@ -17,7 +17,7 @@ import UserAircraftViewComponent from "./components/User/UserAircraftViewCompone
 import UserProfileComponent from "./components/User/UserProfileComponent";
 import UserRequestSessionComponent from "./components/User/UserRequestSessionComponent";
 import SessionDetailsComponent from "./components/User/SessionDetailsComponent";
-import RecentSessionsComponent from "./components/User/RecentSessionsComponent";
+import PerformanceReviewComponent from "./components/User/PerformanceReviewComponent";
 
 function App() {
   return (
@@ -51,13 +51,11 @@ function App() {
 
                   <Route path={"/user/profile/:id"} exact component={UserProfileComponent}/>
                   <Route path={"/user/session-details/:id"} exact component={SessionDetailsComponent}/>
-                  <Route path={"/user/recent-sessions/:id"} exact component={RecentSessionsComponent}/>
+                  <Route path={"/user/recent-sessions/:id"} exact component={PerformanceReviewComponent}/>
 
               </Switch>
           </BrowserRouter>
       </div>
   );
 }
-
-//<Route path="/aircraft/add" exact component={AddAircraftComponent}></Route>
 export default App;
