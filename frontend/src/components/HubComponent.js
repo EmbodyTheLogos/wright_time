@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {Nav, Navbar} from 'react-bootstrap'
 
-class PlaceholderComponent extends React.Component {
+class HubComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -28,4 +28,4 @@ class PlaceholderComponent extends React.Component {
     }
 }
 
-export default PlaceholderComponent
+export default HubComponent
