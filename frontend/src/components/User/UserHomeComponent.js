@@ -1,6 +1,7 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
-import {Col, Row, Container} from "react-bootstrap";
+import {Col, Row, Container, Button} from "react-bootstrap";
+import AircraftService from "../../services/AircraftService";
 
 class UserHomeComponent extends React.Component {
 
@@ -77,47 +78,91 @@ class UserHomeComponent extends React.Component {
 
                         <Col md={4}>
                             <Row>
+                                <h4>Upcoming Flights</h4>
                                 <table className="table table-bordered table-hover">
                                     <thead className="thead-dark">
                                     <tr>
-                                        <th scope="col" width="150">Upcoming Flights</th>
+                                        <th scope="col" width="150">Date</th>
+                                        <th scope={"col"} width="30"> </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </Row>
                             <Row>
+                                <h4>Recent Flights</h4>
                                 <table className="table table-bordered table-hover">
                                     <thead className="thead-dark">
                                     <tr>
-                                        <th scope="col" width="150">Recent Flights</th>
+                                        <th scope="col" width="150">Date</th>
+                                        <th scope={"col"} width="30"> </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Placeholder</td>
+                                        <td>
+                                            <Button variant={"danger"}>
+                                                View
+                                            </Button>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -11,7 +11,7 @@ import AddSessionComponent from "./components/Administrator/AddSessionComponent"
 import CertificationComponent from "./components/Administrator/CertificationComponent";
 import AddCertificationComponent from "./components/Administrator/AddCertificationComponent";
 import PendingSessionsComponent from "./components/Administrator/PendingSessionsComponent";
-import PlaceholderComponent from "./components/PlaceholderComponent"
+import HubComponent from "./components/HubComponent"
 import UserHomeComponent from "./components/User/UserHomeComponent";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       <div className="App">
           <BrowserRouter>
               <Switch>
-                  <Route path={"/"} exact component={PlaceholderComponent}/>
+                  <Route path={"/"} exact component={HubComponent}/>
 
                   <Route path={"/admin/home"} exact component={AdminHomeComponent}/>
 
