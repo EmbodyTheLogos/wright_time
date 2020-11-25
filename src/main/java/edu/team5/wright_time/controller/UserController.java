@@ -1,7 +1,9 @@
 package edu.team5.wright_time.controller;
 
+import edu.team5.wright_time.model.entity.Certification;
 import edu.team5.wright_time.model.entity.Session;
 import edu.team5.wright_time.model.entity.User;
+import edu.team5.wright_time.model.repository.CertificationRepository;
 import edu.team5.wright_time.model.repository.SessionRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
@@ -21,11 +24,13 @@ import java.util.NoSuchElementException;
 public class UserController {
     private final UserRepository userRepository;
     private final SessionRepository sessionRepository;
+    private final CertificationRepository certificationRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository, SessionRepository sessionRepository) {
+    public UserController(UserRepository userRepository, SessionRepository sessionRepository, CertificationRepository certificationRepository) {
         this.userRepository = userRepository;
         this.sessionRepository = sessionRepository;
+        this.certificationRepository = certificationRepository;
     }
 
     @GetMapping
@@ -36,6 +41,42 @@ public class UserController {
     @GetMapping("/{id}")
     public User getOneUser(@PathVariable long id) throws NoSuchElementException {
         return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+    }
+
+    @GetMapping("/instructors/certified/{id}")
+    public Iterable<User> getCertifiedInstructors(@PathVariable long id) throws NoSuchElementException
+    {
+        Iterable<Certification> certifications = certificationRepository.findAll();
+        ArrayList<Long> instructorID = new ArrayList<>();
+        for(Certification certification : certifications)
+        {
+            if (certification.getAircraft().getId() == id && certification.getUser().getRole().equals("ROLE_INSTRUCTOR"))
+            {
+                instructorID.add(certification.getUser().getId());
+            }
+        }
+        if(instructorID.isEmpty())
+        {
+            throw new NoSuchElementException("No instructor is certified for aircraft with id "+id);
+        }
+
+        Iterable<Long> certifiedInstructorsID = instructorID;
+        return userRepository.findAllById(certifiedInstructorsID);
+    }
+    @GetMapping("/administrators")
+    public Iterable<User> getAllAdministrators()
+    {
+        return userRepository.findUsersByRole("ROLE_ADMIN");
+    }
+    @GetMapping("/instructors")
+    public Iterable<User> getAllInstructors()
+    {
+        return userRepository.findUsersByRole("ROLE_INSTRUCTOR");
+    }
+    @GetMapping("/students")
+    public Iterable<User> getAllStudents()
+    {
+        return userRepository.findUsersByRole("ROLE_STUDENT");
     }
 
     @GetMapping("/{id}/hours")
