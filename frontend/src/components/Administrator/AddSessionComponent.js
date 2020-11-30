@@ -147,11 +147,6 @@ class AddSessionComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
-                            {/*<Form.Group controlId={"aircraftId"}>*/}
-                            {/*    <Form.Control type={"text"} placeholder={"Aircraft ID"}*/}
-                            {/*                  value={this.state.aircraftId} onChange={this.changeHandler}*/}
-                            {/*                  name={"aircraftId"}/>*/}
-                            {/*</Form.Group>*/}
                             <Form.Group controlId={"aircraftId"}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
                                               onChange={this.changeHandler} name={"aircraftId"}>
@@ -161,11 +156,6 @@ class AddSessionComponent extends React.Component {
                                 </Form.Control>
                             </Form.Group>
 
-                            {/*<Form.Group controlId={"instructorId"}>*/}
-                            {/*    <Form.Control type={"text"} placeholder={"Instructor ID"}*/}
-                            {/*                  value={this.state.instructorId} onChange={this.changeHandler}*/}
-                            {/*                  name={"instructorId"}/>*/}
-                            {/*</Form.Group>*/}
                             <Form.Group controlId={"instructorId"}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.instructorId}
                                               onChange={this.changeHandler} name={"instructorId"}>
@@ -175,11 +165,6 @@ class AddSessionComponent extends React.Component {
                                 </Form.Control>
                             </Form.Group>
 
-                            {/*<Form.Group controlId={"studentId"}>*/}
-                            {/*    <Form.Control type={"text"} placeholder={"Student ID"}*/}
-                            {/*                  value={this.state.studentId} onChange={this.changeHandler}*/}
-                            {/*                  name={"studentId"}/>*/}
-                            {/*</Form.Group>*/}
                             <Form.Group controlId={"studentId"}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}
                                               onChange={this.changeHandler} name={"studentId"}>

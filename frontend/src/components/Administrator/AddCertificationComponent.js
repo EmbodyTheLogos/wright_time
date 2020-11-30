@@ -6,6 +6,8 @@ import Center from "react-center";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import UserService from "../../services/UserService";
+import AircraftService from "../../services/AircraftService";
 
 class AddCertificationComponent extends React.Component {
 
@@ -17,6 +19,8 @@ class AddCertificationComponent extends React.Component {
                 userId: "",
                 aircraftId: "",
                 dateObtained: new Date(),
+                aircrafts: [],
+                users: [],
                 errorMessage: ""
             };
         } else {
@@ -26,9 +30,18 @@ class AddCertificationComponent extends React.Component {
                 userId: "",
                 aircraftId: "",
                 dateObtained: new Date(),
+                aircrafts: [],
+                users: [],
                 errorMessage: ""
             };
         }
+
+        UserService.getAll().then((response) => {
+            this.setState({ users: response.data})
+        })
+        AircraftService.getAll().then((response) => {
+            this.setState({aircrafts: response.data})
+        })
 
     }
 
@@ -108,15 +121,21 @@ class AddCertificationComponent extends React.Component {
                     <Center>
                         <Form>
                             <Form.Group controlId={"userId"}>
-                                <Form.Control type={"text"} placeholder={"User ID"}
-                                              value={this.state.userId} onChange={this.changeHandler}
-                                              name={"userId"}/>
+                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
+                                              onChange={this.changeHandler} name={"userId"}>
+                                    <option value="empty"> </option>
+                                    {this.state.users.map(user => <option value={user.id}>
+                                        {user.firstName + " " + user.lastName}</option>)}
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group controlId={"aircraftId"}>
-                                <Form.Control type={"text"} placeholder={"Aircraft ID"}
-                                              value={this.state.aircraftId} onChange={this.changeHandler}
-                                              name={"aircraftId"}/>
+                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
+                                              onChange={this.changeHandler} name={"aircraftId"}>
+                                    <option value="empty"> </option>
+                                    {this.state.aircrafts.map(aircraft => <option value={aircraft.id}>
+                                        {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group controlId={"dateObtained"}>
