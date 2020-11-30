@@ -1,7 +1,6 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
 import {Col, Row, Container, Button} from "react-bootstrap";
-import AircraftService from "../../services/AircraftService";
 
 class UserHomeComponent extends React.Component {
 
@@ -83,7 +82,7 @@ class UserHomeComponent extends React.Component {
                                     <thead className="thead-dark">
                                     <tr>
                                         <th scope="col" width="150">Date</th>
-                                        <th scope={"col"} width="30"> </th>
+                                        <th scope={"col"} width="30"/>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -128,7 +127,7 @@ class UserHomeComponent extends React.Component {
                                     <thead className="thead-dark">
                                     <tr>
                                         <th scope="col" width="150">Date</th>
-                                        <th scope={"col"} width="30"> </th>
+                                        <th scope={"col"} width="30"/>
                                     </tr>
                                     </thead>
                                     <tbody>
