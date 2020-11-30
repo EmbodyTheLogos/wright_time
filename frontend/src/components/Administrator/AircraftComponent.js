@@ -35,7 +35,7 @@ class AircraftComponent extends React.Component {
                             <th scope={"col"}> Model</th>
                             <th scope={"col"}> Year</th>
                             <th scope={"col"}> Maintenance Day</th>
-                            <th scope={"col"}> Min. Training Duration</th>
+                            <th scope={"col"}> Training Duration</th>
                             <th scope={"col"}> </th>
                             <th scope={"col"}> </th>
                         </tr>
@@ -51,7 +51,7 @@ class AircraftComponent extends React.Component {
                                         <td> {aircraft.model}</td>
                                         <td> {aircraft.year}</td>
                                         <td> {aircraft.maintenanceDay}</td>
-                                        <td> {aircraft.minimumTrainingDuration}</td>
+                                        <td> {aircraft.trainingDuration}</td>
                                         <td>
                                             <Link to={"/admin/aircraft/edit/" + aircraft.id}
                                                className={"btn btn-warning btn-block"}>Edit Aircraft</Link>
