@@ -1,8 +1,10 @@
 package edu.team5.wright_time.controller;
 
+import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.entity.Certification;
 import edu.team5.wright_time.model.entity.Session;
 import edu.team5.wright_time.model.entity.User;
+import edu.team5.wright_time.model.repository.AircraftRepository;
 import edu.team5.wright_time.model.repository.CertificationRepository;
 import edu.team5.wright_time.model.repository.SessionRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
@@ -25,12 +27,15 @@ public class UserController {
     private final UserRepository userRepository;
     private final SessionRepository sessionRepository;
     private final CertificationRepository certificationRepository;
+    private final AircraftRepository aircraftRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository, SessionRepository sessionRepository, CertificationRepository certificationRepository) {
+    public UserController(UserRepository userRepository, SessionRepository sessionRepository, CertificationRepository certificationRepository, AircraftRepository aircraftRepository) {
         this.userRepository = userRepository;
         this.sessionRepository = sessionRepository;
         this.certificationRepository = certificationRepository;
+        this.aircraftRepository = aircraftRepository;
+
     }
 
     @GetMapping
@@ -46,11 +51,12 @@ public class UserController {
     @GetMapping("/instructors/certified/{id}")
     public Iterable<User> getCertifiedInstructors(@PathVariable long id) throws NoSuchElementException
     {
-        Iterable<Certification> certifications = certificationRepository.findAll();
+        Aircraft aircraft = aircraftRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No aircraft with id: " + id));
+        Iterable<Certification> certifications = certificationRepository.findCertificationByAircraft(aircraft);
         ArrayList<Long> instructorID = new ArrayList<>();
         for(Certification certification : certifications)
         {
-            if (certification.getAircraft().getId() == id && certification.getUser().getRole().equals("ROLE_INSTRUCTOR"))
+            if (certification.getUser().getRole().equals("ROLE_INSTRUCTOR"))
             {
                 instructorID.add(certification.getUser().getId());
             }
