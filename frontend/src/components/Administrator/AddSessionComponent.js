@@ -148,8 +148,8 @@ class AddSessionComponent extends React.Component {
                     <Center>
                         <Form>
                             <Form.Group as={Row} controlId={"aircraftId"}>
-                                <Form.Label column sm={2}>Aircraft:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>Aircraft:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
                                               onChange={this.changeHandler} name={"aircraftId"}>
                                     <option value="empty"> </option>
@@ -160,8 +160,8 @@ class AddSessionComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"instructorId"}>
-                                <Form.Label column sm={3}>Instructor:</Form.Label>
-                                <Col sm={9}>
+                                <Form.Label column sm={4}>Instructor:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.instructorId}
                                               onChange={this.changeHandler} name={"instructorId"}>
                                     <option value="empty"> </option>
@@ -172,8 +172,8 @@ class AddSessionComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"studentId"}>
-                                <Form.Label column sm={2}>Student:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>Student:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}
                                               onChange={this.changeHandler} name={"studentId"}>
                                     <option value="empty"> </option>
@@ -184,8 +184,8 @@ class AddSessionComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"date"}>
-                                <Form.Label column sm={2}>Date:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>Date:</Form.Label>
+                                <Col sm={8}>
                                 <DatePicker
                                     selected={this.state.date}
                                     onChange={this.handleDateChange}
@@ -205,8 +205,8 @@ class AddSessionComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"score"}>
-                                <Form.Label column sm={2}>Score:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>Score:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control type={"text"} placeholder={"Score"}
                                               value={this.state.score} onChange={this.changeHandler}
                                               name={"score"}/>
@@ -214,7 +214,7 @@ class AddSessionComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"comments"}>
-                                <Form.Label column sm={3}>Comments:</Form.Label>
+                                <Form.Label column sm={4}>Comments:</Form.Label>
                                 <Col sm={8}>
                                 <Form.Control type={"text"} placeholder={"Comments"}
                                               value={this.state.comments} onChange={this.changeHandler}
@@ -223,8 +223,8 @@ class AddSessionComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"state"}>
-                                <Form.Label column sm={2}>State:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>State:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.state}
                                               onChange={this.changeHandler} name={"state"}>
                                     <option value="empty"> </option>

@@ -124,8 +124,8 @@ class AddCertificationComponent extends React.Component {
                     <Center>
                         <Form>
                             <Form.Group as={Row} controlId={"userId"}>
-                                <Form.Label column sm={2}>User:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>User:</Form.Label>
+                                <Col sm={8}>
                                     <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
                                                   onChange={this.changeHandler} name={"userId"}>
                                         <option value="empty"/>
@@ -136,8 +136,8 @@ class AddCertificationComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"aircraftId"}>
-                                <Form.Label column sm={2}>Aircraft:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>Aircraft:</Form.Label>
+                                <Col sm={8}>
                                     <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
                                                   onChange={this.changeHandler} name={"aircraftId"}>
                                         <option value="empty"/>
@@ -148,8 +148,8 @@ class AddCertificationComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"dateObtained"}>
-                                <Form.Label column sm={2}>Obtained:</Form.Label>
-                                <Col sm={10}>
+                                <Form.Label column sm={4}>Obtained:</Form.Label>
+                                <Col sm={8}>
                                     <DatePicker
                                         selected={this.state.dateObtained}
                                         onChange={this.handleDateChange}
