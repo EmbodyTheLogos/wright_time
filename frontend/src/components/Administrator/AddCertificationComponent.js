@@ -1,6 +1,6 @@
 import React from 'react';
 import CertificationService from '../../services/CertificationService';
-import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form, Col, Row} from 'react-bootstrap'
 import Center from "react-center";
 
 import DatePicker from "react-datepicker";
@@ -11,9 +11,9 @@ import AircraftService from "../../services/AircraftService";
 
 class AddCertificationComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        if(!props.match.params.id) {
+        if (!props.match.params.id) {
             this.state = {
                 mode: "add",
                 userId: "",
@@ -37,7 +37,7 @@ class AddCertificationComponent extends React.Component {
         }
 
         UserService.getAll().then((response) => {
-            this.setState({ users: response.data})
+            this.setState({users: response.data})
         })
         AircraftService.getAll().then((response) => {
             this.setState({aircrafts: response.data})
@@ -45,8 +45,8 @@ class AddCertificationComponent extends React.Component {
 
     }
 
-    componentDidMount(){
-        if(this.state.mode === "edit") {
+    componentDidMount() {
+        if (this.state.mode === "edit") {
             CertificationService.getOne(this.props.match.params.id).then(res => {
                 let date = res.data.dateObtained.split('-')
                 console.log(date)
@@ -66,7 +66,7 @@ class AddCertificationComponent extends React.Component {
     changeHandler = (event) => {
         let name = event.target.name;
         let value = event.target.value;
-        this.setState({[name]:value})
+        this.setState({[name]: value})
     }
 
     handleDateChange = (date) => {
@@ -77,19 +77,22 @@ class AddCertificationComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        let dateObtained = this.state.dateObtained.getFullYear() + "-"+ (this.state.dateObtained.getMonth() + 1) +"-"+ this.state.dateObtained.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+        let dateObtained = this.state.dateObtained.getFullYear() + "-" + (this.state.dateObtained.getMonth() + 1) + "-" + this.state.dateObtained.getDate().toLocaleString('en-US', {
+            minimumIntegerDigits: 2,
+            useGrouping: false
+        });
         let cert = {
-            aircraft:{id:this.state.aircraftId},
-            user:{id:this.state.userId},
+            aircraft: {id: this.state.aircraftId},
+            user: {id: this.state.userId},
             dateObtained: dateObtained,
         };
 
         console.log(JSON.stringify(cert));
-        if(this.state.mode === "add") {
+        if (this.state.mode === "add") {
             CertificationService.post(cert).then(res => {
                 this.props.history.push('/admin/certifications')
             }).catch(res => {
-                if(res.response) {
+                if (res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
                 } else {
                     this.setState({errorMessage: res.message});
@@ -99,7 +102,7 @@ class AddCertificationComponent extends React.Component {
             CertificationService.put(this.state.id, cert).then(res => {
                 this.props.history.push('/admin/certifications')
             }).catch(res => {
-                if(res.response) {
+                if (res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
                 } else {
                     this.setState({errorMessage: res.message});
@@ -109,7 +112,7 @@ class AddCertificationComponent extends React.Component {
 
     }
 
-    render (){
+    render() {
         return (
             <div>
                 <AdministratorNavbar/>
@@ -120,31 +123,40 @@ class AddCertificationComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
-                            <Form.Group controlId={"userId"}>
-                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
-                                              onChange={this.changeHandler} name={"userId"}>
-                                    <option value="empty"> </option>
-                                    {this.state.users.map(user => <option value={user.id}>
-                                        {user.firstName + " " + user.lastName}</option>)}
-                                </Form.Control>
+                            <Form.Group as={Row} controlId={"userId"}>
+                                <Form.Label column sm={2}>User:</Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
+                                                  onChange={this.changeHandler} name={"userId"}>
+                                        <option value="empty"/>
+                                        {this.state.users.map(user => <option value={user.id}>
+                                            {user.firstName + " " + user.lastName}</option>)}
+                                    </Form.Control>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"aircraftId"}>
-                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
-                                              onChange={this.changeHandler} name={"aircraftId"}>
-                                    <option value="empty"> </option>
-                                    {this.state.aircrafts.map(aircraft => <option value={aircraft.id}>
-                                        {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
-                                </Form.Control>
+                            <Form.Group as={Row} controlId={"aircraftId"}>
+                                <Form.Label column sm={2}>Aircraft:</Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
+                                                  onChange={this.changeHandler} name={"aircraftId"}>
+                                        <option value="empty"/>
+                                        {this.state.aircrafts.map(aircraft => <option value={aircraft.id}>
+                                            {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
+                                    </Form.Control>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"dateObtained"}>
-                                <DatePicker
-                                    selected={this.state.dateObtained}
-                                    onChange={this.handleDateChange}
-                                    name="dateObtained"
-                                    dateFormat="MM/dd/yyyy"
-                                />
+                            <Form.Group as={Row} controlId={"dateObtained"}>
+                                <Form.Label column sm={5}>Date Obtained:</Form.Label>
+                                <Col sm={5}>
+                                    <DatePicker
+                                        selected={this.state.dateObtained}
+                                        onChange={this.handleDateChange}
+                                        name="dateObtained"
+                                        dateFormat="MM/dd/yyyy"
+                                    />
+                                </Col>
                             </Form.Group>
 
                             <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
