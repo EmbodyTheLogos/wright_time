@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Center from "react-center";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import UserService from "../../services/UserService";
+import AircraftService from "../../services/AircraftService";
 
 class AddSessionComponent extends React.Component {
 
@@ -24,7 +25,9 @@ class AddSessionComponent extends React.Component {
                 score: "",
                 comments: "",
                 state: "",
-                users: [],
+                aircrafts: [],
+                students: [],
+                instructors: [],
                 errorMessage: ""
             };
         } else {
@@ -40,7 +43,9 @@ class AddSessionComponent extends React.Component {
                 score: "",
                 comments: "",
                 state: "",
-                users: [],
+                aircrafts: [],
+                students: [],
+                instructors: [],
                 errorMessage: ""
             };
         }
@@ -68,8 +73,14 @@ class AddSessionComponent extends React.Component {
                 });
             })
         }
-        UserService.getAll().then((response) => {
-            this.setState({ users: response.data})
+        UserService.getAllInstructors().then((response) => {
+            this.setState({ instructors: response.data})
+        })
+        UserService.getAllStudents().then((response) => {
+            this.setState({ students: response.data})
+        })
+        AircraftService.getAll().then((response) => {
+            this.setState({aircrafts: response.data})
         })
     }
 
@@ -136,10 +147,18 @@ class AddSessionComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
+                            {/*<Form.Group controlId={"aircraftId"}>*/}
+                            {/*    <Form.Control type={"text"} placeholder={"Aircraft ID"}*/}
+                            {/*                  value={this.state.aircraftId} onChange={this.changeHandler}*/}
+                            {/*                  name={"aircraftId"}/>*/}
+                            {/*</Form.Group>*/}
                             <Form.Group controlId={"aircraftId"}>
-                                <Form.Control type={"text"} placeholder={"Aircraft ID"}
-                                              value={this.state.aircraftId} onChange={this.changeHandler}
-                                              name={"aircraftId"}/>
+                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
+                                              onChange={this.changeHandler} name={"aircraftId"}>
+                                    <option value="empty"> </option>
+                                    {this.state.aircrafts.map(aircraft => <option value={aircraft.id}>
+                                        {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
+                                </Form.Control>
                             </Form.Group>
 
                             {/*<Form.Group controlId={"instructorId"}>*/}
@@ -147,25 +166,27 @@ class AddSessionComponent extends React.Component {
                             {/*                  value={this.state.instructorId} onChange={this.changeHandler}*/}
                             {/*                  name={"instructorId"}/>*/}
                             {/*</Form.Group>*/}
-
                             <Form.Group controlId={"instructorId"}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.instructorId}
                                               onChange={this.changeHandler} name={"instructorId"}>
                                     <option value="empty"> </option>
-                                    {this.state.users.map(user => <option value={user.id}>
-                                        {user.firstName + " " + user.lastName}</option>)}
-                                    {/*<option value="PENDING">Pending</option>*/}
-                                    {/*<option value="APPROVED">Approved</option>*/}
-                                    {/*<option value="DECLINED">Declined</option>*/}
-                                    {/*<option value="CANCELLED">Cancelled</option>*/}
-                                    {/*<option value="COMPLETE">Completed</option>*/}
+                                    {this.state.instructors.map(instructor => <option value={instructor.id}>
+                                        {instructor.firstName + " " + instructor.lastName}</option>)}
                                 </Form.Control>
                             </Form.Group>
 
+                            {/*<Form.Group controlId={"studentId"}>*/}
+                            {/*    <Form.Control type={"text"} placeholder={"Student ID"}*/}
+                            {/*                  value={this.state.studentId} onChange={this.changeHandler}*/}
+                            {/*                  name={"studentId"}/>*/}
+                            {/*</Form.Group>*/}
                             <Form.Group controlId={"studentId"}>
-                                <Form.Control type={"text"} placeholder={"Student ID"}
-                                              value={this.state.studentId} onChange={this.changeHandler}
-                                              name={"studentId"}/>
+                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}
+                                              onChange={this.changeHandler} name={"studentId"}>
+                                    <option value="empty"> </option>
+                                    {this.state.students.map(student => <option value={student.id}>
+                                        {student.firstName + " " + student.lastName}</option>)}
+                                </Form.Control>
                             </Form.Group>
 
                             <Form.Group controlId={"date"}>
