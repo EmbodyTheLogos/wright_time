@@ -148,8 +148,8 @@ class AddCertificationComponent extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId={"dateObtained"}>
-                                <Form.Label column sm={5}>Date Obtained:</Form.Label>
-                                <Col sm={5}>
+                                <Form.Label column sm={2}>Obtained:</Form.Label>
+                                <Col sm={10}>
                                     <DatePicker
                                         selected={this.state.dateObtained}
                                         onChange={this.handleDateChange}
