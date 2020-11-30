@@ -51,11 +51,13 @@ public class SessionController {
 
     @PostMapping
     public Session addSession(@RequestBody @Valid Session session) {
+        //TODO: check all other sessions for aircraft, student, and instructor conflicts
         return sessionRepository.save(session);
     }
 
     @PutMapping("/{id}")
     public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws NoSuchElementException {
+        //TODO: check all other sessions for aircraft, student, and instructor conflicts
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setAircraft(session.getAircraft());
             toUpdate.setStudent(session.getStudent());
