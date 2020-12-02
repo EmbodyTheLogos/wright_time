@@ -1,6 +1,6 @@
 import React from 'react';
 import AircraftService from '../../services/AircraftService';
-import {Button, Container, Form} from 'react-bootstrap'
+import {Button, Container, Form, Row, Col} from 'react-bootstrap'
 import Center from 'react-center';
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {withCookies} from "react-cookie";
@@ -102,40 +102,58 @@ class AddAircraftComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
-                            <Form.Group controlId={"manufacturer"}>
+                            <Form.Group as={Row} controlId={"manufacturer"}>
+                                <Form.Label column sm={4}>Manufacturer:</Form.Label>
+                                <Col sm={8}>
                                     <Form.Control type={"text"} placeholder={"Manufacturer"}
                                                   value={this.state.manufacturer} onChange={this.changeHandler}
                                                   name={"manufacturer"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"name"}>
-                                <Form.Control type={"text"} placeholder={"Name"}
-                                              value={this.state.name} onChange={this.changeHandler}
-                                              name={"name"}/>
+                            <Form.Group as={Row} controlId={"name"}>
+                                <Form.Label column sm={4}>Name:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"text"} placeholder={"Name"}
+                                                  value={this.state.name} onChange={this.changeHandler}
+                                                  name={"name"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"model"}>
-                                <Form.Control type={"text"} placeholder={"Model"}
-                                              value={this.state.model} onChange={this.changeHandler}
-                                              name={"model"}/>
+                            <Form.Group as={Row} controlId={"model"}>
+                                <Form.Label column sm={4}>Model:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"text"} placeholder={"Model"}
+                                                  value={this.state.model} onChange={this.changeHandler}
+                                                  name={"model"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"year"}>
-                                <Form.Control type={"text"} placeholder={"Year(YYYY)"}
-                                              value={this.state.year} onChange={this.changeHandler}
-                                              name={"year"}/>
+                            <Form.Group as={Row} controlId={"year"}>
+                                <Form.Label column sm={4}>Year:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"text"} placeholder={"Year(YYYY)"}
+                                                  value={this.state.year} onChange={this.changeHandler}
+                                                  name={"year"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"maintenanceDay"}>
-                                <Form.Control type={"text"} placeholder={"Maintenance Day"}
-                                              value={this.state.maintenanceDay} onChange={this.changeHandler}
-                                              name={"maintenanceDay"}/>
+                            <Form.Group as={Row} controlId={"maintenanceDay"}>
+                                <Form.Label column sm={5}>Maintenance Day:</Form.Label>
+                                <Col sm={7}>
+                                    <Form.Control type={"text"} placeholder={"Maintenance Day"}
+                                                  value={this.state.maintenanceDay} onChange={this.changeHandler}
+                                                  name={"maintenanceDay"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"trainingDuration"}>
-                                <Form.Control type={"text"} placeholder={"Training Duration"}
-                                              value={this.state.trainingDuration} onChange={this.changeHandler}
-                                              name={"trainingDuration"}/>
+                            <Form.Group as={Row} controlId={"trainingDuration"}>
+                                <Form.Label column sm={5}>Training Duration:</Form.Label>
+                                <Col sm={7}>
+                                    <Form.Control type={"text"} placeholder={"Training Duration"}
+                                                  value={this.state.trainingDuration} onChange={this.changeHandler}
+                                                  name={"trainingDuration"}/>
+                                </Col>
                             </Form.Group>
 
                             <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>

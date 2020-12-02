@@ -1,6 +1,6 @@
 import React from 'react';
 import UserService from '../../services/UserService';
-import {Button, Container, Form} from 'react-bootstrap'
+import {Button, Container, Form, Row, Col} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -103,7 +103,7 @@ class AddUserComponent extends React.Component {
 
     }
 
-    render (){
+    render() {
         return (
             <div>
                 <AdministratorNavbar/>
@@ -114,41 +114,65 @@ class AddUserComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
-                            <Form.Group controlId={"role"}>
-                                <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.role}
-                                              onChange={this.changeHandler} name={"role"}>
-                                    <option value="empty"></option>
-                                    <option value="ROLE_ADMIN">Administrator</option>
-                                    <option value="ROLE_INSTRUCTOR">Instructor</option>
-                                    <option value="ROLE_STUDENT">Student</option>
-                                </Form.Control>
+                            <Form.Group as={Row} controlId={"username"}>
+                                <Form.Label column sm={4}>Username:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"text"} placeholder={"Username"}
+                                                  value={this.state.username} onChange={this.changeHandler}
+                                                  name={"username"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"firstName"}>
-                                <Form.Control type={"text"} placeholder={"First Name"}
-                                              value={this.state.firstName} onChange={this.changeHandler}
-                                              name={"firstName"}/>
+                            <Form.Group as={Row} controlId={"role"}>
+                                <Form.Label column sm={4}>Role:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.role}
+                                                  onChange={this.changeHandler} name={"role"}>
+                                        <option value="empty"></option>
+                                        <option value="ROLE_ADMIN">Administrator</option>
+                                        <option value="ROLE_INSTRUCTOR">Instructor</option>
+                                        <option value="ROLE_STUDENT">Student</option>
+                                    </Form.Control>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"lastName"}>
-                                <Form.Control type={"text"} placeholder={"Last Name"}
-                                              value={this.state.lastName} onChange={this.changeHandler}
-                                              name={"lastName"}/>
+                            <Form.Group as={Row} controlId={"firstName"}>
+                                <Form.Label column sm={4}>First Name:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"text"} placeholder={"First Name"}
+                                                  value={this.state.firstName} onChange={this.changeHandler}
+                                                  name={"firstName"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"email"}>
-                                <Form.Control type={"email"} placeholder={"Email"}
-                                              value={this.state.email} onChange={this.changeHandler}
-                                              name={"email"}/>
+                            <Form.Group as={Row} controlId={"lastName"}>
+                                <Form.Label column sm={4}>Last Name:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"text"} placeholder={"Last Name"}
+                                                  value={this.state.lastName} onChange={this.changeHandler}
+                                                  name={"lastName"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"dateOfBirth"}>
-                                <DatePicker
-                                    selected={this.state.dateOfBirth}
-                                    onChange={this.handleDateChange}
-                                    name="dateOfBirth"
-                                    dateFormat="MM/dd/yyyy"
-                                />
+                            <Form.Group as={Row} controlId={"email"}>
+                                <Form.Label column sm={4}>Email:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"email"} placeholder={"Email"}
+                                                  value={this.state.email} onChange={this.changeHandler}
+                                                  name={"email"}/>
+                                </Col>
+                            </Form.Group>
+
+                            <Form.Group as={Row} controlId={"dateOfBirth"}>
+                                <Form.Label column sm={5}>Date of Birth:</Form.Label>
+                                <Col sm={7}>
+                                    <DatePicker
+                                        selected={this.state.dateOfBirth}
+                                        onChange={this.handleDateChange}
+                                        name="dateOfBirth"
+                                        dateFormat="MM/dd/yyyy"
+                                    />
+                                </Col>
                             </Form.Group>
 
                             <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
