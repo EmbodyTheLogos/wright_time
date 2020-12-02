@@ -3,7 +3,7 @@ import UserNavbar from "../Navbars/UserNavbar";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom"
-import DISABLED_MyCalendar from "../DISABLED_MyCalendar";
+import MyCalendar from "../MyCalendar";
 
 class UserHomeComponent extends React.Component {
     state = {
@@ -24,57 +24,57 @@ class UserHomeComponent extends React.Component {
 
                 <Container>
                     <Row>
-                        <Col md={7}>
+                        <Col md={8}>
                             <Row>
-                                <table className="table table-bordered table-hover">
-                                    <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col" width="150">Calendar</th>
-                                        <th scope="col" width="150">Calendar</th>
-                                        <th scope="col" width="150">Calendar</th>
-                                        <th scope="col" width="150">Calendar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                {/*<DISABLED_MyCalendar/>*/}
+                                {/*<table className="table table-bordered table-hover">*/}
+                                {/*    <thead className="thead-dark">*/}
+                                {/*    <tr>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*    </tr>*/}
+                                {/*    </thead>*/}
+                                {/*    <tbody>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    </tbody>*/}
+                                {/*</table>*/}
+                                <MyCalendar/>
                             </Row>
                             <br/>
                             <Row className={"justify-content-md-center"}>
@@ -82,7 +82,7 @@ class UserHomeComponent extends React.Component {
                             </Row>
                         </Col>
 
-                        <Col md={1}> </Col>
+                        {/*<Col md={1}> </Col>*/}
 
                         <Col md={4}>
                             <Row>

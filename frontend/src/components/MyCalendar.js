@@ -16,11 +16,21 @@ function tileClassName({ date, view }) {
     }
 }
 
+function tileContent({ date, view }) {
+    // Add class to tiles in month view only
+    if (view === 'month') {
+        // Check if a date React-Calendar wants to check is on the list of dates to add class to
+        if (datesToAddClassTo.find(dDate => isSameDay(dDate, date))) {
+            return <p>CLASS</p>;
+        }
+    }
+}
+
 function isSameDay(a, b) {
     return differenceInCalendarDays(a, b) === 0;
 }
 
-function DISABLED_MyCalendar() {
+function MyCalendar() {
     const [value, onChange] = useState(new Date());
 
     return (
@@ -30,10 +40,10 @@ function DISABLED_MyCalendar() {
                 value={value}
                 tileClassName={tileClassName}
                 //tileClassName={"Hello World"}
-                //tileContent={({ date, view }) => view === 'month' && date.className === 'hasClass' ? <p>It's Sunday!</p> : null}
+                tileContent={tileContent}
             />
         </div>
     );
 }
 
-export default DISABLED_MyCalendar
+export default MyCalendar
