@@ -1,20 +1,25 @@
 import React from 'react';
 import SessionService from '../../services/SessionService';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {Button} from 'react-bootstrap'
+import {withCookies} from "react-cookie";
 
 class SessionComponent extends React.Component {
+    state = {
+        sessions:[],
+        jwtToken: ""
+    }
+
 
     constructor(props){
         super(props)
-        this.state = {
-            sessions:[]
-        }
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount(){
-        SessionService.getAll().then((response) => {
+        SessionService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ sessions: response.data})
         });
     }
@@ -85,4 +90,4 @@ class SessionComponent extends React.Component {
         )
     }
 }
-export default SessionComponent
+export default withCookies(withRouter(SessionComponent))

@@ -1,42 +1,42 @@
 import React from 'react';
 import AircraftService from '../../services/AircraftService';
-import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form} from 'react-bootstrap'
 import Center from 'react-center';
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom"
 
 class AddAircraftComponent extends React.Component {
+    state = {
+        mode: "",
+        id: -1,
+        aircraftId: "",
+        manufacturer: "",
+        name: "",
+        model: "",
+        year: "",
+        maintenanceDay: "",
+        minimumTrainingDuration: "",
+        errorMessage: "",
+        jwtToken: ''
+    };
+
 
     constructor(props) {
         super(props)
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
         if (!props.match.params.id) {
-            this.state = {
-                mode: "add",
-                manufacturer: "",
-                name: "",
-                model: "",
-                year: "",
-                maintenanceDay: "",
-                minimumTrainingDuration: "",
-                errorMessage: ""
-            };
+            this.state.mode = 'add'
         } else {
-            this.state = {
-                mode: "edit",
-                aircraftId: props.match.params.id,
-                manufacturer: "",
-                name: "",
-                model: "",
-                year: "",
-                maintenanceDay: "",
-                minimumTrainingDuration: "",
-                errorMessage: ""
-            };
+            this.state.mode = 'edit'
+            this.state.id = props.match.params.id
         }
     }
 
     componentDidMount() {
         if (this.state.mode === "edit") {
-            AircraftService.getOne(this.props.match.params.id).then(res => {
+            AircraftService.getOne(this.state.jwtToken, this.props.match.params.id).then(res => {
                 this.setState({
                     manufacturer: res.data.manufacturer,
                     name: res.data.name,
@@ -68,7 +68,7 @@ class AddAircraftComponent extends React.Component {
 
         console.log(JSON.stringify(aircraft));
         if (this.state.mode === "add") {
-            AircraftService.post(aircraft).then(res => {
+            AircraftService.post(this.state.jwtToken, aircraft).then(res => {
                 this.props.history.push('/admin/aircraft')
             }).catch(res => {
                 if (res.response) {
@@ -78,7 +78,7 @@ class AddAircraftComponent extends React.Component {
                 }
             })
         } else {
-            AircraftService.put(this.state.aircraftId, aircraft).then(res => {
+            AircraftService.put(this.state.jwtToken, this.state.aircraftId, aircraft).then(res => {
                 this.props.history.push('/admin/aircraft')
             }).catch(res => {
                 if (res.response) {
@@ -148,4 +148,4 @@ class AddAircraftComponent extends React.Component {
     }
 }
 
-export default AddAircraftComponent
+export default withCookies(withRouter(AddAircraftComponent))

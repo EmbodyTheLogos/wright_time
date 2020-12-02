@@ -9,6 +9,7 @@ import edu.team5.wright_time.model.repository.CertificationRepository;
 import edu.team5.wright_time.model.repository.SessionRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,16 +40,19 @@ public class UserController {
     }
 
     @GetMapping
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public Iterable<User> getUser(){
         return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public User getOneUser(@PathVariable long id) throws NoSuchElementException {
         return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
     }
 
     @GetMapping("/instructors/certified/{id}")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public Iterable<User> getCertifiedInstructors(@PathVariable long id) throws NoSuchElementException
     {
         Aircraft aircraft = aircraftRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No aircraft with id: " + id));
@@ -70,22 +74,26 @@ public class UserController {
         return userRepository.findAllById(certifiedInstructorsID);
     }
     @GetMapping("/administrators")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public Iterable<User> getAllAdministrators()
     {
         return userRepository.findUsersByRole("ROLE_ADMIN");
     }
     @GetMapping("/instructors")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public Iterable<User> getAllInstructors()
     {
         return userRepository.findUsersByRole("ROLE_INSTRUCTOR");
     }
     @GetMapping("/students")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public Iterable<User> getAllStudents()
     {
         return userRepository.findUsersByRole("ROLE_STUDENT");
     }
 
     @GetMapping("/{id}/hours")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public int getHours(@PathVariable long id) throws NoSuchElementException {
         final var locale = Locale.US;
         final var firstDayOfWeek = WeekFields.of(locale).getFirstDayOfWeek();
@@ -102,14 +110,15 @@ public class UserController {
     }
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public User addUser(@RequestBody @Valid User user) {
         return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public User updateUser(@PathVariable long id, @RequestBody @Valid User user) {
         return userRepository.findById(id).map(toUpdate -> {
-            toUpdate.setUsername(user.getUsername());
             toUpdate.setFirstName(user.getFirstName());
             toUpdate.setLastName(user.getLastName());
             toUpdate.setRole(user.getRole());
@@ -120,6 +129,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public void deleteUser(@PathVariable long id) {
         userRepository.deleteById(id);
     }

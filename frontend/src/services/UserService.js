@@ -3,36 +3,68 @@ import axios from 'axios'
 const USER_REST_API_URL = 'http://localhost:8080/api/users';
 
 class UserService {
-    getAll(){
-        return axios.get(USER_REST_API_URL);
+    getAll(token){
+        return axios.get(USER_REST_API_URL, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
-    getOne(id) {
-        return axios.get(USER_REST_API_URL + '/' + id)
+    getOne(token, id) {
+        return axios.get(USER_REST_API_URL + '/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    post(user) {
-        return axios.post(USER_REST_API_URL, user)
+    post(token, user) {
+        return axios.post(USER_REST_API_URL, user, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    put(id, user) {
-        return axios.put(USER_REST_API_URL + '/' + id, user)
+    put(token, id, user) {
+        return axios.put(USER_REST_API_URL + '/' + id, user, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    delete(id) {
-        return axios.delete(USER_REST_API_URL + '/' + id)
+    delete(token, id) {
+        return axios.delete(USER_REST_API_URL + '/' + id,{
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    getAllInstructors() {
-        return axios.get(USER_REST_API_URL + '/instructors');
+    getAllInstructors(token) {
+        return axios.get(USER_REST_API_URL + '/instructors', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
-    getAllStudents() {
-        return axios.get(USER_REST_API_URL + '/students');
+    getAllStudents(token) {
+        return axios.get(USER_REST_API_URL + '/students', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
-    getAllAdministrators() {
-        return axios.get(USER_REST_API_URL + '/administrators');
+    getAllAdministrators(token) {
+        return axios.get(USER_REST_API_URL + '/administrators', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 }
 

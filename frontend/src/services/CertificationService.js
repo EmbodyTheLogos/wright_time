@@ -3,24 +3,44 @@ import axios from 'axios'
 const CERTIFICATION_REST_API_URL = 'http://localhost:8080/api/certifications';
 
 class CertificationService {
-    getAll(){
-        return axios.get(CERTIFICATION_REST_API_URL);
+    getAll(token) {
+        return axios.get(CERTIFICATION_REST_API_URL, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
-    getOne(id) {
-        return axios.get(CERTIFICATION_REST_API_URL + '/' + id)
+    getOne(token, id) {
+        return axios.get(CERTIFICATION_REST_API_URL + '/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    post(certification) {
-        return axios.post(CERTIFICATION_REST_API_URL, certification)
+    post(token, certification) {
+        return axios.post(CERTIFICATION_REST_API_URL, certification, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    put(id, certification) {
-        return axios.put(CERTIFICATION_REST_API_URL + '/' + id, certification)
+    put(token, id, certification) {
+        return axios.put(CERTIFICATION_REST_API_URL + '/' + id, certification, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    delete(id) {
-        return axios.delete(CERTIFICATION_REST_API_URL + '/' + id)
+    delete(token, id) {
+        return axios.delete(CERTIFICATION_REST_API_URL + '/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 }
 

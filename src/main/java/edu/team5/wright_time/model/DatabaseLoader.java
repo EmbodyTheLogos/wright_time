@@ -37,10 +37,10 @@ public class DatabaseLoader implements CommandLineRunner {
         var aircraft2 = new Aircraft("Piper Aircraft", "Cherokee", "PA-28", 2002, 19, 3);
         var aircraft3 = new Aircraft("Beechcraft", "Bonanza", "S35", 2007, 20, 4);
         var aircraft4 = new Aircraft("Douglas", "Skytrain", "C-47", 1945, 28, 6);
-        var user1 = new User("jdellock", "ROLE_ADMIN", "Jeremy", "Dellock", "jmd6724@psu.edu", LocalDate.now().minusDays(3));
-        var user2 = new User("bwarner", "ROLE_INSTRUCTOR", "Benjamin", "Warner", "bdw5230@psu.edu", LocalDate.now().minusDays(3));
-        var user3 = new User("lnguyen", "ROLE_STUDENT", "Long", "Nguyen", "lhn5032@psu.edu", LocalDate.now().minusDays(3));
-        var user4 = new User("nnetznik", "ROLE_STUDENT", "Nathaniel", "Netznik", "nhn5049@psu.edu", LocalDate.now().minusDays(3));
+        var user1 = new User("jmd6724@psu.edu", "password",  "Jeremy", "Dellock", "ROLE_ADMIN", LocalDate.now().minusDays(3));
+        var user2 = new User("bdw5230@psu.edu", "password",  "Benjamin", "Warner", "ROLE_INSTRUCTOR", LocalDate.now().minusDays(3));
+        var user3 = new User("lhn5032@psu.edu", "password",  "Long", "Nguyen", "ROLE_STUDENT", LocalDate.now().minusDays(3));
+        var user4 = new User("nhn5049@psu.edu", "password",  "Nathaniel", "Netznik", "ROLE_STUDENT", LocalDate.now().minusDays(3));
         var cert1 = new Certification(user1, aircraft1, LocalDate.now().minusDays(3));
         var cert2 = new Certification(user2, aircraft2, LocalDate.now().minusDays(2));
         var session1 = new Session(user3, user2, aircraft1, 11, LocalDate.now().minusDays(1), Session.State.PENDING, "Rough Landing, work on approach. ", 2);

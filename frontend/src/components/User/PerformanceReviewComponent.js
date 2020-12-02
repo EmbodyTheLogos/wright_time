@@ -1,15 +1,19 @@
 import React from 'react';
 import SessionService from '../../services/SessionService';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import UserNavbar from "../Navbars/UserNavbar";
+import {withCookies} from "react-cookie";
 
 class PerformanceReviewComponent extends React.Component {
+    state = {
+        sessions:[],
+        jwtToken: ''
+    }
 
     constructor(props){
         super(props)
-        this.state = {
-            sessions:[]
-        }
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount(){
@@ -71,4 +75,4 @@ class PerformanceReviewComponent extends React.Component {
         )
     }
 }
-export default PerformanceReviewComponent
+export default withCookies(withRouter(PerformanceReviewComponent))

@@ -1,5 +1,7 @@
 import React from 'react';
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class AdminHomeComponent extends React.Component {
 
@@ -62,4 +64,4 @@ class AdminHomeComponent extends React.Component {
     }
 }
 
-export default AdminHomeComponent
+export default withCookies(withRouter(AdminHomeComponent))

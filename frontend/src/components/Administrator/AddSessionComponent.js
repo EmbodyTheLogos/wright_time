@@ -1,6 +1,6 @@
 import React from 'react';
 import SessionService from '../../services/SessionService';
-import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,53 +8,45 @@ import Center from "react-center";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import UserService from "../../services/UserService";
 import AircraftService from "../../services/AircraftService";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class AddSessionComponent extends React.Component {
+    state = {
+        mode: "edit",
+        id: -1,
+        sessionId: "",
+        aircraftId: "",
+        instructorId: "",
+        studentId: "",
+        date: new Date(),
+        startTime: "",
+        endTime: "",
+        score: "",
+        comments: "",
+        state: "",
+        aircrafts: [],
+        students: [],
+        instructors: [],
+        errorMessage: "",
+        jwtToken: ""
+    };
 
     constructor(props){
         super(props)
-        if(!props.match.params.id) {
-            this.state = {
-                mode: "add",
-                aircraftId: "",
-                instructorId: "",
-                studentId: "",
-                date: new Date(),
-                startTime: "",
-                endTime: "",
-                score: "",
-                comments: "",
-                state: "",
-                aircrafts: [],
-                students: [],
-                instructors: [],
-                errorMessage: ""
-            };
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
+        if (!props.match.params.id) {
+            this.state.mode = 'add'
         } else {
-            this.state = {
-                mode: "edit",
-                sessionId: props.match.params.id,
-                aircraftId: "",
-                instructorId: "",
-                studentId: "",
-                date: new Date(),
-                startTime: "",
-                endTime: "",
-                score: "",
-                comments: "",
-                state: "",
-                aircrafts: [],
-                students: [],
-                instructors: [],
-                errorMessage: ""
-            };
+            this.state.mode = 'edit'
+            this.state.id = props.match.params.id
         }
-
     }
 
     componentDidMount(){
         if(this.state.mode === "edit") {
-            SessionService.getOne(this.props.match.params.id).then(res => {
+            SessionService.getOne(this.state.jwtToken, this.props.match.params.id).then(res => {
                 let date = res.data.date.split('-')
                 let year = parseInt(date[0])
                 let month = parseInt(date[1]) - 1
@@ -73,13 +65,13 @@ class AddSessionComponent extends React.Component {
                 });
             })
         }
-        UserService.getAllInstructors().then((response) => {
+        UserService.getAllInstructors(this.state.jwtToken).then((response) => {
             this.setState({ instructors: response.data})
         })
-        UserService.getAllStudents().then((response) => {
+        UserService.getAllStudents(this.state.jwtToken).then((response) => {
             this.setState({ students: response.data})
         })
-        AircraftService.getAll().then((response) => {
+        AircraftService.getAll(this.state.jwtToken).then((response) => {
             this.setState({aircrafts: response.data})
         })
     }
@@ -113,7 +105,7 @@ class AddSessionComponent extends React.Component {
 
         console.log(JSON.stringify(session));
         if(this.state.mode === "add") {
-            SessionService.post(session).then(res => {
+            SessionService.post(this.state.jwtToken, session).then(res => {
                 this.props.history.push('/admin/sessions')
             }).catch(res => {
                 if(res.response) {
@@ -123,7 +115,7 @@ class AddSessionComponent extends React.Component {
                 }
             })
         } else {
-            SessionService.put(this.state.sessionId, session).then(res => {
+            SessionService.put(this.state.jwtToken, this.state.sessionId, session).then(res => {
                 this.props.history.push('/admin/sessions')
             }).catch(res => {
                 if(res.response) {
@@ -230,4 +222,4 @@ class AddSessionComponent extends React.Component {
     }
 }
 
-export default AddSessionComponent
+export default withCookies(withRouter(AddSessionComponent))

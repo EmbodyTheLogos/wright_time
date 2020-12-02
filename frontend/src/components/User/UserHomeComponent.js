@@ -1,12 +1,18 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
-import {Col, Row, Container, Button} from "react-bootstrap";
-import AircraftService from "../../services/AircraftService";
+import {Button, Col, Container, Row} from "react-bootstrap";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class UserHomeComponent extends React.Component {
+    state = {
+        jwtToken: ''
+    }
 
     constructor(props) {
         super(props);
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     render() {
@@ -176,4 +182,4 @@ class UserHomeComponent extends React.Component {
     }
 }
 
-export default UserHomeComponent
+export default withCookies(withRouter(UserHomeComponent))

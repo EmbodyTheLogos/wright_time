@@ -1,8 +1,9 @@
 import React from 'react';
 import SessionService from '../../services/SessionService';
-import {Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {Button} from 'react-bootstrap'
+import {withCookies} from "react-cookie";
 
 class PendingSessionsComponent extends React.Component {
 
@@ -82,4 +83,4 @@ class PendingSessionsComponent extends React.Component {
     }
 }
 
-export default PendingSessionsComponent
+export default withCookies(withRouter(PendingSessionsComponent))

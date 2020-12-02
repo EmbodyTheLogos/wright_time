@@ -1,20 +1,24 @@
 import React from 'react';
 import AircraftService from '../../services/AircraftService';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import {withCookies} from "react-cookie";
 
 class AircraftComponent extends React.Component {
+    state = {
+        aircrafts: [],
+        jwtToken: ""
+    }
 
     constructor(props){
         super(props)
-        this.state = {
-            aircrafts:[]
-        }
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount(){
-        AircraftService.getAll().then((response) => {
+        AircraftService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ aircrafts: response.data})
         });
     }
@@ -79,4 +83,4 @@ class AircraftComponent extends React.Component {
         )
     }
 }
-export default AircraftComponent
+export default withCookies(withRouter(AircraftComponent))

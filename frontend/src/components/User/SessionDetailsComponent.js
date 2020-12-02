@@ -1,5 +1,7 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class SessionDetailsComponent extends React.Component {
 
@@ -20,4 +22,4 @@ class SessionDetailsComponent extends React.Component {
     }
 }
 
-export default SessionDetailsComponent
+export default withCookies(withRouter(SessionDetailsComponent))

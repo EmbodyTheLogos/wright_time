@@ -3,36 +3,68 @@ import axios from 'axios'
 const SESSION_REST_API_URL = 'http://localhost:8080/api/sessions';
 
 class SessionService {
-    getAll(){
-        return axios.get(SESSION_REST_API_URL);
+    getAll(token) {
+        return axios.get(SESSION_REST_API_URL, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
-    getOne(id) {
-        return axios.get(SESSION_REST_API_URL + '/' + id)
+    getOne(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    post(session) {
-        return axios.post(SESSION_REST_API_URL, session)
+    post(token, session) {
+        return axios.post(SESSION_REST_API_URL, session, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    put(id, session) {
-        return axios.put(SESSION_REST_API_URL + '/' + id, session)
+    put(token, id, session) {
+        return axios.put(SESSION_REST_API_URL + '/' + id, session, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    delete(id) {
-        return axios.delete(SESSION_REST_API_URL + '/' + id)
+    delete(token, id) {
+        return axios.delete(SESSION_REST_API_URL + '/' + id,{
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    getPending() {
-        return axios.get(SESSION_REST_API_URL + '/pending');
+    getPending(token) {
+        return axios.get(SESSION_REST_API_URL + '/pending', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
-    approve(id) {
-        return axios.put(SESSION_REST_API_URL + '/' + id + '/approve')
+    approve(token, id) {
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/approve', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    decline(id) {
-        return axios.put(SESSION_REST_API_URL + '/' + id + '/decline')
+    decline(token, id) {
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/decline', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 }
 

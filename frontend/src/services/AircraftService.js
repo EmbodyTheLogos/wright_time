@@ -3,24 +3,44 @@ import axios from 'axios'
 const AIRCRAFT_REST_API_URL = 'http://localhost:8080/api/aircraft';
 
 class AircraftService {
-    getAll(){
-        return axios.get(AIRCRAFT_REST_API_URL);
+    getAll(token) {
+        return axios.get(AIRCRAFT_REST_API_URL, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
-    getOne(id) {
-        return axios.get(AIRCRAFT_REST_API_URL + '/' + id)
+    getOne(token, id) {
+        return axios.get(AIRCRAFT_REST_API_URL + '/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    post(aircraft) {
-        return axios.post(AIRCRAFT_REST_API_URL, aircraft)
+    post(token, aircraft) {
+        return axios.post(AIRCRAFT_REST_API_URL, aircraft, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    put(id, aircraft) {
-        return axios.put(AIRCRAFT_REST_API_URL + '/' + id, aircraft)
+    put(token, id, aircraft) {
+        return axios.put(AIRCRAFT_REST_API_URL + '/' + id, aircraft, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 
-    delete(id) {
-        return axios.delete(AIRCRAFT_REST_API_URL + '/' + id)
+    delete(token, id) {
+        return axios.delete(AIRCRAFT_REST_API_URL + '/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
     }
 }
 

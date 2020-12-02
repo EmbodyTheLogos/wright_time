@@ -1,6 +1,8 @@
 import React from 'react';
 import AircraftService from '../../services/AircraftService';
 import UserNavbar from "../Navbars/UserNavbar";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class UserAircraftViewComponent extends React.Component {
 
@@ -59,4 +61,4 @@ class UserAircraftViewComponent extends React.Component {
         )
     }
 }
-export default UserAircraftViewComponent
+export default withCookies(withRouter(UserAircraftViewComponent))

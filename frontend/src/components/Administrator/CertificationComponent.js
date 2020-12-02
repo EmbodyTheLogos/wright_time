@@ -1,20 +1,24 @@
 import React from 'react';
 import CertificationService from '../../services/CertificationService';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import {withCookies} from "react-cookie";
 
 class CertificationComponent extends React.Component {
+    state = {
+        certifications: [],
+        jwtToken: ""
+    }
 
     constructor(props){
         super(props)
-        this.state = {
-            certifications:[]
-        }
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount(){
-        CertificationService.getAll().then((response) => {
+        CertificationService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ certifications: response.data})
         });
     }
@@ -72,4 +76,4 @@ class CertificationComponent extends React.Component {
         )
     }
 }
-export default CertificationComponent
+export default withCookies(withRouter(CertificationComponent))

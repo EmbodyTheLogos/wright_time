@@ -1,6 +1,7 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {Nav, Navbar} from 'react-bootstrap'
+import {Link, withRouter} from "react-router-dom";
+import {withCookies} from "react-cookie";
+import AuthService from "../services/AuthService";
 
 class HubComponent extends React.Component {
 
@@ -9,7 +10,12 @@ class HubComponent extends React.Component {
     }
 
     componentDidMount() {
-
+        const {cookies} = this.props;
+        AuthService.signin('jmd6724@psu.edu', 'password').then((response) => {
+            console.log(response)
+            console.log(response.data.accessToken)
+            cookies.set('JWT-TOKEN', response.data.accessToken)
+        })
     }
 
     render() {
@@ -28,4 +34,4 @@ class HubComponent extends React.Component {
     }
 }
 
-export default HubComponent
+export default withCookies(withRouter(HubComponent))

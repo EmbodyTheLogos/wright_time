@@ -1,6 +1,6 @@
 import React from 'react';
 import CertificationService from '../../services/CertificationService';
-import {Button, Container, Form, Col, Row} from 'react-bootstrap'
+import {Button, Col, Container, Form, Row} from 'react-bootstrap'
 import Center from "react-center";
 
 import DatePicker from "react-datepicker";
@@ -8,46 +8,45 @@ import "react-datepicker/dist/react-datepicker.css";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import UserService from "../../services/UserService";
 import AircraftService from "../../services/AircraftService";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class AddCertificationComponent extends React.Component {
+    state = {
+        mode: "",
+        id: -1,
+        userId: "",
+        aircraftId: "",
+        dateObtained: new Date(),
+        aircrafts: [],
+        users: [],
+        errorMessage: "",
+        jwtToken: ""
+    };
+
 
     constructor(props) {
         super(props)
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
         if (!props.match.params.id) {
-            this.state = {
-                mode: "add",
-                userId: "",
-                aircraftId: "",
-                dateObtained: new Date(),
-                aircrafts: [],
-                users: [],
-                errorMessage: ""
-            };
+            this.state.mode = 'add'
         } else {
-            this.state = {
-                mode: "edit",
-                id: props.match.params.id,
-                userId: "",
-                aircraftId: "",
-                dateObtained: new Date(),
-                aircrafts: [],
-                users: [],
-                errorMessage: ""
-            };
+            this.state.mode = 'edit'
+            this.state.id = props.match.params.id
         }
-
-        UserService.getAll().then((response) => {
-            this.setState({users: response.data})
-        })
-        AircraftService.getAll().then((response) => {
-            this.setState({aircrafts: response.data})
-        })
-
     }
 
     componentDidMount() {
+        UserService.getAll(this.state.jwtToken).then((response) => {
+            this.setState({users: response.data})
+        })
+        AircraftService.getAll(this.state.jwtToken).then((response) => {
+            this.setState({aircrafts: response.data})
+        })
+
         if (this.state.mode === "edit") {
-            CertificationService.getOne(this.props.match.params.id).then(res => {
+            CertificationService.getOne(this.state.jwtToken, this.props.match.params.id).then(res => {
                 let date = res.data.dateObtained.split('-')
                 console.log(date)
                 let year = parseInt(date[0])
@@ -89,7 +88,7 @@ class AddCertificationComponent extends React.Component {
 
         console.log(JSON.stringify(cert));
         if (this.state.mode === "add") {
-            CertificationService.post(cert).then(res => {
+            CertificationService.post(this.state.jwtToken, cert).then(res => {
                 this.props.history.push('/admin/certifications')
             }).catch(res => {
                 if (res.response) {
@@ -99,7 +98,7 @@ class AddCertificationComponent extends React.Component {
                 }
             })
         } else {
-            CertificationService.put(this.state.id, cert).then(res => {
+            CertificationService.put(this.state.jwtToken, this.state.id, cert).then(res => {
                 this.props.history.push('/admin/certifications')
             }).catch(res => {
                 if (res.response) {
@@ -170,4 +169,4 @@ class AddCertificationComponent extends React.Component {
     }
 }
 
-export default AddCertificationComponent
+export default withCookies(withRouter(AddCertificationComponent))

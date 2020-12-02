@@ -1,6 +1,7 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 import {Nav, Navbar} from 'react-bootstrap'
+import {withCookies} from "react-cookie";
 
 class AdministratorNavbar extends React.Component {
 
@@ -29,4 +30,4 @@ class AdministratorNavbar extends React.Component {
     }
 }
 
-export default AdministratorNavbar
+export default withCookies(withRouter(AdministratorNavbar))

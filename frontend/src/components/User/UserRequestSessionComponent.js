@@ -7,49 +7,36 @@ import "react-datepicker/dist/react-datepicker.css";
 import Center from "react-center";
 import UserService from "../../services/UserService";
 import UserNavbar from "../Navbars/UserNavbar";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class UserRequestSessionComponent extends React.Component {
+    state = {
+        mode: "edit",
+        sessionId: -1,
+        aircraftId: "",
+        instructorId: "",
+        studentId: "",
+        date: new Date(),
+        startTime: "",
+        endTime: "",
+        score: "",
+        comments: "",
+        state: "",
+        users: [],
+        errorMessage: "",
+        jwtToken: ''
+    };
 
     constructor(props){
         super(props)
-        if(!props.match.params.id) {
-            this.state = {
-                mode: "add",
-                aircraftId: "",
-                instructorId: "",
-                studentId: "",
-                date: new Date(),
-                startTime: "",
-                endTime: "",
-                score: "",
-                comments: "",
-                state: "",
-                users: [],
-                errorMessage: ""
-            };
-        } else {
-            this.state = {
-                mode: "edit",
-                sessionId: props.match.params.id,
-                aircraftId: "",
-                instructorId: "",
-                studentId: "",
-                date: new Date(),
-                startTime: "",
-                endTime: "",
-                score: "",
-                comments: "",
-                state: "",
-                users: [],
-                errorMessage: ""
-            };
-        }
-
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount(){
         if(this.state.mode === "edit") {
-            SessionService.getOne(this.props.match.params.id).then(res => {
+            SessionService.getOne(this.state.jwtToken, this.props.match.params.id).then(res => {
                 let date = res.data.date.split('-')
                 let year = parseInt(date[0])
                 let month = parseInt(date[1]) - 1
@@ -68,7 +55,7 @@ class UserRequestSessionComponent extends React.Component {
                 });
             })
         }
-        UserService.getAll().then((response) => {
+        UserService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ users: response.data})
         })
     }
@@ -224,4 +211,4 @@ class UserRequestSessionComponent extends React.Component {
     }
 }
 
-export default UserRequestSessionComponent
+export default withCookies(withRouter(UserRequestSessionComponent))

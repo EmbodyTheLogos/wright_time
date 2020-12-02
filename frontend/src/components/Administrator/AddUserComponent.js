@@ -1,46 +1,43 @@
 import React from 'react';
 import UserService from '../../services/UserService';
-import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Form} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Center from "react-center";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class AddUserComponent extends React.Component {
+    state = {
+        mode: "edit",
+        userId: -1,
+        username: "",
+        role: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        dateOfBirth: new Date(),
+        errorMessage: "",
+        jwtToken: ""
+    };
 
     constructor(props){
         super(props)
-        if(!props.match.params.id) {
-            this.state = {
-                mode: "add",
-                username: "",
-                role: "",
-                firstName: "",
-                lastName: "",
-                email: "",
-                dateOfBirth: new Date(),
-                errorMessage: ""
-            };
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
+        if (!props.match.params.id) {
+            this.state.mode = 'add'
         } else {
-            this.state = {
-                mode: "edit",
-                userId: props.match.params.id,
-                username: "",
-                role: "",
-                firstName: "",
-                lastName: "",
-                email: "",
-                dateOfBirth: new Date(),
-                errorMessage: ""
-            };
+            this.state.mode = 'edit'
+            this.state.id = props.match.params.id
         }
-
     }
 
     componentDidMount(){
         if(this.state.mode === "edit") {
-            UserService.getOne(this.props.match.params.id).then(res => {
+            UserService.getOne(this.state.jwtToken, this.props.match.params.id).then(res => {
                 let dateOfBirth = res.data.dateOfBirth.split('-')
                 let year = parseInt(dateOfBirth[0])
                 let month = parseInt(dateOfBirth[1]) - 1
@@ -85,7 +82,7 @@ class AddUserComponent extends React.Component {
 
         console.log(JSON.stringify(user));
         if(this.state.mode === "add") {
-            UserService.post(user).then(res => {
+            UserService.post(this.state.jwtToken, user).then(res => {
                 this.props.history.push('/admin/users')
             }).catch(res => {
                 if(res.response) {
@@ -95,7 +92,7 @@ class AddUserComponent extends React.Component {
                 }
             })
         } else {
-            UserService.put(this.state.userId, user).then(res => {
+            UserService.put(this.state.jwtToken, this.state.userId, user).then(res => {
                 this.props.history.push('/admin/users')
             }).catch(res => {
                 if(res.response) {
@@ -172,4 +169,4 @@ class AddUserComponent extends React.Component {
     }
 }
 
-export default AddUserComponent
+export default withCookies(withRouter(AddUserComponent))

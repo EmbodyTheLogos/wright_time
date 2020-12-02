@@ -1,21 +1,26 @@
 import React from 'react';
 import UserService from '../../services/UserService';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
+import {withCookies} from "react-cookie";
 
 
 class UserComponent extends React.Component {
+    state = {
+        users:[],
+        jwtToken: ''
+    }
+
 
     constructor(props){
         super(props)
-        this.state = {
-            users:[]
-        }
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount(){
-        UserService.getAll().then((response) => {
+        UserService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ users: response.data})
         });
     }
@@ -78,4 +83,4 @@ class UserComponent extends React.Component {
         )
     }
 }
-export default UserComponent
+export default withCookies(withRouter(UserComponent))

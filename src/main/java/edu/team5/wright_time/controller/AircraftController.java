@@ -3,6 +3,7 @@ package edu.team5.wright_time.controller;
 import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.repository.AircraftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,21 +21,25 @@ public class AircraftController {
     }
 
     @GetMapping
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public Iterable<Aircraft> getAircraft(){
         return aircraftRepository.findAll();
     }
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public Aircraft addAircraft(@RequestBody @Valid Aircraft aircraft) {
         return aircraftRepository.save(aircraft);
     }
 
     @GetMapping("/{id}")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
     public Aircraft getOneAircraft(@PathVariable long id) throws NoSuchElementException {
         return aircraftRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No aircraft with id: " + id));
     }
 
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public Aircraft updateAircraft(@PathVariable long id, @RequestBody @Valid Aircraft aircraft) {
         return aircraftRepository.findById(id).map(toUpdate -> {
             toUpdate.setManufacturer(aircraft.getManufacturer());
@@ -48,6 +53,7 @@ public class AircraftController {
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public void deleteAircraft(@PathVariable long id) {
         aircraftRepository.deleteById(id);
     }

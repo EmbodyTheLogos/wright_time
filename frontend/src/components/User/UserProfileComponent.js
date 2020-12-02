@@ -1,5 +1,7 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom";
 
 class UserProfileComponent extends React.Component {
 
@@ -20,4 +22,4 @@ class UserProfileComponent extends React.Component {
     }
 }
 
-export default UserProfileComponent
+export default withCookies(withRouter(UserProfileComponent))
