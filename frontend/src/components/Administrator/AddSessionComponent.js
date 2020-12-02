@@ -1,6 +1,6 @@
 import React from 'react';
 import SessionService from '../../services/SessionService';
-import {Button, Container, Form} from 'react-bootstrap'
+import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -139,67 +139,84 @@ class AddSessionComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
-                            <Form.Group controlId={"aircraftId"}>
+                            <Form.Group as={Row} controlId={"aircraftId"}>
+                                <Form.Label column sm={4}>Aircraft:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
                                               onChange={this.changeHandler} name={"aircraftId"}>
                                     <option value="empty"> </option>
                                     {this.state.aircrafts.map(aircraft => <option value={aircraft.id}>
                                         {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
                                 </Form.Control>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"instructorId"}>
+                            <Form.Group as={Row} controlId={"instructorId"}>
+                                <Form.Label column sm={4}>Instructor:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.instructorId}
                                               onChange={this.changeHandler} name={"instructorId"}>
                                     <option value="empty"> </option>
                                     {this.state.instructors.map(instructor => <option value={instructor.id}>
                                         {instructor.firstName + " " + instructor.lastName}</option>)}
                                 </Form.Control>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"studentId"}>
+                            <Form.Group as={Row} controlId={"studentId"}>
+                                <Form.Label column sm={4}>Student:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}
                                               onChange={this.changeHandler} name={"studentId"}>
                                     <option value="empty"> </option>
                                     {this.state.students.map(student => <option value={student.id}>
                                         {student.firstName + " " + student.lastName}</option>)}
                                 </Form.Control>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"date"}>
+                            <Form.Group as={Row} controlId={"date"}>
+                                <Form.Label column sm={4}>Date:</Form.Label>
+                                <Col sm={8}>
                                 <DatePicker
                                     selected={this.state.date}
                                     onChange={this.handleDateChange}
                                     name="date"
                                     dateFormat="MM/dd/yyyy"
                                 />
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"startTime"}>
+                            <Form.Group as={Row} controlId={"startTime"}>
+                                <Form.Label column sm={4}>Start Time:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control type={"text"} placeholder={"Start Time"}
                                               value={this.state.startTime} onChange={this.changeHandler}
                                               name={"startTime"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"endTime"}>
-                                <Form.Control type={"text"} placeholder={"End Time"}
-                                              value={this.state.endTime} onChange={this.changeHandler}
-                                              name={"endTime"}/>
-                            </Form.Group>
-
-                            <Form.Group controlId={"score"}>
+                            <Form.Group as={Row} controlId={"score"}>
+                                <Form.Label column sm={4}>Score:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control type={"text"} placeholder={"Score"}
                                               value={this.state.score} onChange={this.changeHandler}
                                               name={"score"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"comments"}>
+                            <Form.Group as={Row} controlId={"comments"}>
+                                <Form.Label column sm={4}>Comments:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control type={"text"} placeholder={"Comments"}
                                               value={this.state.comments} onChange={this.changeHandler}
                                               name={"comments"}/>
+                                </Col>
                             </Form.Group>
 
-                            <Form.Group controlId={"state"}>
+                            <Form.Group as={Row} controlId={"state"}>
+                                <Form.Label column sm={4}>State:</Form.Label>
+                                <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.state}
                                               onChange={this.changeHandler} name={"state"}>
                                     <option value="empty"> </option>
@@ -209,6 +226,7 @@ class AddSessionComponent extends React.Component {
                                     <option value="CANCELLED">Cancelled</option>
                                     <option value="COMPLETE">Completed</option>
                                 </Form.Control>
+                                </Col>
                             </Form.Group>
 
                             <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
