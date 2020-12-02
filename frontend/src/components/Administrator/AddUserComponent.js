@@ -13,7 +13,6 @@ class AddUserComponent extends React.Component {
     state = {
         mode: "edit",
         userId: -1,
-        username: "",
         role: "",
         firstName: "",
         lastName: "",
@@ -72,7 +71,6 @@ class AddUserComponent extends React.Component {
         console.log(this.state.dateOfBirth)
         let dateOfBirth = this.state.dateOfBirth.getFullYear() + "-"+ (this.state.dateOfBirth.getMonth() + 1) +"-"+ this.state.dateOfBirth.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let user = {
-            username: this.state.username,
             role: this.state.role,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -116,12 +114,6 @@ class AddUserComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
-                            <Form.Group controlId={"username"}>
-                                <Form.Control type={"text"} placeholder={"Username"}
-                                              value={this.state.username} onChange={this.changeHandler}
-                                              name={"username"}/>
-                            </Form.Group>
-
                             <Form.Group controlId={"role"}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.role}
                                               onChange={this.changeHandler} name={"role"}>

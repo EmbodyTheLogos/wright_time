@@ -132,10 +132,10 @@ class AddAircraftComponent extends React.Component {
                                               name={"maintenanceDay"}/>
                             </Form.Group>
 
-                            <Form.Group controlId={"minimumTrainingDuration"}>
-                                <Form.Control type={"text"} placeholder={"Min. Training Duration"}
-                                              value={this.state.minimumTrainingDuration} onChange={this.changeHandler}
-                                              name={"minimumTrainingDuration"}/>
+                            <Form.Group controlId={"trainingDuration"}>
+                                <Form.Control type={"text"} placeholder={"Training Duration"}
+                                              value={this.state.trainingDuration} onChange={this.changeHandler}
+                                              name={"trainingDuration"}/>
                             </Form.Group>
 
                             <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
