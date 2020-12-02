@@ -19,6 +19,14 @@ class SessionService {
         })
     }
 
+    getByStudent(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/student/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
+
     post(token, session) {
         return axios.post(SESSION_REST_API_URL, session, {
             headers: {
