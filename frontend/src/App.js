@@ -14,7 +14,6 @@ import AddCertificationComponent from "./components/Administrator/AddCertificati
 import PendingSessionsComponent from "./components/Administrator/PendingSessionsComponent";
 import HubComponent from "./components/HubComponent"
 import UserHomeComponent from "./components/User/UserHomeComponent";
-import UserAircraftViewComponent from "./components/User/UserAircraftViewComponent";
 import UserProfileComponent from "./components/User/UserProfileComponent";
 import UserRequestSessionComponent from "./components/User/UserRequestSessionComponent";
 import SessionDetailsComponent from "./components/User/SessionDetailsComponent";
@@ -28,9 +27,10 @@ function App() {
                     <Switch>
                         <Route path={"/"} exact component={HubComponent}/>
 
+                        <Route path={"/aircraft"} exact component={AircraftComponent}/>
+
                         <Route path={"/admin/home"} exact component={AdminHomeComponent}/>
 
-                        <Route path={"/admin/aircraft"} exact component={AircraftComponent}/>
                         <Route path={"/admin/aircraft/add"} exact component={AddAircraftComponent}/>
                         <Route path={"/admin/aircraft/edit/:id"} exact component={AddAircraftComponent}/>
 
@@ -48,7 +48,6 @@ function App() {
                         <Route path={"/admin/certifications/edit/:id"} exact component={AddCertificationComponent}/>
 
                         <Route path={"/user/home"} exact component={UserHomeComponent}/>
-                        <Route path={"/user/aircraft"} exact component={UserAircraftViewComponent}/>
                         <Route path={"/user/request-session"} exact component={UserRequestSessionComponent}/>
 
                         <Route path={"/user/profile/:id"} exact component={UserProfileComponent}/>

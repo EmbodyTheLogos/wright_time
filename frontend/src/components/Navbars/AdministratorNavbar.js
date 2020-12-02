@@ -13,7 +13,7 @@ class AdministratorNavbar extends React.Component {
                     <Nav className="mr-auto">
                         <NavLink exact to="/admin/home" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Home</NavLink>
-                        <NavLink to="/admin/aircraft" style={{marginRight: '15px', color:"grey"}}
+                        <NavLink to="/aircraft" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Aircraft Table</NavLink>
                         <NavLink to="/admin/users" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Users Table</NavLink>

@@ -5,6 +5,7 @@ import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {withCookies} from "react-cookie";
 import AuthService from "../../services/AuthService";
+import UserNavbar from "../Navbars/UserNavbar";
 
 class AircraftComponent extends React.Component {
     state = {
@@ -21,7 +22,6 @@ class AircraftComponent extends React.Component {
 
     componentDidMount(){
         AuthService.user(this.state.jwtToken).then((res) => {
-            console.log(res)
             this.setState({user: res.data})
             console.log(this.state.user)
         })
@@ -32,9 +32,10 @@ class AircraftComponent extends React.Component {
     }
 
     render (){
+        const role = this.state.user.role
         return (
             <div>
-                <AdministratorNavbar/>
+                {role === "ROLE_ADMIN" ? <AdministratorNavbar/> : <UserNavbar/>}
 
                 <h1>Aircraft List</h1>
                 <div className="container mt-4">
@@ -48,8 +49,8 @@ class AircraftComponent extends React.Component {
                             <th scope={"col"}> Year</th>
                             <th scope={"col"}> Maintenance Day</th>
                             <th scope={"col"}> Training Duration</th>
-                            <th scope={"col"}> </th>
-                            <th scope={"col"}> </th>
+                            {role === "ROLE_ADMIN" && <th scope={"col"}> </th>}
+                            {role === "ROLE_ADMIN" && <th scope={"col"}> </th>}
                         </tr>
                         </thead>
                         <tbody>
@@ -64,19 +65,23 @@ class AircraftComponent extends React.Component {
                                         <td> {aircraft.year}</td>
                                         <td> {aircraft.maintenanceDay}</td>
                                         <td> {aircraft.trainingDuration}</td>
-                                        <td>
-                                            <Link to={"/admin/aircraft/edit/" + aircraft.id}
-                                               className={"btn btn-warning btn-block"}>Edit Aircraft</Link>
-                                        </td>
-                                        <td>
-                                            <Button variant={"danger"}
-                                                    onClick={() => {
-                                                        AircraftService.delete(aircraft.id);
-                                                        window.location.reload(false);
-                                                    }}>
-                                                Delete
-                                            </Button>
-                                        </td>
+                                        {role === "ROLE_ADMIN" &&
+                                            <td>
+                                                <Link to={"/admin/aircraft/edit/" + aircraft.id}
+                                                   className={"btn btn-warning btn-block"}>Edit Aircraft</Link>
+                                            </td>
+                                        }
+                                        {role === "ROLE_ADMIN" &&
+                                            <td>
+                                                <Button variant={"danger"}
+                                                        onClick={() => {
+                                                            AircraftService.delete(aircraft.id);
+                                                            window.location.reload(false);
+                                                        }}>
+                                                    Delete
+                                                </Button>
+                                            </td>
+                                        }
                                     </tr>
                             )
                         }
@@ -84,7 +89,8 @@ class AircraftComponent extends React.Component {
                     </table>
 
                     <br/>
-                    <Link to={"/admin/aircraft/add"} className={"btn btn-dark"}>Add Aircraft</Link>
+                    { role === "ROLE_ADMIN" && <Link to={"/admin/aircraft/add"} className={"btn btn-dark"}>Add Aircraft</Link>}
+
                 </div>
 
             </div>
