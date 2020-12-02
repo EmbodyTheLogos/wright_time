@@ -4,11 +4,13 @@ import {Link, withRouter} from "react-router-dom";
 import {Button} from 'react-bootstrap'
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {withCookies} from "react-cookie";
+import AuthService from "../../services/AuthService";
 
 class AircraftComponent extends React.Component {
     state = {
         aircrafts: [],
-        jwtToken: ""
+        jwtToken: "",
+        user: ""
     }
 
     constructor(props){
@@ -18,6 +20,12 @@ class AircraftComponent extends React.Component {
     }
 
     componentDidMount(){
+        AuthService.user(this.state.jwtToken).then((res) => {
+            console.log(res)
+            this.setState({user: res.data})
+            console.log(this.state.user)
+        })
+
         AircraftService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ aircrafts: response.data})
         });

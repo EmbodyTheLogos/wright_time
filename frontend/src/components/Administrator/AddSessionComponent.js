@@ -13,7 +13,7 @@ import {withRouter} from "react-router-dom";
 
 class AddSessionComponent extends React.Component {
     state = {
-        mode: "edit",
+        mode: "",
         id: -1,
         sessionId: "",
         aircraftId: "",
@@ -145,7 +145,7 @@ class AddSessionComponent extends React.Component {
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
                                               onChange={this.changeHandler} name={"aircraftId"}>
                                     <option value="empty"> </option>
-                                    {this.state.aircrafts.map(aircraft => <option value={aircraft.id}>
+                                    {this.state.aircrafts.map(aircraft => <option key={aircraft.id} value={aircraft.id}>
                                         {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
                                 </Form.Control>
                                 </Col>
@@ -157,7 +157,7 @@ class AddSessionComponent extends React.Component {
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.instructorId}
                                               onChange={this.changeHandler} name={"instructorId"}>
                                     <option value="empty"> </option>
-                                    {this.state.instructors.map(instructor => <option value={instructor.id}>
+                                    {this.state.instructors.map(instructor => <option key={instructor.id} value={instructor.id}>
                                         {instructor.firstName + " " + instructor.lastName}</option>)}
                                 </Form.Control>
                                 </Col>
@@ -169,7 +169,7 @@ class AddSessionComponent extends React.Component {
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}
                                               onChange={this.changeHandler} name={"studentId"}>
                                     <option value="empty"> </option>
-                                    {this.state.students.map(student => <option value={student.id}>
+                                    {this.state.students.map(student => <option key={student.id} value={student.id}>
                                         {student.firstName + " " + student.lastName}</option>)}
                                 </Form.Control>
                                 </Col>
