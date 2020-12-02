@@ -128,7 +128,7 @@ class AddCertificationComponent extends React.Component {
                                     <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
                                                   onChange={this.changeHandler} name={"userId"}>
                                         <option value="empty"/>
-                                        {this.state.users.map(user => <option value={user.id}>
+                                        {this.state.users.map(user => <option key={user.id} value={user.id}>
                                             {user.firstName + " " + user.lastName}</option>)}
                                     </Form.Control>
                                 </Col>
@@ -140,7 +140,7 @@ class AddCertificationComponent extends React.Component {
                                     <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
                                                   onChange={this.changeHandler} name={"aircraftId"}>
                                         <option value="empty"/>
-                                        {this.state.aircrafts.map(aircraft => <option value={aircraft.id}>
+                                        {this.state.aircrafts.map(aircraft => <option key={aircraft.id} value={aircraft.id}>
                                             {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
                                     </Form.Control>
                                 </Col>
