@@ -1,7 +1,9 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
-import {Col, Row, Container, Button} from "react-bootstrap";
-import AircraftService from "../../services/AircraftService";
+import {Button, Col, Container, Row} from "react-bootstrap";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router-dom"
+import MyCalendar from "../MyCalendar";
 
 class UserHomeComponent extends React.Component {
     state = {

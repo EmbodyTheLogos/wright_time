@@ -5,16 +5,19 @@ import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 
 class UserAircraftViewComponent extends React.Component {
+    state = {
+        aircrafts:[],
+        jwtToken: ""
+    }
 
     constructor(props){
         super(props)
-        this.state = {
-            aircrafts:[]
-        }
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount(){
-        AircraftService.getAll().then((response) => {
+        AircraftService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ aircrafts: response.data})
         });
     }

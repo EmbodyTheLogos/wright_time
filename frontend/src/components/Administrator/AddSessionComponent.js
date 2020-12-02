@@ -1,6 +1,6 @@
 import React from 'react';
 import SessionService from '../../services/SessionService';
-import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap'
+import {Button, Col, Container, Form, Row} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

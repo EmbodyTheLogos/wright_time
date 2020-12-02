@@ -6,16 +6,19 @@ import {Button} from 'react-bootstrap'
 import {withCookies} from "react-cookie";
 
 class PendingSessionsComponent extends React.Component {
+    state = {
+        sessions: [],
+        jwtToken: ''
+    }
 
     constructor(props) {
         super(props)
-        this.state = {
-            sessions: []
-        }
+        const {cookies} = props;
+        this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
     componentDidMount() {
-        SessionService.getPending().then((response) => {
+        SessionService.getPending(this.state.jwtToken).then((response) => {
             this.setState({sessions: response.data})
         });
     }
