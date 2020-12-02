@@ -16,7 +16,7 @@ class AddAircraftComponent extends React.Component {
         model: "",
         year: "",
         maintenanceDay: "",
-        minimumTrainingDuration: "",
+        trainingDuration: "",
         errorMessage: "",
         jwtToken: ''
     };
@@ -63,7 +63,7 @@ class AddAircraftComponent extends React.Component {
             model: this.state.model,
             year: this.state.year,
             maintenanceDay: this.state.maintenanceDay,
-            minimumTrainingDuration: this.state.minimumTrainingDuration
+            trainingDuration: this.state.trainingDuration
         };
 
         console.log(JSON.stringify(aircraft));
