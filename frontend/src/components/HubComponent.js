@@ -39,7 +39,7 @@ class HubComponent extends React.Component {
         return (
             <div>
                 <div className="container mt-4">
-                    <Link to={"/admin/home"} className={"btn btn-secondary btn-block"} onClick={this.loginAdmin}>Administrator</Link>
+                    <Link to={"/admin/pending"} className={"btn btn-secondary btn-block"} onClick={this.loginAdmin}>Administrator</Link>
                     <br/>
                     <Link to={"/user/home"} className={"btn btn-info btn-block"} onClick={this.loginInstructor}>Instructor</Link>
                     <br/>

@@ -4,16 +4,26 @@ import {Button, Col, Container, Row} from "react-bootstrap";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom"
 import MyCalendar from "../Calendar/DISABLED_MyCalendar";
+import UserService from '../../services/UserService';
+import AuthService from "../../services/AuthService";
 
 class UserHomeComponent extends React.Component {
     state = {
-        jwtToken: ''
+        jwtToken: '',
+        user: ""
     }
 
     constructor(props) {
         super(props);
         const {cookies} = props;
         this.state.jwtToken = cookies.get('JWT-TOKEN')
+    }
+
+    componentDidMount(){
+        AuthService.user(this.state.jwtToken).then((res) => {
+            this.setState({user: res.data})
+            console.log(this.state.user)
+        })
     }
 
     render() {
@@ -24,8 +34,9 @@ class UserHomeComponent extends React.Component {
 
                 <Container>
                     <Row>
-                        <Col md={8}>
+                        <Col md={7}>
                             <Row>
+                                <h4>Full Schedule</h4>
                                 <table className="table table-bordered table-hover">
                                     <thead className="thead-dark">
                                     <tr>
@@ -77,12 +88,13 @@ class UserHomeComponent extends React.Component {
                                 {/*<MyCalendar/>*/}
                             </Row>
                             <br/>
-                            <Row className={"justify-content-md-center"}>
+                            <Row className={"justify-content-md-left"}>
                                 Weekly Flight Hours: __Only God Knows__
+                                {/*{UserService.getHours(this.state.user.id)}*/}
                             </Row>
                         </Col>
 
-                        {/*<Col md={1}> </Col>*/}
+                        <Col md={1}> </Col>
 
                         <Col md={4}>
                             <Row>

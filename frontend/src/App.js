@@ -29,7 +29,7 @@ function App() {
 
                         <Route path={"/aircraft"} exact component={AircraftComponent}/>
 
-                        <Route path={"/admin/home"} exact component={AdminHomeComponent}/>
+                        {/*<Route path={"/admin/home"} exact component={AdminHomeComponent}/>*/}
 
                         <Route path={"/admin/aircraft/add"} exact component={AddAircraftComponent}/>
                         <Route path={"/admin/aircraft/edit/:id"} exact component={AddAircraftComponent}/>
@@ -51,8 +51,8 @@ function App() {
                         <Route path={"/user/request-session"} exact component={UserRequestSessionComponent}/>
 
                         <Route path={"/user/profile/:id"} exact component={UserProfileComponent}/>
-                        <Route path={"/user/session-details/:id"} exact component={SessionDetailsComponent}/>
-                        <Route path={"/user/recent-sessions/:id"} exact component={PerformanceReviewComponent}/>
+                        <Route path={"/user/session/details/:id"} exact component={SessionDetailsComponent}/>
+                        <Route path={"/user/performance/review/:id"} exact component={PerformanceReviewComponent}/>
 
                     </Switch>
                 </BrowserRouter>

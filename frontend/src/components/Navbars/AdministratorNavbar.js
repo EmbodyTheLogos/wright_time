@@ -11,8 +11,8 @@ class AdministratorNavbar extends React.Component {
                 <Navbar bg="dark" variant="dark" expand="lg">
                     <Navbar.Brand style={{fontWeight:"bold",color:"LightSkyBlue"}} href={'/'}>Wright Time</Navbar.Brand>
                     <Nav className="mr-auto">
-                        <NavLink exact to="/admin/home" style={{marginRight: '15px', color:"grey"}}
-                                 activeStyle={{marginRight: '15px', color:"white"}}>Home</NavLink>
+                        {/*<NavLink exact to="/admin/home" style={{marginRight: '15px', color:"grey"}}*/}
+                        {/*         activeStyle={{marginRight: '15px', color:"white"}}>Home</NavLink>*/}
                         <NavLink to="/aircraft" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Aircraft Table</NavLink>
                         <NavLink to="/admin/users" style={{marginRight: '15px', color:"grey"}}

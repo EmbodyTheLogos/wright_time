@@ -114,14 +114,14 @@ class AddUserComponent extends React.Component {
                 <Container>
                     <Center>
                         <Form>
-                            <Form.Group as={Row} controlId={"username"}>
-                                <Form.Label column sm={4}>Username:</Form.Label>
-                                <Col sm={8}>
-                                    <Form.Control type={"text"} placeholder={"Username"}
-                                                  value={this.state.username} onChange={this.changeHandler}
-                                                  name={"username"}/>
-                                </Col>
-                            </Form.Group>
+                            {/*<Form.Group as={Row} controlId={"username"}>*/}
+                            {/*    <Form.Label column sm={4}>Username:</Form.Label>*/}
+                            {/*    <Col sm={8}>*/}
+                            {/*        <Form.Control type={"text"} placeholder={"Username"}*/}
+                            {/*                      value={this.state.username} onChange={this.changeHandler}*/}
+                            {/*                      name={"username"}/>*/}
+                            {/*    </Col>*/}
+                            {/*</Form.Group>*/}
 
                             <Form.Group as={Row} controlId={"role"}>
                                 <Form.Label column sm={4}>Role:</Form.Label>

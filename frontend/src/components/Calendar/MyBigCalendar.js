@@ -1,3 +1,4 @@
+import React from 'react';
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 

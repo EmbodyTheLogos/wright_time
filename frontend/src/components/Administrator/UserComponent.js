@@ -36,7 +36,6 @@ class UserComponent extends React.Component {
                         <thead className="thead-dark">
                         <tr>
                             <th scope={"col"}> ID Number</th>
-                            <th scope={"col"}> Username</th>
                             <th scope={"col"}> Role</th>
                             <th scope={"col"}> First Name</th>
                             <th scope={"col"}> Last Name</th>
@@ -52,7 +51,6 @@ class UserComponent extends React.Component {
                                 user =>
                                     <tr key = {user.id}>
                                         <th scope={"row"}> {user.id}</th>
-                                        <td> {user.username}</td>
                                         <td> {user.role}</td>
                                         <td> {user.firstName}</td>
                                         <td> {user.lastName}</td>

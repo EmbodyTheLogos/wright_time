@@ -66,6 +66,14 @@ class UserService {
             }
         });
     }
+
+    getHours(token, id, user) {
+        return axios.get(USER_REST_API_URL + '/' + id + '/hours', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
+    }
 }
 
 export default new UserService();

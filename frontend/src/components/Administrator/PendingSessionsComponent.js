@@ -39,7 +39,6 @@ class PendingSessionsComponent extends React.Component {
                             <th scope={"col"}> Student ID</th>
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
-                            <th scope={"col"}> End Time</th>
                             <th scope={"col"}></th>
                             <th scope={"col"}></th>
                         </tr>
@@ -55,7 +54,6 @@ class PendingSessionsComponent extends React.Component {
                                         <td> {session.student.id}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
-                                        <td> {session.endTime}</td>
                                         <td>
                                             <Button variant={"success"}
                                                     onClick={() => {
