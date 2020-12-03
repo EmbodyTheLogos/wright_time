@@ -40,7 +40,6 @@ class SessionComponent extends React.Component {
                             <th scope={"col"}> Student ID</th>
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
-                            <th scope={"col"}> End Time</th>
                             <th scope={"col"}> Score</th>
                             <th scope={"col"}> Comments</th>
                             <th scope={"col"}> State</th>
@@ -59,7 +58,6 @@ class SessionComponent extends React.Component {
                                         <td> {session.student.id}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
-                                        <td> {session.endTime}</td>
                                         <td> {session.score}</td>
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
