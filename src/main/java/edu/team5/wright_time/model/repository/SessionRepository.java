@@ -1,5 +1,6 @@
 package edu.team5.wright_time.model.repository;
 
+import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.entity.Session;
 import edu.team5.wright_time.model.entity.User;
 import org.springframework.data.jpa.repository.Query;
@@ -28,4 +29,7 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<Session> findSessionByStudentAndDateBetween(User student, LocalDate begin, LocalDate end);
 //    @Query('SELECT * from Session where State = ')
 //    int findStudentHoursInWeek(Date begin, Date end);
+
+    List<Session> findSessionByAircraft(Aircraft aircraft);
+
 }
