@@ -90,7 +90,6 @@ public class SessionController {
     @PostMapping
     @Secured("ROLE_ADMIN")
     public Session addSession(@RequestBody @Valid Session session) throws Exception {
-        //TODO: check all other sessions for aircraft, student, and instructor conflicts
         checkForConflicts(session);
         return sessionRepository.save(session);
     }
@@ -98,7 +97,6 @@ public class SessionController {
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
     public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws Exception {
-        //TODO: check all other sessions for aircraft, student, and instructor conflicts
         checkForConflicts(session);
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setAircraft(session.getAircraft());
