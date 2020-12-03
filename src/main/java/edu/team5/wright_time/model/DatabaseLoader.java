@@ -43,7 +43,7 @@ public class DatabaseLoader implements CommandLineRunner {
         var user4 = new User("nhn5049@psu.edu", "password",  "Nathaniel", "Netznik", "ROLE_STUDENT", LocalDate.now().minusDays(3));
         var cert1 = new Certification(user1, aircraft1, LocalDate.now().minusDays(3));
         var cert2 = new Certification(user2, aircraft2, LocalDate.now().minusDays(2));
-        var session1 = new Session(user3, user2, aircraft1, 11, LocalDate.now().minusDays(1), Session.State.PENDING, "Rough Landing, work on approach. ", 2);
+        var session1 = new Session(user3, user2, aircraft1, 11, LocalDate.now().plusDays(1), Session.State.PENDING, "Rough Landing, work on approach. ", 2);
         var session2 = new Session(user4, user2, aircraft2, 14, LocalDate.now(), Session.State.APPROVED, "No outstanding issues. ", 4);
 
         aircraftRepository.save(aircraft1);

@@ -67,7 +67,7 @@ class UserService {
         });
     }
 
-    getHours(token, id, user) {
+    getHours(token, id) {
         return axios.get(USER_REST_API_URL + '/' + id + '/hours', {
             headers: {
                 Authorization: "Bearer " + token

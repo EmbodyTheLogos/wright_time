@@ -11,7 +11,8 @@ import MyBigCalendar from "../Calendar/MyBigCalendar";
 class UserHomeComponent extends React.Component {
     state = {
         jwtToken: '',
-        user: ""
+        user: "",
+        hours: 0
     }
 
     constructor(props) {
@@ -23,7 +24,9 @@ class UserHomeComponent extends React.Component {
     componentDidMount(){
         AuthService.user(this.state.jwtToken).then((res) => {
             this.setState({user: res.data})
-            //console.log(this.state.user)
+            UserService.getHours(this.state.jwtToken, this.state.user.id).then((res) => {
+                this.setState({hours: res.data})
+            })
         })
     }
 
@@ -91,8 +94,7 @@ class UserHomeComponent extends React.Component {
                             </Row>
                             <br/>
                             <Row className={"justify-content-md-left"}>
-                                Weekly Flight Hours: __Only God Knows__
-                                {/*{UserService.getHours(this.state.user.id)}*/}
+                                Flight Hours this Week: {this.state.hours}
                             </Row>
                         </Col>
 
