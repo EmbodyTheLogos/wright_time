@@ -6,6 +6,7 @@ import {withRouter} from "react-router-dom"
 import MyCalendar from "../Calendar/DISABLED_MyCalendar";
 import UserService from '../../services/UserService';
 import AuthService from "../../services/AuthService";
+import MyBigCalendar from "../Calendar/MyBigCalendar";
 
 class UserHomeComponent extends React.Component {
     state = {
@@ -37,55 +38,56 @@ class UserHomeComponent extends React.Component {
                         <Col md={7}>
                             <Row>
                                 <h4>Full Schedule</h4>
-                                <table className="table table-bordered table-hover">
-                                    <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col" width="150">Calendar</th>
-                                        <th scope="col" width="150">Calendar</th>
-                                        <th scope="col" width="150">Calendar</th>
-                                        <th scope="col" width="150">Calendar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                        <td>Calendar</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                {/*<table className="table table-bordered table-hover">*/}
+                                {/*    <thead className="thead-dark">*/}
+                                {/*    <tr>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*        <th scope="col" width="150">Calendar</th>*/}
+                                {/*    </tr>*/}
+                                {/*    </thead>*/}
+                                {/*    <tbody>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    <tr>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*        <td>Calendar</td>*/}
+                                {/*    </tr>*/}
+                                {/*    </tbody>*/}
+                                {/*</table>*/}
                                 {/*<MyCalendar/>*/}
+                                <MyBigCalendar/>
                             </Row>
                             <br/>
                             <Row className={"justify-content-md-left"}>
