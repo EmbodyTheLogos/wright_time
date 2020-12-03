@@ -3,7 +3,7 @@ import UserNavbar from "../Navbars/UserNavbar";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom"
-import MyCalendar from "../DISABLED_MyCalendar";
+import MyCalendar from "../Calendar/DISABLED_MyCalendar";
 
 class UserHomeComponent extends React.Component {
     state = {
