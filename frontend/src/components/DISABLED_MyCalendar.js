@@ -1,6 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
-import './MyCalendarStyle.css'
+import './DISABLED_MyCalendarStyle.css'
 import {differenceInCalendarDays} from 'date-fns';
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
@@ -12,7 +12,7 @@ const datesToAddClassTo  = [new Date(2020, 11, 4), new Date(2020, 11, 6),
 // const datesToAddClassTo = SessionService.getByStudent()
 
 
-class MyCalendar extends React.Component {
+class DISABLED_MyCalendar extends React.Component {
     state = {
         value: new Date(),
         jwtToken: "",
@@ -83,4 +83,4 @@ class MyCalendar extends React.Component {
     }
 }
 
-export default  withCookies(withRouter(MyCalendar))
+export default  withCookies(withRouter(DISABLED_MyCalendar))
