@@ -75,7 +75,7 @@ class AircraftComponent extends React.Component {
                                             <td>
                                                 <Button variant={"danger"}
                                                         onClick={() => {
-                                                            AircraftService.delete(aircraft.id);
+                                                            AircraftService.delete(this.state.jwtToken, aircraft.id);
                                                             window.location.reload(false);
                                                         }}>
                                                     Delete

@@ -57,7 +57,7 @@ class CertificationComponent extends React.Component {
                                         <td>
                                             <Button variant={"danger"}
                                                onClick={() => {
-                                                   CertificationService.delete(cert.id);
+                                                   CertificationService.delete(this.state.jwtToken, cert.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete

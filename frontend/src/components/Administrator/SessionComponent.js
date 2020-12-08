@@ -80,7 +80,7 @@ class SessionComponent extends React.Component {
                                             <td>
                                                 <Button variant={"danger"}
                                                         onClick={() => {
-                                                            SessionService.delete(session.id);
+                                                            SessionService.delete(this.state.jwtToken, session.id);
                                                             window.location.reload(false);
                                                         }}>
                                                     Delete

@@ -62,7 +62,7 @@ class UserComponent extends React.Component {
                                         <td>
                                             <Button variant={"danger"}
                                                onClick={() => {
-                                                   UserService.delete(user.id);
+                                                   UserService.delete(this.state.jwtToken, user.id);
                                                    window.location.reload(false);
                                                }}>
                                                 Delete
