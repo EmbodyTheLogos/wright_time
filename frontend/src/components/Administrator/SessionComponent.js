@@ -9,30 +9,35 @@ import UserNavbar from "../Navbars/UserNavbar";
 
 class SessionComponent extends React.Component {
     state = {
-        sessions:[],
+        sessions: [],
         jwtToken: "",
         user: ""
     }
 
 
-    constructor(props){
+    constructor(props) {
         super(props)
         const {cookies} = props;
         this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
-    componentDidMount(){
+    componentDidMount() {
         AuthService.user(this.state.jwtToken).then((res) => {
             this.setState({user: res.data})
             //console.log(this.state.user)
+            if (this.state.user.role === "ROLE_ADMIN") {
+                SessionService.getAll(this.state.jwtToken).then((response) => {
+                    this.setState({sessions: response.data})
+                });
+            } else {
+                SessionService.getRecent(this.state.jwtToken, this.state.user.id).then((response) => {
+                    this.setState({sessions: response.data})
+                });
+            }
         })
-
-        SessionService.getAll(this.state.jwtToken).then((response) => {
-            this.setState({ sessions: response.data})
-        });
     }
 
-    render (){
+    render() {
         const role = this.state.user.role
         return (
             <div>
@@ -56,11 +61,12 @@ class SessionComponent extends React.Component {
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
                         </tr>
                         </thead>
+                        {role === "ROLE_ADMIN" &&
                         <tbody>
                         {
                             this.state.sessions.map(
                                 session =>
-                                    <tr key = {session.id}>
+                                    <tr key={session.id}>
                                         <th scope={"row"}> {session.id}</th>
                                         <td> {session.aircraft.id}</td>
                                         <td> {session.instructor.id}</td>
@@ -70,35 +76,53 @@ class SessionComponent extends React.Component {
                                         <td> {session.score}</td>
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
-                                        {role === "ROLE_ADMIN" &&
-                                            <td>
-                                                <Link to={"/admin/sessions/edit/" + session.id}
+                                        <td>
+                                            <Link to={"/admin/sessions/edit/" + session.id}
                                                   className={"btn btn-warning btn-block"}>Edit Session</Link>
-                                            </td>
-                                        }
-                                        {role === "ROLE_ADMIN" &&
-                                            <td>
-                                                <Button variant={"danger"}
-                                                        onClick={() => {
-                                                            SessionService.delete(this.state.jwtToken, session.id);
-                                                            window.location.reload(false);
-                                                        }}>
-                                                    Delete
-                                                </Button>
-                                            </td>
-                                        }
+                                        </td>
+                                        <td>
+                                            <Button variant={"danger"}
+                                                    onClick={() => {
+                                                        SessionService.delete(this.state.jwtToken, session.id);
+                                                        window.location.reload(false);
+                                                    }}>
+                                                Delete
+                                            </Button>
+                                        </td>
                                     </tr>
                             )
                         }
-                        </tbody>
+                        </tbody>}
+
+                        {role === "ROLE_INSTRUCTOR" &&
+                        <tbody>
+                        {
+                            this.state.sessions.map(
+                                session =>
+                                    <tr key={session.id}>
+                                        <th scope={"row"}> {session.id}</th>
+                                        <td> {session.aircraft.id}</td>
+                                        <td> {session.instructor.id}</td>
+                                        <td> {session.student.id}</td>
+                                        <td> {session.date}</td>
+                                        <td> {session.startTime}</td>
+                                        <td> {session.score}</td>
+                                        <td> {session.comments}</td>
+                                        <td> {session.state}</td>
+                                    </tr>
+                            )
+                        }
+                        </tbody>}
                     </table>
 
                     <br/>
-                    <Link to={"/admin/sessions/add"} className={"btn btn-dark"}>Add Session</Link>
+                    {role === "ROLE_ADMIN" &&
+                    <Link to={"/admin/sessions/add"} className={"btn btn-dark"}>Add Session</Link>}
                 </div>
 
             </div>
         )
     }
 }
+
 export default withCookies(withRouter(SessionComponent))
