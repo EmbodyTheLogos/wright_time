@@ -30,12 +30,12 @@ public class Aircraft {
     @Positive(message="Must enter a valid year")    //TODO: Check year in backend
     private int year;
 
-    @Min(value=1, message="Must enter an integer between 1 and 28")
-    @Max(value=28, message="Must enter an integer between 1 and 28")
+    @Min(value=1, message="Maintenance day must be an integer between 1 and 28")
+    @Max(value=28, message="Maintenance day must be an integer between 1 and 28")
     private int maintenanceDay;
 
-    @Min(value=1, message="Must enter an integer between 1 and 24")
-    @Max(value=24, message="Must enter an integer between 1 and 24")
+    @Min(value=1, message="Training duration must be an integer between 1 and 24")
+    @Max(value=24, message="Training duration must be an integer between 1 and 24")
     private int trainingDuration;
 
     public Aircraft(String manufacturer, String name, String model, int year, int maintenanceDay, int trainingDuration) {

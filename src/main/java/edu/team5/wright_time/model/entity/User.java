@@ -42,7 +42,7 @@ public class User {
     @Size(min=0,max=255,message="User role cannot exceed 255 characters") //TODO: restrict to ROLE_ADMIN, ROLE_STUDENT, ROLE_INSTRUCTOR
     private String role;
 
-    @PastOrPresent(message="Must enter a valid date")
+    @PastOrPresent(message="Must enter a valid date of birth")
     private LocalDate dateOfBirth;
 
     public User(String email, String password, String firstName, String lastName, String role,  LocalDate dateOfBirth) {
