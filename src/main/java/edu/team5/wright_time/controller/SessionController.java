@@ -61,14 +61,15 @@ public class SessionController {
     public void checkForConflicts(Session session) throws NoSuchElementException {
         List<Session> allSessions = (List<Session>) sessionRepository.findAll();
         ArrayList<Session> conflictSessions = new ArrayList<>();
-
+        int sessionEndTime = session.getStartTime() - session.getAircraft().getTrainingDuration();
+        System.out.println(allSessions.size());
         //Collect all of the sessions that conflict in time with 'session'
         for (Session eachSession : allSessions) {
             //End time = start time + aircraft.training_duration
-            int sessionEndTime = session.getStartTime() - session.getAircraft().getTrainingDuration();
             int eachSessionEndTime = eachSession.getStartTime() - eachSession.getAircraft().getTrainingDuration();
-            if ((eachSession.getStartTime() >= session.getStartTime() && eachSession.getStartTime() <= sessionEndTime)
-                    || (eachSessionEndTime >= session.getStartTime() && eachSessionEndTime <= sessionEndTime)) {
+            if (eachSession.getDate().equals(session.getDate())
+                    && ((eachSession.getStartTime() >= session.getStartTime() && eachSession.getStartTime() <= sessionEndTime)
+                    || (eachSessionEndTime >= session.getStartTime() && eachSessionEndTime <= sessionEndTime))) {
                 conflictSessions.add(eachSession);
             }
         }
@@ -88,15 +89,15 @@ public class SessionController {
     }
 
     @PostMapping
-    @Secured({"ROLE_ADMIN", "ROLE_STUDENT"})
-    public Session addSession(@RequestBody @Valid Session session) throws Exception {
+    @Secured("ROLE_ADMIN")
+    public Session addSession(@RequestBody @Valid Session session) throws NoSuchElementException {
         checkForConflicts(session);
         return sessionRepository.save(session);
     }
 
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
-    public Session updateSession(@PathVariable long id, @RequestBody @Valid Session session) throws Exception {
+    public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws NoSuchElementException {
         checkForConflicts(session);
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setAircraft(session.getAircraft());
