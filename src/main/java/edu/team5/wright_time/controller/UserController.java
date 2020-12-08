@@ -131,6 +131,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
     public void deleteUser(@PathVariable long id) {
+        //TODO: prevent from deleting current user. 
         userRepository.deleteById(id);
     }
 

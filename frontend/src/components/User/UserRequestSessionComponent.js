@@ -10,23 +10,15 @@ import UserNavbar from "../Navbars/UserNavbar";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 import AircraftService from "../../services/AircraftService";
-import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import AuthService from "../../services/AuthService";
-import UserComponent from "../Administrator/UserComponent";
 
 class UserRequestSessionComponent extends React.Component {
     state = {
-        mode: "",
-        id: -1,
         sessionId: "",
         aircraftId: "",
         instructorId: "",
-        studentId: "",
         date: new Date(),
         startTime: "",
-        score: 1,
-        comments: " ",
-        state: "PENDING",
         aircrafts: [],
         students: [],
         instructors: [],
@@ -39,12 +31,6 @@ class UserRequestSessionComponent extends React.Component {
         super(props)
         const {cookies} = props;
         this.state.jwtToken = cookies.get('JWT-TOKEN')
-        if (!props.match.params.id) {
-            this.state.mode = 'add'
-        } else {
-            this.state.mode = 'edit'
-            this.state.id = props.match.params.id
-        }
     }
 
     componentDidMount(){
@@ -79,7 +65,6 @@ class UserRequestSessionComponent extends React.Component {
         })
         AuthService.user(this.state.jwtToken).then((res) => {
             this.setState({user: res.data})
-            this.setState({studentId: this.state.user.id})
             //console.log(this.state.studentId)
         })
     }
@@ -102,40 +87,26 @@ class UserRequestSessionComponent extends React.Component {
         let session = {
             aircraft:{id:this.state.aircraftId},
             instructor:{id:this.state.instructorId},
-            student:{id:this.state.studentId},
+            student:{id:this.state.user.id},
             startTime: this.state.startTime,
             date: date,
-            score: this.state.score,
-            comments: this.state.comments,
-            state: this.state.state,
+            state: "PENDING",
         };
 
         console.log(JSON.stringify(session));
-        if(this.state.mode === "add") {
-            SessionService.post(this.state.jwtToken, session).then(res => {
-                this.props.history.push('/pending')
-            }).catch(res => {
-                if(res.response) {
-                    this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
-                } else {
-                    this.setState({errorMessage: res.message});
-                }
-            })
-        } else {
-            SessionService.put(this.state.jwtToken, this.state.sessionId, session).then(res => {
-                this.props.history.push('/pending')
-            }).catch(res => {
-                if(res.response) {
-                    this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
-                } else {
-                    this.setState({errorMessage: res.message});
-                }
-            })
-        }
-
+        SessionService.post(this.state.jwtToken, session).then(res => {
+            this.props.history.push('/pending')
+        }).catch(res => {
+            console.log('error: ' + res)
+            if(res.response) {
+                this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+            } else {
+                this.setState({errorMessage: res.message});
+            }
+        })
     }
 
-    render (){
+    render () {
         return (
             <div>
                 <UserNavbar/>
@@ -170,23 +141,6 @@ class UserRequestSessionComponent extends React.Component {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row} controlId={"studentId"}>
-                                <Form.Label column sm={4}>Student:</Form.Label>
-                                <Col sm={8}>
-                                    {/*<Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}*/}
-                                    {/*              onChange={this.changeHandler} name={"studentId"} plaintext readOnly>*/}
-                                    {/*    <option value="empty"> </option>*/}
-                                    {/*    {this.state.students.map(student => <option key={student.id} value={student.id}>*/}
-                                    {/*        {student.firstName + " " + student.lastName}</option>)}*/}
-                                    {/*</Form.Control>*/}
-                                    <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}
-                                                  onChange={this.changeHandler} name={"studentId"} plaintext readOnly>
-                                        {this.state.students.map(student => this.state.user.id === student.id && <option key={student.id} value={student.id}>
-                                            {student.firstName + " " + student.lastName}</option>)}
-                                    </Form.Control>
-                                </Col>
-                            </Form.Group>
-
                             <Form.Group as={Row} controlId={"date"}>
                                 <Form.Label column sm={4}>Date:</Form.Label>
                                 <Col sm={8}>
@@ -205,34 +159,6 @@ class UserRequestSessionComponent extends React.Component {
                                     <Form.Control type={"text"} placeholder={"Start Time"}
                                                   value={this.state.startTime} onChange={this.changeHandler}
                                                   name={"startTime"}/>
-                                </Col>
-                            </Form.Group>
-
-                            {/*<Form.Group as={Row} controlId={"score"}>*/}
-                            {/*    <Form.Label column sm={4}>Score:</Form.Label>*/}
-                            {/*    <Col sm={8}>*/}
-                            {/*        <Form.Control type={"text"} placeholder={"Score"}*/}
-                            {/*                      value={this.state.score} onChange={this.changeHandler}*/}
-                            {/*                      name={"score"}/>*/}
-                            {/*    </Col>*/}
-                            {/*</Form.Group>*/}
-
-                            {/*<Form.Group as={Row} controlId={"comments"}>*/}
-                            {/*    <Form.Label column sm={4}>Comments:</Form.Label>*/}
-                            {/*    <Col sm={8}>*/}
-                            {/*        <Form.Control type={"text"} placeholder={"Comments"}*/}
-                            {/*                      value={this.state.comments} onChange={this.changeHandler}*/}
-                            {/*                      name={"comments"}/>*/}
-                            {/*    </Col>*/}
-                            {/*</Form.Group>*/}
-
-                            <Form.Group as={Row} controlId={"state"}>
-                                <Form.Label column sm={4}>State:</Form.Label>
-                                <Col sm={8}>
-                                    <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.state}
-                                                  onChange={this.changeHandler} name={"state"} readOnly plaintext>
-                                        <option value="PENDING">Pending</option>
-                                    </Form.Control>
                                 </Col>
                             </Form.Group>
 

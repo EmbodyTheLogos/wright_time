@@ -118,7 +118,7 @@ public class SessionController {
     }
 
     @PostMapping
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Session addSession(@RequestBody @Valid Session session) throws NoSuchElementException {
         checkForConflicts(session);
         return sessionRepository.save(session);
