@@ -47,14 +47,14 @@ public class SessionController {
         return sessionRepository.findSessionByInstructor(instructor);
     }
 
-    @GetMapping("/student/{id}")
+    @GetMapping("/upcoming")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Iterable<Session> getSessionByStudent(@PathVariable long id) throws NoSuchElementException {
         final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
         return sessionRepository.findSessionByStudent(student);
     }
 
-    @GetMapping("/student/pending/{id}")
+    @GetMapping("/recent")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Iterable<Session> getPendingSessionByStudent(@PathVariable long id) throws NoSuchElementException {
         final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
