@@ -35,16 +35,18 @@ class UserNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color: "white"}}>Home</NavLink>
                         <NavLink to="/aircraft" style={{marginRight: '15px', color: "grey"}}
                                  activeStyle={{marginRight: '15px', color: "white"}}>Aircraft Table</NavLink>
-                        <NavLink to="/user/request-session" style={{marginRight: '15px', color: "grey"}}
+                        {role === "ROLE_STUDENT" && <NavLink to="/user/request-session" style={{marginRight: '15px', color: "grey"}}
                                  activeStyle={{marginRight: '15px', color: "white"}}>Request Session</NavLink>
-                        <NavLink to={"/user/profile"} style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Profile</NavLink>
+                        }
                         {role === "ROLE_STUDENT" && <NavLink to="/pending" style={{marginRight: '15px', color: "grey"}}
                                                              activeStyle={{marginRight: '15px', color: "white"}}>Pending
                             Sessions</NavLink>}
                         {role === "ROLE_INSTRUCTOR" &&
                         <NavLink to="/sessions" style={{marginRight: '15px', color: "grey"}}
                                  activeStyle={{marginRight: '15px', color: "white"}}>Recent Sessions</NavLink>}
+                        <NavLink to={"/user/profile"} style={{marginRight: '15px', color: "grey"}}
+                                 activeStyle={{marginRight: '15px', color: "white"}}>Profile</NavLink>
+
 
                     </Nav>
                 </Navbar>
