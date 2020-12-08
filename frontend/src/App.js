@@ -38,7 +38,7 @@ function App() {
                         <Route path={"/admin/users/add"} exact component={AddUserComponent}/>
                         <Route path={"/admin/users/edit/:id"} exact component={AddUserComponent}/>
 
-                        <Route path={"/admin/sessions"} exact component={SessionComponent}/>
+                        <Route path={"/sessions"} exact component={SessionComponent}/>
                         <Route path={"/admin/sessions/add"} exact component={AddSessionComponent}/>
                         <Route path={"/admin/sessions/edit/:id"} exact component={AddSessionComponent}/>
                         <Route path={"/pending"} exact component={PendingSessionsComponent}/>

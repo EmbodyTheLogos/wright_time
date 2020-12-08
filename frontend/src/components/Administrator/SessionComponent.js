@@ -4,11 +4,14 @@ import {Link, withRouter} from "react-router-dom";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {Button} from 'react-bootstrap'
 import {withCookies} from "react-cookie";
+import AuthService from "../../services/AuthService";
+import UserNavbar from "../Navbars/UserNavbar";
 
 class SessionComponent extends React.Component {
     state = {
         sessions:[],
-        jwtToken: ""
+        jwtToken: "",
+        user: ""
     }
 
 
@@ -19,15 +22,21 @@ class SessionComponent extends React.Component {
     }
 
     componentDidMount(){
+        AuthService.user(this.state.jwtToken).then((res) => {
+            this.setState({user: res.data})
+            //console.log(this.state.user)
+        })
+
         SessionService.getAll(this.state.jwtToken).then((response) => {
             this.setState({ sessions: response.data})
         });
     }
 
     render (){
+        const role = this.state.user.role
         return (
             <div>
-                <AdministratorNavbar/>
+                {role === "ROLE_ADMIN" ? <AdministratorNavbar/> : <UserNavbar/>}
 
                 <h1>Session List</h1>
                 <div className="container mt-4">
@@ -43,8 +52,8 @@ class SessionComponent extends React.Component {
                             <th scope={"col"}> Score</th>
                             <th scope={"col"}> Comments</th>
                             <th scope={"col"}> State</th>
-                            <th scope={"col"}> </th>
-                            <th scope={"col"}> </th>
+                            {role === "ROLE_ADMIN" && <th scope={"col"}/>}
+                            {role === "ROLE_ADMIN" && <th scope={"col"}/>}
                         </tr>
                         </thead>
                         <tbody>
@@ -61,19 +70,23 @@ class SessionComponent extends React.Component {
                                         <td> {session.score}</td>
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
-                                        <td>
-                                            <Link to={"/admin/sessions/edit/" + session.id}
-                                               className={"btn btn-warning btn-block"}>Edit Session</Link>
-                                        </td>
-                                        <td>
-                                            <Button variant={"danger"}
-                                                    onClick={() => {
-                                                        SessionService.delete(session.id);
-                                                        window.location.reload(false);
-                                                    }}>
-                                                Delete
-                                            </Button>
-                                        </td>
+                                        {role === "ROLE_ADMIN" &&
+                                            <td>
+                                                <Link to={"/admin/sessions/edit/" + session.id}
+                                                  className={"btn btn-warning btn-block"}>Edit Session</Link>
+                                            </td>
+                                        }
+                                        {role === "ROLE_ADMIN" &&
+                                            <td>
+                                                <Button variant={"danger"}
+                                                        onClick={() => {
+                                                            SessionService.delete(session.id);
+                                                            window.location.reload(false);
+                                                        }}>
+                                                    Delete
+                                                </Button>
+                                            </td>
+                                        }
                                     </tr>
                             )
                         }

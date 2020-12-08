@@ -23,7 +23,7 @@ class PendingSessionsComponent extends React.Component {
     componentDidMount() {
         AuthService.user(this.state.jwtToken).then((res) => {
             this.setState({user: res.data})
-            console.log(this.state.user)
+            //console.log(this.state.user)
         })
 
         SessionService.getPending(this.state.jwtToken).then((response) => {

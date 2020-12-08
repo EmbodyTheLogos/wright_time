@@ -17,7 +17,7 @@ class AdministratorNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color:"white"}}>Aircraft Table</NavLink>
                         <NavLink to="/admin/users" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Users Table</NavLink>
-                        <NavLink to="/admin/sessions" style={{marginRight: '15px', color:"grey"}}
+                        <NavLink to="/sessions" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>All Sessions</NavLink>
                         <NavLink to="/pending" style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Pending Sessions</NavLink>
