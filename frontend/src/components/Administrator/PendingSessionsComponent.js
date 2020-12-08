@@ -28,12 +28,10 @@ class PendingSessionsComponent extends React.Component {
             SessionService.getPending(this.state.jwtToken).then((response) => {
                 this.setState({sessions: response.data})
             });} else {
-                SessionService.getPendingByStudent(this.state.jwtToken, this.state.user.id).then((response) => {
+                SessionService.getPendingByUser(this.state.jwtToken, this.state.user.id).then((response) => {
                     this.setState({sessions: response.data})});
             }
         })
-
-
     }
 
     render() {

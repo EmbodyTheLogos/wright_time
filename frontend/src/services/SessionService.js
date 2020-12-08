@@ -19,20 +19,52 @@ class SessionService {
         })
     }
 
-    getByStudent(token, id) {
-        return axios.get(SESSION_REST_API_URL + '/student/' + id, {
+    getUpcoming(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/upcoming/' + id, {
             headers: {
                 Authorization: "Bearer " + token
             }
         })
     }
 
-    getByInstructor(token, id) {
-        return axios.get(SESSION_REST_API_URL + '/instructor/' + id, {
+    getRecent(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/recent/' + id, {
             headers: {
                 Authorization: "Bearer " + token
             }
         })
+    }
+
+    getPending(token) {
+        return axios.get(SESSION_REST_API_URL + '/pending', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
+    }
+
+    getByUser(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/user/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
+
+    getPendingByUser(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/user/pending/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
+    }
+
+    getApprovedByUser(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/user/pending/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
     }
 
     post(token, session) {
@@ -59,22 +91,6 @@ class SessionService {
         })
     }
 
-    getPending(token) {
-        return axios.get(SESSION_REST_API_URL + '/pending', {
-            headers: {
-                Authorization: "Bearer " + token
-            }
-        });
-    }
-
-    getPendingByStudent(token, id) {
-        return axios.get(SESSION_REST_API_URL + '/student/pending/' + id, {
-            headers: {
-                Authorization: "Bearer " + token
-            }
-        });
-    }
-
     approve(token, id) {
         return axios.put(SESSION_REST_API_URL + '/' + id + '/approve', {
             headers: {
@@ -85,22 +101,6 @@ class SessionService {
 
     decline(token, id) {
         return axios.put(SESSION_REST_API_URL + '/' + id + '/decline', {
-            headers: {
-                Authorization: "Bearer " + token
-            }
-        })
-    }
-
-    getUpcoming(token, id) {
-        return axios.get(SESSION_REST_API_URL + '/upcoming/' + id, {
-            headers: {
-                Authorization: "Bearer " + token
-            }
-        })
-    }
-
-    getRecent(token, id) {
-        return axios.get(SESSION_REST_API_URL + '/recent/' + id, {
             headers: {
                 Authorization: "Bearer " + token
             }

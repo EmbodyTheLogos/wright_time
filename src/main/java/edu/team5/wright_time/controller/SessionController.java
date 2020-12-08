@@ -40,26 +40,45 @@ public class SessionController {
         return sessionRepository.findSessionsByState(Session.State.PENDING);
     }
 
-    @GetMapping("/instructor/{id}")
+    @GetMapping("/user/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
-    public Iterable<Session> getSessionByInstructor(@PathVariable long id) throws NoSuchElementException {
-        final var instructor = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No instructor with id: " + id));
-        return sessionRepository.findSessionByInstructor(instructor);
+    public Iterable<Session> getSessionByUser(@PathVariable long id) throws NoSuchElementException {
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+        if(user.getRole().equals("ROLE_STUDENT")) {
+            return sessionRepository.findSessionByStudent(user);
+        } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
+            return sessionRepository.findSessionByInstructor(user);
+        } else {
+            throw new NoSuchElementException("Internal Error: bad role. ");
+        }
     }
 
-    @GetMapping("/student/{id}")
+    @GetMapping("user/pending/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
-    public Iterable<Session> getSessionByStudent(@PathVariable long id) throws NoSuchElementException {
-        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
-        return sessionRepository.findSessionByStudent(student);
+    public Iterable<Session> getPendingSessionsByUser(@PathVariable long id) throws NoSuchElementException {
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+        if(user.getRole().equals("ROLE_STUDENT")) {
+            return sessionRepository.findSessionByStudentAndState(user, Session.State.PENDING);
+        } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
+            return sessionRepository.findSessionByInstructorAndState(user, Session.State.PENDING);
+        } else {
+            throw new NoSuchElementException("Internal Error: bad role. ");
+        }
     }
 
-    @GetMapping("/student/pending/{id}")
+    @GetMapping("user/approved/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
-    public Iterable<Session> getPendingSessionByStudent(@PathVariable long id) throws NoSuchElementException {
-        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
-        return sessionRepository.findSessionByStudentAndState(student, Session.State.PENDING);
+    public Iterable<Session> getApprovedSessionsByUser(@PathVariable long id) throws NoSuchElementException {
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+        if(user.getRole().equals("ROLE_STUDENT")) {
+            return sessionRepository.findSessionByStudentAndState(user, Session.State.APPROVED);
+        } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
+            return sessionRepository.findSessionByInstructorAndState(user, Session.State.APPROVED);
+        } else {
+            throw new NoSuchElementException("Internal Error: bad role. ");
+        }
     }
+
 
     @GetMapping("/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
