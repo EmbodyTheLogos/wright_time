@@ -52,6 +52,13 @@ public class SessionController {
         return sessionRepository.findSessionByStudent(student);
     }
 
+    @GetMapping("/student/pending/{id}")
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public Iterable<Session> getPendingSessionByStudent(@PathVariable long id) throws NoSuchElementException {
+        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
+        return sessionRepository.findSessionByStudentAndState(student, Session.State.PENDING);
+    }
+
     @GetMapping("/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Session getOneSession(@PathVariable long id) throws NoSuchElementException {

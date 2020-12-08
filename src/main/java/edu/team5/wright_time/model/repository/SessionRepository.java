@@ -3,11 +3,9 @@ package edu.team5.wright_time.model.repository;
 import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.entity.Session;
 import edu.team5.wright_time.model.entity.User;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface SessionRepository extends CrudRepository<Session, Long> {
@@ -15,6 +13,7 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
 
     List<Session> findSessionByInstructor(User instructor);
     List<Session> findSessionByStudent(User student);
+    List<Session> findSessionByStudentAndState(User student, Session.State state);
 
     // TODO: this does not work. It does not seem to find Session.State.Pending. But I can't seem to fix it.
 //    @Query(value = "SELECT * from Session where state = Session.State.PENDING", nativeQuery = true)
