@@ -47,14 +47,14 @@ public class SessionController {
         return sessionRepository.findSessionByInstructor(instructor);
     }
 
-    @GetMapping("/upcoming")
+    @GetMapping("/student/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Iterable<Session> getSessionByStudent(@PathVariable long id) throws NoSuchElementException {
         final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
         return sessionRepository.findSessionByStudent(student);
     }
 
-    @GetMapping("/recent")
+    @GetMapping("/student/pending/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Iterable<Session> getPendingSessionByStudent(@PathVariable long id) throws NoSuchElementException {
         final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
@@ -67,7 +67,7 @@ public class SessionController {
         return sessionRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/upcoming/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public List<Session> getUpcomingSessions(@PathVariable long id) throws NoSuchElementException {
         final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
@@ -77,7 +77,7 @@ public class SessionController {
         return sessionRepository.findSessionByStudentAndDateBetween(student, begin, end);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/recent/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public List<Session> getRecentSessions(@PathVariable long id) throws NoSuchElementException {
         final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
