@@ -59,6 +59,14 @@ class SessionService {
         });
     }
 
+    getPendingByStudent(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/student/pending/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
+    }
+
     approve(token, id) {
         return axios.put(SESSION_REST_API_URL + '/' + id + '/approve', {
             headers: {
