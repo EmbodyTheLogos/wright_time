@@ -1,6 +1,6 @@
 import React from 'react';
 import CertificationService from '../../services/CertificationService';
-import {Button, Col, Container, Form, Row} from 'react-bootstrap'
+import {Alert, Button, Col, Container, Form, Row} from 'react-bootstrap'
 import Center from "react-center";
 
 import DatePicker from "react-datepicker";
@@ -117,9 +117,13 @@ class AddCertificationComponent extends React.Component {
                 <AdministratorNavbar/>
                 <br/>
 
-                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
-
                 <Container>
+                    {this.state.errorMessage &&
+                    <Alert variant="danger">
+                        <Alert.Heading>Input Error</Alert.Heading>
+                        <p>{this.state.errorMessage}</p>
+                    </Alert>}
+
                     <Center>
                         <Form>
                             <Form.Group as={Row} controlId={"userId"}>

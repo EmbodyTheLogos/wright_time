@@ -1,6 +1,6 @@
 import React from 'react';
 import AircraftService from '../../services/AircraftService';
-import {Button, Container, Form, Row, Col} from 'react-bootstrap'
+import {Button, Container, Form, Row, Col, Alert} from 'react-bootstrap'
 import Center from 'react-center';
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {withCookies} from "react-cookie";
@@ -97,9 +97,13 @@ class AddAircraftComponent extends React.Component {
                 <AdministratorNavbar/>
                 <br/>
 
-                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
-
                 <Container>
+                    {this.state.errorMessage &&
+                    <Alert variant="danger">
+                        <Alert.Heading>Input Error</Alert.Heading>
+                        <p>{this.state.errorMessage}</p>
+                    </Alert>}
+
                     <Center>
                         <Form>
                             <Form.Group as={Row} controlId={"manufacturer"}>

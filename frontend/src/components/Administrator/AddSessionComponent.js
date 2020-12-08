@@ -1,6 +1,6 @@
 import React from 'react';
 import SessionService from '../../services/SessionService';
-import {Button, Col, Container, Form, Row} from 'react-bootstrap'
+import {Alert, Button, Col, Container, Form, Row} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -134,9 +134,13 @@ class AddSessionComponent extends React.Component {
                 <AdministratorNavbar/>
                 <br/>
 
-                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
-
                 <Container>
+                    {this.state.errorMessage &&
+                    <Alert variant="danger">
+                        <Alert.Heading>Input Error</Alert.Heading>
+                        <p>{this.state.errorMessage}</p>
+                    </Alert>}
+
                     <Center>
                         <Form>
                             <Form.Group as={Row} controlId={"aircraftId"}>
