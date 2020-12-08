@@ -27,7 +27,7 @@ class UserRequestSessionComponent extends React.Component {
         endTime: "",
         score: "",
         comments: "",
-        state: "",
+        state: "PENDING",
         aircrafts: [],
         students: [],
         instructors: [],
@@ -40,35 +40,35 @@ class UserRequestSessionComponent extends React.Component {
         super(props)
         const {cookies} = props;
         this.state.jwtToken = cookies.get('JWT-TOKEN')
-        if (!props.match.params.id) {
-            this.state.mode = 'add'
-        } else {
-            this.state.mode = 'edit'
-            this.state.id = props.match.params.id
-        }
+        // if (!props.match.params.id) {
+        //     this.state.mode = 'add'
+        // } else {
+        //     this.state.mode = 'edit'
+        //     this.state.id = props.match.params.id
+        // }
     }
 
     componentDidMount(){
-        if(this.state.mode === "edit") {
-            SessionService.getOne(this.state.jwtToken, this.props.match.params.id).then(res => {
-                let date = res.data.date.split('-')
-                let year = parseInt(date[0])
-                let month = parseInt(date[1]) - 1
-                let day = parseInt(date[2])
-
-                this.setState({
-                    aircraftId: res.data.aircraft.id,
-                    instructorId: res.data.instructor.id,
-                    studentId: res.data.student.id,
-                    startTime: res.data.startTime,
-                    endTime: res.data.endTime,
-                    score: res.data.score,
-                    comments: res.data.comments,
-                    state: res.data.state,
-                    date: new Date(year, month, day),
-                });
-            })
-        }
+        // if(this.state.mode === "edit") {
+        //     SessionService.getOne(this.state.jwtToken, this.props.match.params.id).then(res => {
+        //         let date = res.data.date.split('-')
+        //         let year = parseInt(date[0])
+        //         let month = parseInt(date[1]) - 1
+        //         let day = parseInt(date[2])
+        //
+        //         this.setState({
+        //             aircraftId: res.data.aircraft.id,
+        //             instructorId: res.data.instructor.id,
+        //             studentId: res.data.student.id,
+        //             startTime: res.data.startTime,
+        //             endTime: res.data.endTime,
+        //             //score: res.data.score,
+        //             //comments: res.data.comments,
+        //             //state: res.data.state,
+        //             date: new Date(year, month, day),
+        //         });
+        //     })
+        // }
         UserService.getAllInstructors(this.state.jwtToken).then((response) => {
             this.setState({ instructors: response.data})
         })
