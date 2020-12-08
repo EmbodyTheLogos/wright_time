@@ -24,6 +24,7 @@ class UserNavbar extends React.Component {
     }
 
     render() {
+        const role = this.state.user.role
         return (
             <div>
                 <Navbar bg="dark" variant="dark" expand="lg">
@@ -37,8 +38,8 @@ class UserNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color:"white"}}>Request Session</NavLink>
                         <NavLink to={"/user/profile"} style={{marginRight: '15px', color:"grey"}}
                                  activeStyle={{marginRight: '15px', color:"white"}}>Profile</NavLink>
-                        {/*<NavLink to="/pending" style={{marginRight: '15px', color:"grey"}}*/}
-                        {/*         activeStyle={{marginRight: '15px', color:"white"}}>Pending Sessions</NavLink>*/}
+                        {role === "ROLE_STUDENT" && <NavLink to="/pending" style={{marginRight: '15px', color:"grey"}}
+                                 activeStyle={{marginRight: '15px', color:"white"}}>Pending Sessions</NavLink>}
                         {/*<NavLink to="/certifications" style={{marginRight: '15px', color:"grey"}}*/}
                         {/*         activeStyle={{marginRight: '15px', color:"white"}}>Certifications Table</NavLink>*/}
                     </Nav>

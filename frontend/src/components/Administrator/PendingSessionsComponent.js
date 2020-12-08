@@ -4,11 +4,14 @@ import {withRouter} from "react-router-dom";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {Button} from 'react-bootstrap'
 import {withCookies} from "react-cookie";
+import AuthService from "../../services/AuthService";
+import UserNavbar from "../Navbars/UserNavbar";
 
 class PendingSessionsComponent extends React.Component {
     state = {
         sessions: [],
-        jwtToken: ''
+        jwtToken: '',
+        user: ""
     }
 
     constructor(props) {
@@ -18,15 +21,21 @@ class PendingSessionsComponent extends React.Component {
     }
 
     componentDidMount() {
+        AuthService.user(this.state.jwtToken).then((res) => {
+            this.setState({user: res.data})
+            console.log(this.state.user)
+        })
+
         SessionService.getPending(this.state.jwtToken).then((response) => {
             this.setState({sessions: response.data})
         });
     }
 
     render() {
+        const role = this.state.user.role
         return (
             <div>
-                <AdministratorNavbar/>
+                {role === "ROLE_ADMIN" ? <AdministratorNavbar/> : <UserNavbar/>}
 
                 <h1>Pending Sessions List</h1>
                 <div className="container mt-4">
@@ -39,8 +48,8 @@ class PendingSessionsComponent extends React.Component {
                             <th scope={"col"}> Student ID</th>
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
-                            <th scope={"col"}></th>
-                            <th scope={"col"}></th>
+                            {role === "ROLE_ADMIN" && <th scope={"col"}/>}
+                            {role === "ROLE_ADMIN" && <th scope={"col"}/>}
                         </tr>
                         </thead>
                         <tbody>
@@ -54,24 +63,28 @@ class PendingSessionsComponent extends React.Component {
                                         <td> {session.student.id}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
-                                        <td>
-                                            <Button variant={"success"}
-                                                    onClick={() => {
-                                                        SessionService.approve(session.id);
-                                                        window.location.reload(false);
-                                                    }}>
-                                                Approve
-                                            </Button>
-                                        </td>
-                                        <td>
-                                            <Button variant={"danger"}
-                                                    onClick={() => {
-                                                        SessionService.decline(session.id);
-                                                        window.location.reload(false);
-                                                    }}>
-                                                Decline
-                                            </Button>
-                                        </td>
+                                        {role === "ROLE_ADMIN" &&
+                                            <td>
+                                                <Button variant={"success"}
+                                                        onClick={() => {
+                                                            SessionService.approve(session.id);
+                                                            window.location.reload(false);
+                                                        }}>
+                                                    Approve
+                                                </Button>
+                                            </td>
+                                        }
+                                        {role === "ROLE_ADMIN" &&
+                                            <td>
+                                                <Button variant={"danger"}
+                                                        onClick={() => {
+                                                            SessionService.decline(session.id);
+                                                            window.location.reload(false);
+                                                        }}>
+                                                    Decline
+                                                </Button>
+                                            </td>
+                                        }
                                     </tr>
                             )
                         }
