@@ -32,8 +32,8 @@ public class Session {
     @JoinColumn(name="aircraft_id")
     private Aircraft aircraft;
 
-    @Positive(message="Must enter a valid time")
-    @Max(value=23,message="Must enter a valid time")
+    @Min(value=8,message="Start time must be between 8 and 20")
+    @Max(value=20,message="Start time must be between 8 and 20")
     private int startTime;
 
     private LocalDate date;
@@ -41,10 +41,9 @@ public class Session {
     @Enumerated(EnumType.STRING)
     private State state;
 
-    @NotEmpty(message="Comments cannot be empty")
     private String comments;
 
-    @Min(value=1, message="Score must be an integer between 1 and 5")
+    @Min(value=0, message="Score must be an integer between 1 and 5")
     @Max(value=5, message="Score must be an integer between 1 and 5")
     private int score;
 
