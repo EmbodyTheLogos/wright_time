@@ -82,6 +82,22 @@ class SessionService {
             }
         })
     }
+
+    getUpcoming(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/upcoming/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
+
+    getRecent(token, id) {
+        return axios.get(SESSION_REST_API_URL + '/recent/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
 }
 
 export default new SessionService();
