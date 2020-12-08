@@ -15,7 +15,6 @@ class AddSessionComponent extends React.Component {
     state = {
         mode: "",
         id: -1,
-        sessionId: "",
         aircraftId: "",
         instructorId: "",
         studentId: "",
@@ -115,7 +114,7 @@ class AddSessionComponent extends React.Component {
                 }
             })
         } else {
-            SessionService.put(this.state.jwtToken, this.state.sessionId, session).then(res => {
+            SessionService.put(this.state.jwtToken, this.state.id, session).then(res => {
                 this.props.history.push('/sessions')
             }).catch(res => {
                 if(res.response) {
@@ -125,7 +124,6 @@ class AddSessionComponent extends React.Component {
                 }
             })
         }
-
     }
 
     render (){

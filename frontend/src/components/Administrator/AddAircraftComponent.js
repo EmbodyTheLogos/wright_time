@@ -1,6 +1,6 @@
 import React from 'react';
 import AircraftService from '../../services/AircraftService';
-import {Button, Container, Form, Row, Col, Alert} from 'react-bootstrap'
+import {Alert, Button, Col, Container, Form, Row} from 'react-bootstrap'
 import Center from 'react-center';
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
 import {withCookies} from "react-cookie";
@@ -10,7 +10,6 @@ class AddAircraftComponent extends React.Component {
     state = {
         mode: "",
         id: -1,
-        aircraftId: "",
         manufacturer: "",
         name: "",
         model: "",
@@ -56,6 +55,7 @@ class AddAircraftComponent extends React.Component {
     }
 
     submitHandler = (event) => {
+        console.log("id" + this.state.jwtToken)
         event.preventDefault();
         let aircraft = {
             manufacturer: this.state.manufacturer,
@@ -78,7 +78,7 @@ class AddAircraftComponent extends React.Component {
                 }
             })
         } else {
-            AircraftService.put(this.state.jwtToken, this.state.aircraftId, aircraft).then(res => {
+            AircraftService.put(this.state.jwtToken, this.state.id, aircraft).then(res => {
                 this.props.history.push('/aircraft')
             }).catch(res => {
                 if (res.response) {
