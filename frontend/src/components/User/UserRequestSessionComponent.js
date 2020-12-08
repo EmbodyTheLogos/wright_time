@@ -40,12 +40,12 @@ class UserRequestSessionComponent extends React.Component {
         super(props)
         const {cookies} = props;
         this.state.jwtToken = cookies.get('JWT-TOKEN')
-        // if (!props.match.params.id) {
-        //     this.state.mode = 'add'
-        // } else {
-        //     this.state.mode = 'edit'
-        //     this.state.id = props.match.params.id
-        // }
+        if (!props.match.params.id) {
+            this.state.mode = 'add'
+        } else {
+            this.state.mode = 'edit'
+            this.state.id = props.match.params.id
+        }
     }
 
     componentDidMount(){
