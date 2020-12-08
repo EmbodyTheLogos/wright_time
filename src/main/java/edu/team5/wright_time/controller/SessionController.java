@@ -89,11 +89,17 @@ public class SessionController {
     @GetMapping("/upcoming/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public List<Session> getUpcomingSessions(@PathVariable long id) throws NoSuchElementException {
-        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
         final var locale = Locale.US;
         final var begin = LocalDate.now();
         final var end = begin.plusWeeks(2);
-        return sessionRepository.findSessionByStudentAndDateBetween(student, begin, end);
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+        if(user.getRole().equals("ROLE_STUDENT")) {
+            return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end);
+        } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
+            return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end);
+        } else {
+            throw new NoSuchElementException("Internal Error: bad role. ");
+        }
     }
 
     @GetMapping("/recent/{id}")
@@ -103,7 +109,14 @@ public class SessionController {
         final var locale = Locale.US;
         final var end = LocalDate.now().minusDays(1);
         final var begin = end.minusWeeks(2);
-        return sessionRepository.findSessionByStudentAndDateBetween(student, begin, end);
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+        if(user.getRole().equals("ROLE_STUDENT")) {
+            return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end);
+        } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
+            return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end);
+        } else {
+            throw new NoSuchElementException("Internal Error: bad role. ");
+        }
     }
 
     public void checkForConflicts(Session session) throws NoSuchElementException {

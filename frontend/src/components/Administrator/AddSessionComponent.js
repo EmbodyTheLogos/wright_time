@@ -114,6 +114,7 @@ class AddSessionComponent extends React.Component {
                 }
             })
         } else {
+            console.log(this.state.id)
             SessionService.put(this.state.jwtToken, this.state.id, session).then(res => {
                 this.props.history.push('/sessions')
             }).catch(res => {
