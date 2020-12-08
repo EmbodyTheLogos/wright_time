@@ -88,7 +88,7 @@ public class SessionController {
     }
 
     @PostMapping
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_STUDENT"})
     public Session addSession(@RequestBody @Valid Session session) throws Exception {
         checkForConflicts(session);
         return sessionRepository.save(session);
@@ -96,7 +96,7 @@ public class SessionController {
 
     @PutMapping("/{id}")
     @Secured("ROLE_ADMIN")
-    public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws Exception {
+    public Session updateSession(@PathVariable long id, @RequestBody @Valid Session session) throws Exception {
         checkForConflicts(session);
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setAircraft(session.getAircraft());
