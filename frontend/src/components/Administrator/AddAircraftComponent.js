@@ -43,7 +43,7 @@ class AddAircraftComponent extends React.Component {
                     model: res.data.model,
                     year: res.data.year,
                     maintenanceDay: res.data.maintenanceDay,
-                    minimumTrainingDuration: res.data.minimumTrainingDuration
+                    trainingDuration: res.data.trainingDuration
                 });
             })
         }
