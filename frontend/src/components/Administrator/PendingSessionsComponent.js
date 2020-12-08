@@ -24,11 +24,16 @@ class PendingSessionsComponent extends React.Component {
         AuthService.user(this.state.jwtToken).then((res) => {
             this.setState({user: res.data})
             //console.log(this.state.user)
+            if(this.state.user.role === "ROLE_ADMIN") {
+            SessionService.getPending(this.state.jwtToken).then((response) => {
+                this.setState({sessions: response.data})
+            });} else {
+                SessionService.getByStudent(this.state.jwtToken, this.state.user.id).then((response) => {
+                    this.setState({sessions: response.data})});
+            }
         })
 
-        SessionService.getPending(this.state.jwtToken).then((response) => {
-            this.setState({sessions: response.data})
-        });
+
     }
 
     render() {
@@ -37,7 +42,7 @@ class PendingSessionsComponent extends React.Component {
             <div>
                 {role === "ROLE_ADMIN" ? <AdministratorNavbar/> : <UserNavbar/>}
 
-                <h1>Pending Sessions List</h1>
+                <h1>Pending Sessions</h1>
                 <div className="container mt-4">
                     <table className="table table-bordered table-hover">
                         <thead className="thead-dark">
@@ -52,6 +57,8 @@ class PendingSessionsComponent extends React.Component {
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
                         </tr>
                         </thead>
+
+                        {role === "ROLE_ADMIN" &&
                         <tbody>
                         {
                             this.state.sessions.map(
@@ -63,32 +70,45 @@ class PendingSessionsComponent extends React.Component {
                                         <td> {session.student.id}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
-                                        {role === "ROLE_ADMIN" &&
-                                            <td>
-                                                <Button variant={"success"}
-                                                        onClick={() => {
-                                                            SessionService.approve(session.id);
-                                                            window.location.reload(false);
-                                                        }}>
-                                                    Approve
-                                                </Button>
-                                            </td>
-                                        }
-                                        {role === "ROLE_ADMIN" &&
-                                            <td>
-                                                <Button variant={"danger"}
-                                                        onClick={() => {
-                                                            SessionService.decline(session.id);
-                                                            window.location.reload(false);
-                                                        }}>
-                                                    Decline
-                                                </Button>
-                                            </td>
-                                        }
+                                        <td>
+                                            <Button variant={"success"}
+                                                    onClick={() => {
+                                                        SessionService.approve(session.id);
+                                                        window.location.reload(false);
+                                                    }}>
+                                                Approve
+                                            </Button>
+                                        </td>
+                                        <td>
+                                            <Button variant={"danger"}
+                                                    onClick={() => {
+                                                        SessionService.decline(session.id);
+                                                        window.location.reload(false);
+                                                    }}>
+                                                Decline
+                                            </Button>
+                                        </td>
                                     </tr>
                             )
                         }
                         </tbody>
+                        }
+
+                        {role === "ROLE_STUDENT" && <tbody>
+                        {
+                            this.state.sessions.map(
+                                session =>
+                                    <tr key={session.id}>
+                                        <th scope={"row"}> {session.id}</th>
+                                        <td> {session.aircraft.id}</td>
+                                        <td> {session.instructor.id}</td>
+                                        <td> {session.student.id}</td>
+                                        <td> {session.date}</td>
+                                        <td> {session.startTime}</td>
+                                    </tr>
+                            )
+                        }
+                        </tbody>}
                     </table>
                 </div>
 
