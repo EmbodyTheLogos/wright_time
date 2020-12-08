@@ -35,7 +35,7 @@ public class Aircraft {
     private int maintenanceDay;
 
     @Min(value=1, message="Training duration must be an integer between 1 and 24")
-    @Max(value=24, message="Training duration must be an integer between 1 and 24")
+    @Max(value=6, message="Training duration must be an integer between 1 and 24")
     private int trainingDuration;
 
     public Aircraft(String manufacturer, String name, String model, int year, int maintenanceDay, int trainingDuration) {
