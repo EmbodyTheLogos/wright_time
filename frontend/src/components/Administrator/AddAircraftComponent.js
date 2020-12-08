@@ -69,7 +69,7 @@ class AddAircraftComponent extends React.Component {
         console.log(JSON.stringify(aircraft));
         if (this.state.mode === "add") {
             AircraftService.post(this.state.jwtToken, aircraft).then(res => {
-                this.props.history.push('/admin/aircraft')
+                this.props.history.push('/aircraft')
             }).catch(res => {
                 if (res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
@@ -79,7 +79,7 @@ class AddAircraftComponent extends React.Component {
             })
         } else {
             AircraftService.put(this.state.jwtToken, this.state.aircraftId, aircraft).then(res => {
-                this.props.history.push('/admin/aircraft')
+                this.props.history.push('/aircraft')
             }).catch(res => {
                 if (res.response) {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});

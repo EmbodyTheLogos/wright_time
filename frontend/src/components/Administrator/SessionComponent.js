@@ -52,9 +52,8 @@ class SessionComponent extends React.Component {
                             <th scope={"col"}> Score</th>
                             <th scope={"col"}> Comments</th>
                             <th scope={"col"}> State</th>
+                            <th scope={"col"}/>
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
-                            {role === "ROLE_ADMIN" && <th scope={"col"}/>}
-                            {role === "ROLE_INSTRUCTOR" && <th scope={"col"}/>}
                         </tr>
                         </thead>
                         <tbody>
