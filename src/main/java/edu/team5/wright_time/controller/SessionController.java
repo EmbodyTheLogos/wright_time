@@ -8,8 +8,10 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 
 
@@ -63,6 +65,26 @@ public class SessionController {
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Session getOneSession(@PathVariable long id) throws NoSuchElementException {
         return sessionRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
+    }
+
+    @GetMapping("/{id}")
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public List<Session> getUpcomingSessions(@PathVariable long id) throws NoSuchElementException {
+        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
+        final var locale = Locale.US;
+        final var begin = LocalDate.now();
+        final var end = begin.plusWeeks(2);
+        return sessionRepository.findSessionByStudentAndDateBetween(student, begin, end);
+    }
+
+    @GetMapping("/{id}")
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public List<Session> getRecentSessions(@PathVariable long id) throws NoSuchElementException {
+        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
+        final var locale = Locale.US;
+        final var end = LocalDate.now().minusDays(1);
+        final var begin = end.minusWeeks(2);
+        return sessionRepository.findSessionByStudentAndDateBetween(student, begin, end);
     }
 
     public void checkForConflicts(Session session) throws NoSuchElementException {
