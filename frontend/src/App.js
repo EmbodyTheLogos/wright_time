@@ -50,7 +50,7 @@ function App() {
                         <Route path={"/user/home"} exact component={UserHomeComponent}/>
                         <Route path={"/user/request-session"} exact component={UserRequestSessionComponent}/>
 
-                        <Route path={"/user/profile/:id"} exact component={UserProfileComponent}/>
+                        <Route path={"/user/profile"} exact component={UserProfileComponent}/>
                         <Route path={"/user/session/details/:id"} exact component={SessionDetailsComponent}/>
                         <Route path={"/user/performance/review/:id"} exact component={PerformanceReviewComponent}/>
 
