@@ -1,6 +1,6 @@
 import React from 'react';
 import UserService from '../../services/UserService';
-import {Button, Container, Form, Row, Col} from 'react-bootstrap'
+import {Button, Col, Container, Form, Row} from 'react-bootstrap'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,7 +12,7 @@ import {withRouter} from "react-router-dom";
 class AddUserComponent extends React.Component {
     state = {
         mode: "edit",
-        userId: -1,
+        id: -1,
         role: "",
         firstName: "",
         lastName: "",
@@ -90,7 +90,7 @@ class AddUserComponent extends React.Component {
                 }
             })
         } else {
-            UserService.put(this.state.jwtToken, this.state.userId, user).then(res => {
+            UserService.put(this.state.jwtToken, this.state.id, user).then(res => {
                 this.props.history.push('/admin/users')
             }).catch(res => {
                 if(res.response) {
