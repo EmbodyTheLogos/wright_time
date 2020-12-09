@@ -57,11 +57,10 @@ class SessionComponent extends React.Component {
                             <th scope={"col"}> Score</th>
                             <th scope={"col"}> Comments</th>
                             <th scope={"col"}> State</th>
-                            <th scope={"col"}/>
+                            {role === "ROLE_ADMIN" &&<th scope={"col"}/>}
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
                         </tr>
                         </thead>
-                        {role === "ROLE_ADMIN" &&
                         <tbody>
                         {
                             this.state.sessions.map(
@@ -76,10 +75,12 @@ class SessionComponent extends React.Component {
                                         <td> {session.score}</td>
                                         <td> {session.comments}</td>
                                         <td> {session.state}</td>
+                                        {this.state.user.role === "ROLE_ADMIN" &&
                                         <td>
                                             <Link to={"/admin/sessions/edit/" + session.id}
                                                   className={"btn btn-warning btn-block"}>Edit Session</Link>
-                                        </td>
+                                        </td>}
+                                        {this.state.user.role === "ROLE_ADMIN" &&
                                         <td>
                                             <Button variant={"danger"}
                                                     onClick={() => {
@@ -88,31 +89,11 @@ class SessionComponent extends React.Component {
                                                     }}>
                                                 Delete
                                             </Button>
-                                        </td>
+                                        </td>}
                                     </tr>
                             )
                         }
-                        </tbody>}
-
-                        {role === "ROLE_INSTRUCTOR" &&
-                        <tbody>
-                        {
-                            this.state.sessions.map(
-                                session =>
-                                    <tr key={session.id}>
-                                        <th scope={"row"}> {session.id}</th>
-                                        <td> {session.aircraft.id}</td>
-                                        <td> {session.instructor.id}</td>
-                                        <td> {session.student.id}</td>
-                                        <td> {session.date}</td>
-                                        <td> {session.startTime}</td>
-                                        <td> {session.score}</td>
-                                        <td> {session.comments}</td>
-                                        <td> {session.state}</td>
-                                    </tr>
-                            )
-                        }
-                        </tbody>}
+                        </tbody>
                     </table>
 
                     <br/>
