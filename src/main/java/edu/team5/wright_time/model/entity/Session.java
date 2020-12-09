@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 public class Session {
     public enum State {
-        PENDING, APPROVED, DECLINED, CANCELED, COMPLETE
+        PENDING, APPROVED, DECLINED, CANCELLED, COMPLETE
     }
 
     @Id
