@@ -4,7 +4,7 @@ import {Button, Nav, Navbar} from 'react-bootstrap'
 import {withCookies} from "react-cookie";
 import AuthService from "../../services/AuthService";
 import BGImage from "../../Images/cloudy_sky.jpg";
-import logoImage from "../../Images/circle4.png"
+import logoImage from "../../Images/WrightTime_Logo.svg"
 
 class AdministratorNavbar extends React.Component {
     state = {
@@ -38,32 +38,32 @@ class AdministratorNavbar extends React.Component {
                     <Navbar.Brand>
                         <img
                             src={logoImage}
-                            width="40"
-                            height="40"
+                            width="80"
+                            height="80"
                             className="d-inline-block align-top"
-                            alt={""}
+                            alt={"Wright Time"}
                         />
                     </Navbar.Brand>
                     <Nav className="mr-auto">
                         {/*<NavLink exact to="/admin/home" style={{marginRight: '15px', color:"grey"}}*/}
                         {/*         activeStyle={{marginRight: '15px', color:"white"}}>Home</NavLink>*/}
-                        <NavLink to="/pending" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Pending Sessions</NavLink>
-                        <NavLink to="/sessions" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>All Sessions</NavLink>
-                        <NavLink to="/admin/users" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Users Table</NavLink>
-                        <NavLink to="/aircraft" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Aircraft Table</NavLink>
-                        <NavLink to="/admin/certifications" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Certifications Table</NavLink>
+                        <NavLink to="/pending" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Pending Sessions</NavLink>
+                        <NavLink to="/sessions" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>All Sessions</NavLink>
+                        <NavLink to="/admin/users" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Users Table</NavLink>
+                        <NavLink to="/aircraft" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Aircraft Table</NavLink>
+                        <NavLink to="/admin/certifications" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Certifications Table</NavLink>
                     </Nav>
                     {/*<Nav className="ml-auto">*/}
                     {/*    <NavLink to={"/change_password"} style={{marginRight: '15px', color: "grey"}}*/}
                     {/*             activeStyle={{marginRight: '15px', color: "white"}}>Change Password</NavLink>*/}
                     {/*</Nav>*/}
                     <Nav>
-                        <p className="text-center mt-2 mb-2 mr-2" style={{color: "white"}}>Logged in
+                        <p className="text-center mt-2 mb-2 mr-4" style={{color: "white", fontSize: '20px'}}>Logged in
                             as: {this.state.user.firstName + " " + this.state.user.lastName}</p>
                     </Nav>
                     <Nav><p/></Nav>

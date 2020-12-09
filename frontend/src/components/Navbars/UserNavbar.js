@@ -3,7 +3,7 @@ import {NavLink, withRouter} from "react-router-dom";
 import {Button, Nav, Navbar} from 'react-bootstrap'
 import {withCookies} from "react-cookie";
 import AuthService from "../../services/AuthService";
-import logoImage from "../../Images/circle4.png"
+import logoImage from "../../Images/WrightTime_Logo.svg"
 
 class UserNavbar extends React.Component {
     state = {
@@ -38,29 +38,29 @@ class UserNavbar extends React.Component {
                     <Navbar.Brand>
                         <img
                             src={logoImage}
-                            width="40"
-                            height="40"
+                            width="80"
+                            height="80"
                             className="d-inline-block align-top"
                             alt={""}
                         />
                     </Navbar.Brand>
                     <Nav className="mr-auto">
-                        <NavLink exact to="/user/home" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Home</NavLink>
-                        <NavLink to="/aircraft" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Aircraft Table</NavLink>
+                        <NavLink exact to="/user/home" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Home</NavLink>
+                        <NavLink to="/aircraft" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Aircraft Table</NavLink>
                         {role === "ROLE_STUDENT" &&
-                        <NavLink to="/user/request-session" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Request Session</NavLink>
+                        <NavLink to="/user/request-session" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Request Session</NavLink>
                         }
-                        {role === "ROLE_STUDENT" && <NavLink to="/pending" style={{marginRight: '15px', color: "grey"}}
-                                                             activeStyle={{marginRight: '15px', color: "white"}}>Pending
+                        {role === "ROLE_STUDENT" && <NavLink to="/pending" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                                             activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Pending
                             Sessions</NavLink>}
                         {role === "ROLE_INSTRUCTOR" &&
-                        <NavLink to="/sessions" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Recent Sessions</NavLink>}
-                        <NavLink to={"/user/profile"} style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Profile</NavLink>
+                        <NavLink to="/sessions" style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Recent Sessions</NavLink>}
+                        <NavLink to={"/user/profile"} style={{marginRight: '15px', color: "grey", fontSize: '20px'}}
+                                 activeStyle={{marginRight: '15px', color: "white", fontSize: '20px'}}>Profile</NavLink>
                     </Nav>
                     {/*<Nav className="ml-auto">*/}
                     {/*    <NavLink to={"/change_password"} style={{marginRight: '15px', color: "grey"}}*/}
@@ -68,7 +68,7 @@ class UserNavbar extends React.Component {
                     {/*    /!*<NavLink to="/" style={{marginRight: '15px', color: "CadetBlue"}}>Logout</NavLink>*!/*/}
                     {/*</Nav>*/}
                     <Nav>
-                        <p className="text-center mt-2 mb-2 mr-2" style={{color: "white"}}>Logged in
+                        <p className="text-center mt-2 mb-2 mr-4" style={{color: "white", fontSize: '20px'}}>Logged in
                             as: {this.state.user.firstName + " " + this.state.user.lastName}</p>
                     </Nav>
                     <Nav><p/></Nav>
