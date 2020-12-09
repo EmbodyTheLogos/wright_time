@@ -68,7 +68,7 @@ class SessionService {
     }
 
     getApprovedByUser(token, id) {
-        return axios.get(SESSION_REST_API_URL + '/user/pending/' + id, {
+        return axios.get(SESSION_REST_API_URL + '/user/approved/' + id, {
             headers: {
                 Authorization: "Bearer " + token
             }
