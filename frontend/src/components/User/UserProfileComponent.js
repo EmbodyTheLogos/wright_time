@@ -1,11 +1,11 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
 import {withCookies} from "react-cookie";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import UserService from "../../services/UserService";
 import CertificationService from "../../services/CertificationService";
-import {Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import BGImage from "../../Images/cloudy_sky.jpg"
 
 var bg = {
@@ -63,41 +63,43 @@ class UserProfileComponent extends React.Component {
                         <h3 style={{textAlign: "left", marginLeft: "50px"}}>Profile
                             of {this.state.user.firstName + " " + this.state.user.lastName}</h3>
                         <h5 style={{textAlign: "left", marginLeft: "50px"}}>Contact at: {this.state.user.email}</h5>
-                        <Row>
-                            <Col sm={6}>
-                                <h5 style={{textAlign: "right"}}>Role:</h5>
-                            </Col>
-                            <Col sm={6}>
-                                {this.state.user.role === "ROLE_ADMIN" && <h5 style={{textAlign: "left"}}>Admin</h5>}
+                        <table className="table table-hover table-fixed">
+                            <thead/>
+                            <tbody>
+                            <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}} width={'50%'}>Role</td>
+                                {this.state.user.role === "ROLE_ADMIN" && <td style={{textAlign: "left", fontSize: '20px'}}>Admin</td>}
                                 {this.state.user.role === "ROLE_INSTRUCTOR" &&
-                                <h5 style={{textAlign: "left"}}>Instructor</h5>}
+                                <td style={{textAlign: "left", fontSize: '20px'}}>Instructor</td>}
                                 {this.state.user.role === "ROLE_STUDENT" &&
-                                <h5 style={{textAlign: "left"}}>Student</h5>}
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={6}>
-                                <h5 style={{textAlign: "right"}}>Born on: </h5>
-                            </Col>
-                            <Col sm={6}>
-                                <h5 style={{textAlign: "left"}}>{this.state.user.dateOfBirth}</h5>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={6}>
-                                <h5 style={{textAlign: "right"}}>Total flight time:</h5>
-                            </Col>
-                            <Col sm={6}>
-                                <h5 style={{textAlign: "left"}}>{this.state.hours} Hours</h5>
-                            </Col>
-                        </Row>
+                                <td style={{textAlign: "left", fontSize: '20px'}}>Student</td>}
+                            </tr>
+                            <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}}>Born On</td>
+                                <td style={{textAlign: "left", fontSize: '20px'}}>{this.state.user.dateOfBirth}</td>
+                            </tr>
+                            <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}}>Total Flight time</td>
+                                <td style={{textAlign: "left", fontSize: '20px'}}>{this.state.hours} Hours</td>
+                            </tr>
+                            </tbody>
+                        </table>
                         <br/>
                         <h5>Certifications Acquired: </h5>
-                        {
-                            this.state.certifications.map(cert =>
-                                <h5>{cert.aircraft.manufacturer + ' ' + cert.aircraft.name + ' ' + cert.aircraft.model}</h5>
-                            )
-                        }
+                        <table className="table table-hover table-fixed">
+                            <thead/>
+                            <tbody>
+                            {
+                                this.state.certifications.map(
+                                    cert =>
+                                        <tr key={cert.id}>
+                                            <td style={{textAlign: "right", fontSize: '20px'}} width={'50%'}> {cert.aircraft.manufacturer + " " + cert.aircraft.model + " " + cert.aircraft.name}</td>
+                                            <td style={{textAlign: "left", fontSize: '20px'}}> {cert.dateObtained}</td>
+                                        </tr>
+                                )
+                            }
+                            </tbody>
+                        </table>
                     </Container>
                 </div>
             </div>
