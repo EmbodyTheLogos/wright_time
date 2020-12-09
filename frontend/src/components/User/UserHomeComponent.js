@@ -1,9 +1,8 @@
 import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import {withCookies} from "react-cookie";
 import {Link, withRouter} from "react-router-dom"
-import MyCalendar from "../Calendar/DISABLED_MyCalendar";
 import UserService from '../../services/UserService';
 import AuthService from "../../services/AuthService";
 import MyBigCalendar from "../Calendar/MyBigCalendar";

@@ -23,6 +23,10 @@ class AdministratorNavbar extends React.Component {
         })
     }
 
+    logout = (event) => {
+        this.props.history.push('/') //TODO: this is really bad practice but I don't have time to fix it.
+    }
+
     render() {
         return (
             <div>
@@ -44,12 +48,12 @@ class AdministratorNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color: "white"}}>Certifications Table</NavLink>
                     </Nav>
                     <Nav className="ml-auto">
-                        <NavLink to={"/"} style={{marginRight: '15px', color: "grey"}}
+                        <NavLink to={"/change_password"} style={{marginRight: '15px', color: "grey"}}
                                  activeStyle={{marginRight: '15px', color: "white"}}>Change Password</NavLink>
                         {/*<NavLink to="/" style={{marginRight: '15px', color: "CadetBlue"}}>Logout</NavLink>*/}
                     </Nav>
                     <Nav>
-                        <Button variant="outline-light">Logout</Button>
+                        <Button variant="outline-light" onClick={this.logout}>Logout</Button>
                     </Nav>
                 </Navbar>
             </div>

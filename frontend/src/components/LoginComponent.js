@@ -18,15 +18,16 @@ class LoginComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        let request = {
-            email: this.state.email,
-            password: this.state.password
-        };
-
-        console.log(JSON.stringify(request));
-
-        AuthService.signin(request).then(res => {
-            this.props.history.push('/home')
+        const {cookies} = this.props;
+        AuthService.signin(this.state.email, this.state.password).then(res => {
+            cookies.set('JWT-TOKEN', res.data.accessToken)
+            AuthService.user(res.data.accessToken).then(res => {
+                if (res.data.role === 'ROLE_ADMIN') {
+                    this.props.history.push('/pending')
+                } else {
+                    this.props.history.push('/user/home')
+                }
+            })
         }).catch(res => {
             if(res.response) {
                 this.setState({errorMessage: res.response.data.errors[0].defaultMessage});

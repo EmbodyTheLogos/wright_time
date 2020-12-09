@@ -2,12 +2,9 @@ import React from 'react';
 import SessionService from '../../services/SessionService';
 import {Alert, Button, Col, Container, Form, Row} from 'react-bootstrap'
 
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Center from "react-center";
 import AdministratorNavbar from "../Navbars/AdministratorNavbar";
-import UserService from "../../services/UserService";
-import AircraftService from "../../services/AircraftService";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 import UserNavbar from "../Navbars/UserNavbar";

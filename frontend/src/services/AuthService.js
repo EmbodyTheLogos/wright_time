@@ -17,6 +17,16 @@ class AuthService {
             password: password
         })
     }
+
+    changePassword(token, password) {
+        return axios.post(AUTH_REST_API_URL + "/change_password/", {
+            password: password
+        }, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
 }
 
 export default new AuthService()

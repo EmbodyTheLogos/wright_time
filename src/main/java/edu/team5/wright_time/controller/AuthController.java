@@ -63,9 +63,13 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
-    @PostMapping("/change_password/{id}")
-    public ResponseEntity<?> changePassword(@PathVariable long id, @RequestBody ChangePasswordRequest changePasswordRequest) {
-        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+    @PostMapping("/change_password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth == null || auth.getPrincipal().equals("anonymousUser")) {
+            return null;
+        }
+        final var user =  userRepository.findById(((UserPrincipal) auth.getPrincipal()).getId()).orElseThrow(() -> new NoSuchElementException("No user login "));
         user.setPassword(changePasswordRequest.getPassword());
 
         URI location = ServletUriComponentsBuilder

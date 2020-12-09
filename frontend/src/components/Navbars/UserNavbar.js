@@ -23,6 +23,10 @@ class UserNavbar extends React.Component {
         })
     }
 
+    logout = (event) => {
+        this.props.history.push('/login') //TODO: this is really bad practice but I don't have time to fix it.
+    }
+
     render() {
         const role = this.state.user.role
         return (
@@ -48,12 +52,12 @@ class UserNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color: "white"}}>Profile</NavLink>
                     </Nav>
                     <Nav className="ml-auto">
-                        <NavLink to={"/"} style={{marginRight: '15px', color: "grey"}}
+                        <NavLink to={"/change_password"} style={{marginRight: '15px', color: "grey"}}
                                    activeStyle={{marginRight: '15px', color: "white"}}>Change Password</NavLink>
                         {/*<NavLink to="/" style={{marginRight: '15px', color: "CadetBlue"}}>Logout</NavLink>*/}
                     </Nav>
                     <Nav>
-                        <Button variant="outline-light">Logout</Button>
+                        <Button variant="outline-light" onClick={this.logout}>Logout</Button>
                     </Nav>
                 </Navbar>
             </div>

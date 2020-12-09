@@ -3,7 +3,6 @@ import UserNavbar from "../Navbars/UserNavbar";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 import AuthService from "../../services/AuthService";
-import AircraftService from "../../services/AircraftService";
 import SessionService from "../../services/SessionService";
 
 class SessionDetailsComponent extends React.Component {

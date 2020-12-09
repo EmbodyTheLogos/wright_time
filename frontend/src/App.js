@@ -6,19 +6,18 @@ import AircraftComponent from "./components/Administrator/AircraftComponent";
 import AddAircraftComponent from "./components/Administrator/AddAircraftComponent";
 import UserComponent from "./components/Administrator/UserComponent";
 import AddUserComponent from "./components/Administrator/AddUserComponent";
-import AdminHomeComponent from "./components/Administrator/AdminHomeComponent";
 import SessionComponent from "./components/Administrator/SessionComponent";
 import AddSessionComponent from "./components/Administrator/AddSessionComponent";
 import CertificationComponent from "./components/Administrator/CertificationComponent";
 import AddCertificationComponent from "./components/Administrator/AddCertificationComponent";
 import PendingSessionsComponent from "./components/Administrator/PendingSessionsComponent";
-import HubComponent from "./components/HubComponent"
 import UserHomeComponent from "./components/User/UserHomeComponent";
 import UserProfileComponent from "./components/User/UserProfileComponent";
 import UserRequestSessionComponent from "./components/User/UserRequestSessionComponent";
 import SessionDetailsComponent from "./components/User/SessionDetailsComponent";
 import InstructorReviewComponent from "./components/User/InstructorReviewComponent"
 import LoginComponent from "./components/LoginComponent";
+import ChangePasswordComponent from "./components/ChangePasswordComponent";
 
 function App() {
     return (
@@ -26,12 +25,10 @@ function App() {
             <CookiesProvider>
                 <BrowserRouter>
                     <Switch>
-                        {/*<Route path={"/"} exact component={HubComponent}/>*/}
                         <Route path={"/"} exact component={LoginComponent}/>
+                        <Route path={"/change_password"} exact component={ChangePasswordComponent}/>
 
                         <Route path={"/aircraft"} exact component={AircraftComponent}/>
-
-                        {/*<Route path={"/admin/home"} exact component={AdminHomeComponent}/>*/}
 
                         <Route path={"/admin/aircraft/add"} exact component={AddAircraftComponent}/>
                         <Route path={"/admin/aircraft/edit/:id"} exact component={AddAircraftComponent}/>
