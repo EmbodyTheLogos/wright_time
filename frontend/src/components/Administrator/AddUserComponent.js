@@ -201,7 +201,7 @@ class AddUserComponent extends React.Component {
                             {this.state.mode === "add" && <Form.Group as={Row} controlId={"password"}>
                                 <Form.Label column sm={4}>Password:</Form.Label>
                                 <Col sm={8}>
-                                    <Form.Control type={"text"} placeholder={"Password"}
+                                    <Form.Control type={"password"} placeholder={"Password"}
                                                   value={this.state.password} onChange={this.changeHandler}
                                                   name={"password"}/>
                                 </Col>
