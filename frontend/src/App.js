@@ -17,7 +17,6 @@ import UserHomeComponent from "./components/User/UserHomeComponent";
 import UserProfileComponent from "./components/User/UserProfileComponent";
 import UserRequestSessionComponent from "./components/User/UserRequestSessionComponent";
 import SessionDetailsComponent from "./components/User/SessionDetailsComponent";
-import PerformanceReviewComponent from "./components/User/PerformanceReviewComponent";
 
 function App() {
     return (
@@ -52,7 +51,6 @@ function App() {
 
                         <Route path={"/user/profile"} exact component={UserProfileComponent}/>
                         <Route path={"/user/session/details/:id"} exact component={SessionDetailsComponent}/>
-                        <Route path={"/user/performance/review/:id"} exact component={PerformanceReviewComponent}/>
 
                     </Switch>
                 </BrowserRouter>
