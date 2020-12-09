@@ -74,10 +74,10 @@ class AddCertificationComponent extends React.Component {
     }
 
     submitHandler = (event) => {
+        event.preventDefault();
         if(this.state.aircraftId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
         if(this.state.userId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
 
-        event.preventDefault();
         let dateObtained = this.state.dateObtained.getFullYear() + "-" + (this.state.dateObtained.getMonth() + 1) + "-" + this.state.dateObtained.getDate().toLocaleString('en-US', {
             minimumIntegerDigits: 2,
             useGrouping: false

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -94,9 +95,11 @@ public class SessionController {
         final var end = begin.plusWeeks(2);
         final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
         if(user.getRole().equals("ROLE_STUDENT")) {
-            return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end);
+            return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end)
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
         } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
-            return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end);
+            return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end)
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
         } else {
             throw new NoSuchElementException("Internal Error: bad role. ");
         }
@@ -111,9 +114,11 @@ public class SessionController {
         final var begin = end.minusWeeks(2);
         final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
         if(user.getRole().equals("ROLE_STUDENT")) {
-            return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end);
+            return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end)
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
         } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
-            return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end);
+            return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end)
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
         } else {
             throw new NoSuchElementException("Internal Error: bad role. ");
         }
