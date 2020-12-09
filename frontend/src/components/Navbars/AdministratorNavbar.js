@@ -3,6 +3,8 @@ import {NavLink, withRouter} from "react-router-dom";
 import {Button, Nav, Navbar} from 'react-bootstrap'
 import {withCookies} from "react-cookie";
 import AuthService from "../../services/AuthService";
+import BGImage from "../../Images/cloudy_sky.jpg";
+import logoImage from "../../Images/circle4.png"
 
 class AdministratorNavbar extends React.Component {
     state = {
@@ -31,8 +33,17 @@ class AdministratorNavbar extends React.Component {
         return (
             <div>
                 <Navbar bg="dark" variant="dark" expand="lg" className={"container-fluid"}>
-                    <Navbar.Brand style={{fontWeight: "bold", color: "LightSkyBlue"}} href={'/'}>Wright
-                        Time</Navbar.Brand>
+                    {/*<Navbar.Brand style={{fontWeight: "bold", color: "LightSkyBlue"}} href={'/'}>Wright*/}
+                    {/*    Time</Navbar.Brand>*/}
+                    <Navbar.Brand>
+                        <img
+                            src={logoImage}
+                            width="40"
+                            height="40"
+                            className="d-inline-block align-top"
+                            alt={""}
+                        />
+                    </Navbar.Brand>
                     <Nav className="mr-auto">
                         {/*<NavLink exact to="/admin/home" style={{marginRight: '15px', color:"grey"}}*/}
                         {/*         activeStyle={{marginRight: '15px', color:"white"}}>Home</NavLink>*/}

@@ -41,8 +41,10 @@ public class DatabaseLoader implements CommandLineRunner {
         var user2 = new User("bdw5230@psu.edu", "password",  "Benjamin", "Warner", "ROLE_INSTRUCTOR", LocalDate.now().minusDays(3));
         var user3 = new User("lhn5032@psu.edu", "password",  "Long", "Nguyen", "ROLE_STUDENT", LocalDate.now().minusDays(3));
         var user4 = new User("nhn5049@psu.edu", "password",  "Nathaniel", "Netznik", "ROLE_STUDENT", LocalDate.now().minusDays(3));
-        var cert1 = new Certification(user1, aircraft1, LocalDate.now().minusDays(3));
+        var cert1 = new Certification(user2, aircraft1, LocalDate.now().minusDays(3));
         var cert2 = new Certification(user2, aircraft2, LocalDate.now().minusDays(2));
+        var cert3 = new Certification(user2, aircraft3, LocalDate.now().minusDays(5));
+        var cert4 = new Certification(user2, aircraft4, LocalDate.now().minusDays(11));
         var session1 = new Session(user3, user2, aircraft1, 11, LocalDate.of(2020, 12, 13), Session.State.PENDING, "", 0);
         var session2 = new Session(user4, user2, aircraft2, 14, LocalDate.of(2020, 12, 9), Session.State.APPROVED, "", 0);
         var session3 = new Session(user3, user2, aircraft2, 10, LocalDate.of(2020, 12, 25), Session.State.PENDING, "", 0);
@@ -63,6 +65,8 @@ public class DatabaseLoader implements CommandLineRunner {
 
         certRepository.save(cert1);
         certRepository.save(cert2);
+        certRepository.save(cert3);
+        certRepository.save(cert4);
 
         sessionRepository.save(session1);
         sessionRepository.save(session2);

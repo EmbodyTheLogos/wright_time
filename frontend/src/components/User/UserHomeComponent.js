@@ -12,7 +12,9 @@ import BGImage from "../../Images/cloudy_sky.jpg"
 var bg = {
     backgroundImage: `url(${BGImage})`,
     display: 'flex',
-    height: '100vh'
+    height: '100vh',
+    // borderStyle: 'solid',
+    // borderColor: 'yellow',
 }
 
 var content = {
@@ -21,7 +23,10 @@ var content = {
     paddingTop: '20px',
     paddingRight: '30px',
     paddingLeft: '30px',
-    paddingBottom: '-1px'
+    paddingBottom: '20px',
+    // borderStyle: 'solid',
+    // borderColor: 'red',
+    overflow: 'auto',
 }
 
 
