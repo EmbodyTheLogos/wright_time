@@ -58,7 +58,12 @@ class MyBigCalendar extends React.Component {
                     var endDate = new Date(year, month, day)
                     endDate.setHours(session.startTime + session.aircraft.trainingDuration)
 
-                    events.push({start: startDate, end: endDate, title: "Class"})
+                    var str = ""
+                    if(session.state === "PENDING"){str += "Pending"}
+                    else if(session.state === "APPROVED") {str += "Approved"}
+                    else if(session.state === "COMPLETE") {str += "Completed"}
+
+                    events.push({start: startDate, end: endDate, title: str})
                 }
                 // console.log(this.state)
                 this.setState({events: events})

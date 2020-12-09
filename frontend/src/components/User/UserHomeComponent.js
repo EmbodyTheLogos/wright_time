@@ -65,8 +65,9 @@ class UserHomeComponent extends React.Component {
                                 <table className="table table-bordered table-hover">
                                     <thead className="thead-dark">
                                     <tr>
-                                        <th scope="col" width="150">Date</th>
-                                        <th scope={"col"} width="30">Details</th>
+                                        <th scope="col" width="100">Date</th>
+                                        <th scope="col" width="100">State</th>
+                                        <th scope={"col"} width="50">Details</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -75,6 +76,9 @@ class UserHomeComponent extends React.Component {
                                             session =>
                                                 <tr key={session.id}>
                                                     <td> {session.date}</td>
+                                                    {session.state === "PENDING" && <td>Pending</td>}
+                                                    {session.state === "APPROVED" && <td>Approved</td>}
+                                                    {session.state === "COMPLETE" && <td>Complete</td>}
                                                     <td><Link to={"/user/session/details/" + session.id}
                                                               className={"btn btn-primary btn-block"}>View</Link>
                                                     </td>
@@ -89,8 +93,9 @@ class UserHomeComponent extends React.Component {
                                 <table className="table table-bordered table-hover">
                                     <thead className="thead-dark">
                                     <tr>
-                                        <th scope="col" width="150">Date</th>
-                                        <th scope={"col"} width="30">Details</th>
+                                        <th scope="col" width="100">Date</th>
+                                        <th scope="col" width="100">State</th>
+                                        <th scope={"col"} width="50">Details</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -99,6 +104,9 @@ class UserHomeComponent extends React.Component {
                                             session =>
                                                 <tr key={session.id}>
                                                     <td> {session.date}</td>
+                                                    {session.state === "PENDING" && <td>Pending</td>}
+                                                    {session.state === "APPROVED" && <td>Approved</td>}
+                                                    {session.state === "COMPLETE" && <td>Complete</td>}
                                                     <td><Link to={"/user/session/details/" + session.id}
                                                               className={"btn btn-primary btn-block"}>View</Link>
                                                     </td>
