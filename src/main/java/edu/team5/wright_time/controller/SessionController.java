@@ -142,12 +142,12 @@ public class SessionController {
     public void checkForConflicts(Session session) throws NoSuchElementException {
         List<Session> allSessions = (List<Session>) sessionRepository.findAll();
         ArrayList<Session> conflictSessions = new ArrayList<>();
-        int sessionEndTime = session.getStartTime() - session.getAircraft().getTrainingDuration();
-        System.out.println(allSessions.size());
+        int sessionEndTime = session.getStartTime() + session.getAircraft().getTrainingDuration();
+
         //Collect all of the sessions that conflict in time with 'session'
         for (Session eachSession : allSessions) {
             //End time = start time + aircraft.training_duration
-            int eachSessionEndTime = eachSession.getStartTime() - eachSession.getAircraft().getTrainingDuration();
+            int eachSessionEndTime = eachSession.getStartTime() + eachSession.getAircraft().getTrainingDuration();
             if (eachSession.getDate().equals(session.getDate())
                     && ((eachSession.getStartTime() >= session.getStartTime() && eachSession.getStartTime() <= sessionEndTime)
                     || (eachSessionEndTime >= session.getStartTime() && eachSessionEndTime <= sessionEndTime))) {
