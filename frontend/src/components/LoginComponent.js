@@ -83,9 +83,9 @@ class LoginComponent extends React.Component {
                 <Form.Group as={Row} controlId={"password"}>
                     <Form.Label column sm={4}>Password:</Form.Label>
                     <Col sm={8}>
-                        <Form.Control type={"text"} placeholder={"password"}
+                        <Form.Control type={"password"} placeholder={"password"}
                                       value={this.state.startTime} onChange={this.changeHandler}
-                                      name={"password"}/>
+                                      name={"Password"}/>
                     </Col>
                 </Form.Group>
                 <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>

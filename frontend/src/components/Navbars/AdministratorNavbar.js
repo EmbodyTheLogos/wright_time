@@ -52,7 +52,12 @@ class AdministratorNavbar extends React.Component {
                     {/*             activeStyle={{marginRight: '15px', color: "white"}}>Change Password</NavLink>*/}
                     {/*</Nav>*/}
                     <Nav>
-                        <Button variant="outline-light" onClick={this.logout}>Logout</Button>
+                        <p className="text-center mt-2 mb-2 mr-2" style={{color: "white"}}>Logged in
+                            as: {this.state.user.firstName + " " + this.state.user.lastName}</p>
+                    </Nav>
+                    <Nav><p/></Nav>
+                    <Nav>
+                        <Button variant="outline-danger" onClick={this.logout}>Logout</Button>
                     </Nav>
                 </Navbar>
             </div>

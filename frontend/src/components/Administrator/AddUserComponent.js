@@ -18,6 +18,7 @@ class AddUserComponent extends React.Component {
         lastName: "",
         email: "",
         dateOfBirth: new Date(),
+        password: "",
         errorMessage: "",
         jwtToken: ""
     };
@@ -83,6 +84,14 @@ class AddUserComponent extends React.Component {
 
         console.log(JSON.stringify(user));
         if(this.state.mode === "add") {
+            let user = {
+                role: this.state.role,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                password: this.state.password,
+                dateOfBirth: dateOfBirth
+            };
             UserService.post(this.state.jwtToken, user).then(res => {
                 this.props.history.push('/admin/users')
             }).catch(res => {
@@ -93,6 +102,13 @@ class AddUserComponent extends React.Component {
                 }
             })
         } else {
+            let user = {
+                role: this.state.role,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                dateOfBirth: dateOfBirth
+            };
             UserService.put(this.state.jwtToken, this.state.id, user).then(res => {
                 this.props.history.push('/admin/users')
             }).catch(res => {
@@ -181,6 +197,15 @@ class AddUserComponent extends React.Component {
                                     />
                                 </Col>
                             </Form.Group>
+
+                            {this.state.mode === "add" && <Form.Group as={Row} controlId={"password"}>
+                                <Form.Label column sm={4}>Password:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type={"password"} placeholder={"Password"}
+                                                  value={this.state.password} onChange={this.changeHandler}
+                                                  name={"password"}/>
+                                </Col>
+                            </Form.Group>}
 
                             <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
                         </Form>
