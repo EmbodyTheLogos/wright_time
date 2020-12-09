@@ -24,7 +24,7 @@ class UserNavbar extends React.Component {
     }
 
     logout = (event) => {
-        this.props.history.push('/login') //TODO: this is really bad practice but I don't have time to fix it.
+        this.props.history.push('/') //TODO: this is really bad practice but I don't have time to fix it.
     }
 
     render() {

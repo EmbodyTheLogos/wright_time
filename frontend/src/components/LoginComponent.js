@@ -29,6 +29,7 @@ class LoginComponent extends React.Component {
                 }
             })
         }).catch(res => {
+            //TODO: error checking for invalid login.
             if(res.response) {
                 this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
             } else {
