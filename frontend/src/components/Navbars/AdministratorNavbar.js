@@ -44,7 +44,11 @@ class AdministratorNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color: "white"}}>Certifications Table</NavLink>
                     </Nav>
                     <Nav className="ml-auto">
-                        {/*<NavLink to="/" style={{marginRight: '15px', color: "Brown"}}>Logout</NavLink>*/}
+                        <NavLink to={"/"} style={{marginRight: '15px', color: "grey"}}
+                                 activeStyle={{marginRight: '15px', color: "white"}}>Change Password</NavLink>
+                        {/*<NavLink to="/" style={{marginRight: '15px', color: "CadetBlue"}}>Logout</NavLink>*/}
+                    </Nav>
+                    <Nav>
                         <Button variant="outline-light">Logout</Button>
                     </Nav>
                 </Navbar>
