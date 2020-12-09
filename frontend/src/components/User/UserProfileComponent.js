@@ -73,7 +73,7 @@ class UserProfileComponent extends React.Component {
                     </Row>
                 </Container>
                 <br/>
-                <h5>Aircraft You Are Certified to Fly: </h5>
+                <h5>Certifications Acquired: </h5>
                 {
                     this.state.certifications.map(cert =>
                         <h5>{cert.aircraft.manufacturer + ' ' + cert.aircraft.name + ' ' + cert.aircraft.model}</h5>
