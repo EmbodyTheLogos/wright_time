@@ -1,5 +1,5 @@
 import {withCookies} from "react-cookie";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import React from "react";
 import AuthService from "../services/AuthService";
@@ -36,6 +36,27 @@ class LoginComponent extends React.Component {
         })
     }
 
+    loginUser = (event) => {
+        const {cookies} = this.props;
+        AuthService.signin('lhn5032@psu.edu', 'password').then((response) => {
+            cookies.set('JWT-TOKEN', response.data.accessToken)
+        })
+    }
+
+    loginInstructor = (event) => {
+        const {cookies} = this.props;
+        AuthService.signin('bdw5230@psu.edu', 'password').then((response) => {
+            cookies.set('JWT-TOKEN', response.data.accessToken)
+        })
+    }
+
+    loginAdmin = (event) => {
+        const {cookies} = this.props;
+        AuthService.signin('jmd6724@psu.edu', 'password').then((response) => {
+            cookies.set('JWT-TOKEN', response.data.accessToken)
+        })
+    }
+
     render() {
         return (
             <div>
@@ -57,6 +78,18 @@ class LoginComponent extends React.Component {
                     </Col>
                 </Form.Group>
                 <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
+
+                <br/>
+
+                <div>
+                    <div className="container mt-4">
+                        <Link to={"/pending"} className={"btn btn-secondary btn-block"} onClick={this.loginAdmin}>Administrator</Link>
+                        <br/>
+                        <Link to={"/user/home"} className={"btn btn-info btn-block"} onClick={this.loginInstructor}>Instructor</Link>
+                        <br/>
+                        <Link to={"/user/home"} className={"btn btn-info btn-block"} onClick={this.loginUser}>User</Link>
+                    </div>
+                </div>
             </div>
         );
     }

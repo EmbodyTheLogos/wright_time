@@ -18,6 +18,7 @@ import UserProfileComponent from "./components/User/UserProfileComponent";
 import UserRequestSessionComponent from "./components/User/UserRequestSessionComponent";
 import SessionDetailsComponent from "./components/User/SessionDetailsComponent";
 import InstructorReviewComponent from "./components/User/InstructorReviewComponent"
+import LoginComponent from "./components/LoginComponent";
 
 function App() {
     return (
@@ -25,7 +26,8 @@ function App() {
             <CookiesProvider>
                 <BrowserRouter>
                     <Switch>
-                        <Route path={"/"} exact component={HubComponent}/>
+                        {/*<Route path={"/"} exact component={HubComponent}/>*/}
+                        <Route path={"/"} exact component={LoginComponent}/>
 
                         <Route path={"/aircraft"} exact component={AircraftComponent}/>
 
