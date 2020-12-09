@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.NoSuchElementException;
-
 @ControllerAdvice
 public class ConflictExceptionAdvice {
-    @ResponseBody
-    @ExceptionHandler(ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ConflictException.class)
+    @ResponseBody
     public String conflict(ConflictException e) {
         return e.getMessage();
     }

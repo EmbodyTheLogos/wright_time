@@ -98,7 +98,7 @@ class AddSessionComponent extends React.Component {
             instructor:{id:this.state.instructorId},
             student:{id:this.state.studentId},
             startTime: this.state.startTime,
-            date: date,
+            date: date, //TODO: date is null
             score: this.state.score,
             comments: this.state.comments,
             state: this.state.state,
@@ -109,7 +109,16 @@ class AddSessionComponent extends React.Component {
             SessionService.post(this.state.jwtToken, session).then(res => {
                 this.props.history.push('/sessions')
             }).catch(res => {
-                this.setState({errorMessage: res.message});
+                console.log(res.response)
+                if(res.response) {
+                    if(res.response.status === 409) {
+                        this.setState({errorMessage: 'Conflict detected. '})
+                    } else {
+                        this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                    }
+                } else {
+                    this.setState({errorMessage: res.message});
+                }
             });
         } else {
             SessionService.put(this.state.jwtToken, this.state.id, session).then(res => {
