@@ -4,7 +4,6 @@ import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
 import React from "react";
 import Center from 'react-center';
 import AuthService from "../services/AuthService";
-import * as PropTypes from "prop-types";
 
 class LoginComponent extends React.Component {
     state = {
@@ -15,7 +14,6 @@ class LoginComponent extends React.Component {
     changeHandler = (event) => {
         let name = event.target.name;
         let value = event.target.value;
-        console.log(name + ':' + value)
         this.setState({[name]: value})
     }
 
