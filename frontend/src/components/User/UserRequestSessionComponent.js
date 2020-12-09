@@ -83,6 +83,8 @@ class UserRequestSessionComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        if(this.state.instructorId === "-1") { this.setState({errorMessage: "Instructor must not be empty"}); return}
+        if(this.state.aircraftId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
         let date = this.state.date.getFullYear() + "-"+ (this.state.date.getMonth() + 1) +"-"+ this.state.date.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let session = {
             aircraft:{id:this.state.aircraftId},
