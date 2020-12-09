@@ -7,6 +7,23 @@ import UserService from '../../services/UserService';
 import AuthService from "../../services/AuthService";
 import MyBigCalendar from "../Calendar/MyBigCalendar";
 import SessionService from "../../services/SessionService";
+import BGImage from "../../Images/cloudy_sky.jpg"
+
+var bg = {
+    backgroundImage: `url(${BGImage})`,
+    display: 'flex',
+    height: '100vh'
+}
+
+var content = {
+    backgroundColor: 'white',
+    margin: '10px auto',
+    paddingTop: '20px',
+    paddingRight: '30px',
+    paddingLeft: '30px',
+    paddingBottom: '0px'
+}
+
 
 class UserHomeComponent extends React.Component {
     state = {
@@ -23,7 +40,7 @@ class UserHomeComponent extends React.Component {
         this.state.jwtToken = cookies.get('JWT-TOKEN')
     }
 
-    componentDidMount(){
+    componentDidMount() {
         AuthService.user(this.state.jwtToken).then((res) => {
             this.setState({user: res.data})
             UserService.getHours(this.state.jwtToken, this.state.user.id).then((res) => {
@@ -42,84 +59,84 @@ class UserHomeComponent extends React.Component {
         return (
             <div>
                 <UserNavbar/>
-                <br/>
+                <div style={bg}>
+                    <Container style={content}>
+                        <Row>
+                            <Col md={7}>
+                                <Row>
+                                    <h4>Full Schedule</h4>
+                                    <MyBigCalendar/>
+                                </Row>
+                                <br/>
+                                <Row className={"justify-content-md-left"}>
+                                    Flight Hours this Week: {this.state.hours}
+                                </Row>
+                            </Col>
 
-                <Container>
-                    <Row>
-                        <Col md={7}>
-                            <Row>
-                                <h4>Full Schedule</h4>
-                                <MyBigCalendar/>
-                            </Row>
-                            <br/>
-                            <Row className={"justify-content-md-left"}>
-                                Flight Hours this Week: {this.state.hours}
-                            </Row>
-                        </Col>
+                            <Col md={1}> </Col>
 
-                        <Col md={1}> </Col>
+                            <Col md={4}>
+                                <Row>
+                                    <h4>Upcoming Flights</h4>
+                                    <table className="table table-bordered table-hover">
+                                        <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col" width="100">Date</th>
+                                            <th scope="col" width="100">State</th>
+                                            <th scope={"col"} width="50">Details</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            this.state.upcomingSessions.map(
+                                                session =>
+                                                    <tr key={session.id}>
+                                                        <td> {session.date}</td>
+                                                        {session.state === "PENDING" && <td>Pending</td>}
+                                                        {session.state === "APPROVED" && <td>Approved</td>}
+                                                        {session.state === "COMPLETE" && <td>Complete</td>}
+                                                        <td><Link to={"/user/session/details/" + session.id}
+                                                                  className={"btn btn-primary btn-block"}>View</Link>
+                                                        </td>
+                                                    </tr>
+                                            )
+                                        }
+                                        </tbody>
+                                    </table>
+                                </Row>
+                                <Row>
+                                    <h4>Recent Flights</h4>
+                                    <table className="table table-bordered table-hover">
+                                        <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col" width="100">Date</th>
+                                            <th scope="col" width="100">State</th>
+                                            <th scope={"col"} width="50">Details</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            this.state.recentSessions.map(
+                                                session =>
+                                                    <tr key={session.id}>
+                                                        <td> {session.date}</td>
+                                                        {session.state === "PENDING" && <td>Pending</td>}
+                                                        {session.state === "APPROVED" && <td>Approved</td>}
+                                                        {session.state === "COMPLETE" && <td>Complete</td>}
+                                                        <td><Link to={"/user/session/details/" + session.id}
+                                                                  className={"btn btn-primary btn-block"}>View</Link>
+                                                        </td>
+                                                    </tr>
+                                            )
+                                        }
+                                        </tbody>
+                                    </table>
+                                </Row>
+                            </Col>
+                        </Row>
 
-                        <Col md={4}>
-                            <Row>
-                                <h4>Upcoming Flights</h4>
-                                <table className="table table-bordered table-hover">
-                                    <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col" width="100">Date</th>
-                                        <th scope="col" width="100">State</th>
-                                        <th scope={"col"} width="50">Details</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {
-                                        this.state.upcomingSessions.map(
-                                            session =>
-                                                <tr key={session.id}>
-                                                    <td> {session.date}</td>
-                                                    {session.state === "PENDING" && <td>Pending</td>}
-                                                    {session.state === "APPROVED" && <td>Approved</td>}
-                                                    {session.state === "COMPLETE" && <td>Complete</td>}
-                                                    <td><Link to={"/user/session/details/" + session.id}
-                                                              className={"btn btn-primary btn-block"}>View</Link>
-                                                    </td>
-                                                </tr>
-                                        )
-                                    }
-                                    </tbody>
-                                </table>
-                            </Row>
-                            <Row>
-                                <h4>Recent Flights</h4>
-                                <table className="table table-bordered table-hover">
-                                    <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col" width="100">Date</th>
-                                        <th scope="col" width="100">State</th>
-                                        <th scope={"col"} width="50">Details</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {
-                                        this.state.recentSessions.map(
-                                            session =>
-                                                <tr key={session.id}>
-                                                    <td> {session.date}</td>
-                                                    {session.state === "PENDING" && <td>Pending</td>}
-                                                    {session.state === "APPROVED" && <td>Approved</td>}
-                                                    {session.state === "COMPLETE" && <td>Complete</td>}
-                                                    <td><Link to={"/user/session/details/" + session.id}
-                                                              className={"btn btn-primary btn-block"}>View</Link>
-                                                    </td>
-                                                </tr>
-                                        )
-                                    }
-                                    </tbody>
-                                </table>
-                            </Row>
-                        </Col>
-                    </Row>
-                </Container>
-
+                    </Container>
+                </div>
             </div>
         )
     }
