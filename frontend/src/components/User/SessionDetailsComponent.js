@@ -82,10 +82,9 @@ class SessionDetailsComponent extends React.Component {
                 {this.state.state === "DECLINED" && <h5>State: Declined</h5>}
                 {this.state.state === "CANCELLED" && <h5>State: Cancelled</h5>}
                 {this.state.state === "APPROVED" && <h5>State: Approved</h5>}
-                {this.state.state === "COMPLETED" && <h5>State: Completed</h5>}
-
-                {this.state.state === "COMPLETED" && <h5>Score: {this.state.score}</h5>}
-                {this.state.state === "COMPLETED" && <h5>Comments: {this.state.comments}</h5>}
+                {this.state.state === "COMPLETE" && <h5>State: Completed</h5>}
+                {this.state.state === "COMPLETE" && <h5>Score: {this.state.score}</h5>}
+                {this.state.state === "COMPLETE" && <h5>Comments: {this.state.comments}</h5>}
 
             </div>
         )
