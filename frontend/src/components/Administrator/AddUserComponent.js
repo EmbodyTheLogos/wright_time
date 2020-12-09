@@ -72,8 +72,10 @@ class AddUserComponent extends React.Component {
 
         if(this.state.role === "empty") { this.setState({errorMessage: "State must not be empty"}); return}
 
-        console.log(this.state.dateOfBirth)
-        let dateOfBirth = this.state.dateOfBirth.getFullYear() + "-"+ (this.state.dateOfBirth.getMonth() + 1) +"-"+ this.state.dateOfBirth.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+        let year = this.state.dateOfBirth.getFullYear()
+        let month = (this.state.dateOfBirth.getMonth() + 1).toLocaleString('en-US',{minimumIntegerDigits: 2, useGrouping: false})
+        let day = this.state.dateOfBirth.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})
+        let dateOfBirth = year + "-" + month + "-" + day
         let user = {
             role: this.state.role,
             firstName: this.state.firstName,

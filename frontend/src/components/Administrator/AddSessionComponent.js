@@ -92,13 +92,17 @@ class AddSessionComponent extends React.Component {
         if(this.state.instructorId === "-1") { this.setState({errorMessage: "Instructor must not be empty"}); return}
         if(this.state.state === "empty") { this.setState({errorMessage: "State must not be empty"}); return}
 
-        let date = this.state.date.getFullYear() + "-"+ (this.state.date.getMonth() + 1) +"-"+ this.state.date.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+        let year = this.state.date.getFullYear()
+        let month = (this.state.date.getMonth() + 1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})
+        let day = this.state.date.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})
+        let date = year + "-" + month + "-" + day
+
         let session = {
             aircraft:{id:this.state.aircraftId},
             instructor:{id:this.state.instructorId},
             student:{id:this.state.studentId},
             startTime: this.state.startTime,
-            date: date, //TODO: date is null
+            date: date,
             score: this.state.score,
             comments: this.state.comments,
             state: this.state.state,
@@ -127,6 +131,7 @@ class AddSessionComponent extends React.Component {
                 this.props.history.push('/sessions')
             }).catch(res => {
                 if(res.response) {
+                    console.log(res.response)
                     if(res.response.status === 409) {
                         this.setState({errorMessage: 'Conflict detected with another session.'})
                         console.log(res.response.data.conflict)
