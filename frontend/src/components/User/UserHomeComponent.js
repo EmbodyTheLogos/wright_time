@@ -76,6 +76,9 @@ class UserHomeComponent extends React.Component {
                                             session =>
                                                 <tr key={session.id}>
                                                     <td> {session.date}</td>
+                                                    <td><Link to={"/user/session/details/" + session.id}
+                                                              className={"btn btn-primary btn-block"}>View</Link>
+                                                    </td>
                                                 </tr>
                                         )
                                     }
