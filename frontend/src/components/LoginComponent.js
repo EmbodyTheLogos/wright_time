@@ -1,10 +1,11 @@
 import {withCookies} from "react-cookie";
 import {Link, withRouter} from "react-router-dom";
-import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
+import {Alert, Button, Col, Container, Form, Image, Row} from "react-bootstrap";
 import React from "react";
 import Center from 'react-center';
 import AuthService from "../services/AuthService";
 import BGImage from "../Images/cloudy_sky.jpg"
+import logoImage from "../Images/WrightTime_Logo.svg"
 
 var bg = {
     backgroundImage: `url(${BGImage})`,
@@ -96,6 +97,9 @@ class LoginComponent extends React.Component {
                         <Alert.Heading>Input Error</Alert.Heading>
                         <p>{this.state.errorMessage}</p>
                     </Alert>}
+
+                    <Image src={logoImage} rounded fluid width="300" height="300"/>
+                    <br/>
                     <Center>
                         <Form>
                             <Form.Group as={Row} controlId={"email"} style={{marginTop: "20px"}}>
@@ -121,18 +125,18 @@ class LoginComponent extends React.Component {
                     </Center>
                     <br/>
 
-                    <div>
-                        <div className="container mt-4">
-                            <Link to={"/pending"} className={"btn btn-secondary btn-block"}
-                                  onClick={this.loginAdmin}>Administrator</Link>
-                            <br/>
-                            <Link to={"/user/home"} className={"btn btn-info btn-block"}
-                                  onClick={this.loginInstructor}>Instructor</Link>
-                            <br/>
-                            <Link to={"/user/home"} className={"btn btn-info btn-block"}
-                                  onClick={this.loginUser}>User</Link>
-                        </div>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <div className="container mt-4">*/}
+                    {/*        <Link to={"/pending"} className={"btn btn-secondary btn-block"}*/}
+                    {/*              onClick={this.loginAdmin}>Administrator</Link>*/}
+                    {/*        <br/>*/}
+                    {/*        <Link to={"/user/home"} className={"btn btn-info btn-block"}*/}
+                    {/*              onClick={this.loginInstructor}>Instructor</Link>*/}
+                    {/*        <br/>*/}
+                    {/*        <Link to={"/user/home"} className={"btn btn-info btn-block"}*/}
+                    {/*              onClick={this.loginUser}>User</Link>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                 </Container>
             </div>
