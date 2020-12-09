@@ -30,8 +30,7 @@ class SessionComponent extends React.Component {
                     this.setState({sessions: response.data})
                 });
             } else {
-                //TODO: I belive that this should be getApprovedByUser
-                SessionService.getRecent(this.state.jwtToken, this.state.user.id).then((response) => {
+                SessionService.getApprovedByUser(this.state.jwtToken, this.state.user.id).then((response) => {
                     this.setState({sessions: response.data})
                 });
             }

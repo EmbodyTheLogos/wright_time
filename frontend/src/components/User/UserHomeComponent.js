@@ -2,17 +2,20 @@ import React from 'react';
 import UserNavbar from "../Navbars/UserNavbar";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {withCookies} from "react-cookie";
-import {withRouter} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import MyCalendar from "../Calendar/DISABLED_MyCalendar";
 import UserService from '../../services/UserService';
 import AuthService from "../../services/AuthService";
 import MyBigCalendar from "../Calendar/MyBigCalendar";
+import SessionService from "../../services/SessionService";
 
 class UserHomeComponent extends React.Component {
     state = {
         jwtToken: '',
         user: "",
-        hours: 0
+        hours: 0,
+        recentSessions: [],
+        upcomingSessions: []
     }
 
     constructor(props) {
@@ -27,6 +30,12 @@ class UserHomeComponent extends React.Component {
             UserService.getHours(this.state.jwtToken, this.state.user.id).then((res) => {
                 this.setState({hours: res.data})
             })
+            SessionService.getRecent(this.state.jwtToken, this.state.user.id).then((response) => {
+                this.setState({recentSessions: response.data})
+            });
+            SessionService.getUpcoming(this.state.jwtToken, this.state.user.id).then((response) => {
+                this.setState({upcomingSessions: response.data})
+            });
         })
     }
 
@@ -41,55 +50,6 @@ class UserHomeComponent extends React.Component {
                         <Col md={7}>
                             <Row>
                                 <h4>Full Schedule</h4>
-                                {/*<table className="table table-bordered table-hover">*/}
-                                {/*    <thead className="thead-dark">*/}
-                                {/*    <tr>*/}
-                                {/*        <th scope="col" width="150">Calendar</th>*/}
-                                {/*        <th scope="col" width="150">Calendar</th>*/}
-                                {/*        <th scope="col" width="150">Calendar</th>*/}
-                                {/*        <th scope="col" width="150">Calendar</th>*/}
-                                {/*    </tr>*/}
-                                {/*    </thead>*/}
-                                {/*    <tbody>*/}
-                                {/*    <tr>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*    </tr>*/}
-                                {/*    <tr>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*    </tr>*/}
-                                {/*    <tr>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*    </tr>*/}
-                                {/*    <tr>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*    </tr>*/}
-                                {/*    <tr>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*    </tr>*/}
-                                {/*    <tr>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*        <td>Calendar</td>*/}
-                                {/*    </tr>*/}
-                                {/*    </tbody>*/}
-                                {/*</table>*/}
-                                {/*<MyCalendar/>*/}
                                 <MyBigCalendar/>
                             </Row>
                             <br/>
@@ -107,42 +67,18 @@ class UserHomeComponent extends React.Component {
                                     <thead className="thead-dark">
                                     <tr>
                                         <th scope="col" width="150">Date</th>
-                                        <th scope={"col"} width="30"> </th>
+                                        <th scope={"col"} width="30">Details</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
+                                    {
+                                        this.state.upcomingSessions.map(
+                                            session =>
+                                                <tr key={session.id}>
+                                                    <td> {session.date}</td>
+                                                </tr>
+                                        )
+                                    }
                                     </tbody>
                                 </table>
                             </Row>
@@ -152,42 +88,18 @@ class UserHomeComponent extends React.Component {
                                     <thead className="thead-dark">
                                     <tr>
                                         <th scope="col" width="150">Date</th>
-                                        <th scope={"col"} width="30"> </th>
+                                        <th scope={"col"} width="30">Details</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Placeholder</td>
-                                        <td>
-                                            <Button variant={"danger"}>
-                                                View
-                                            </Button>
-                                        </td>
-                                    </tr>
+                                    {
+                                        this.state.recentSessions.map(
+                                            session =>
+                                                <tr key={session.id}>
+                                                    <td> {session.date}</td>
+                                                </tr>
+                                        )
+                                    }
                                     </tbody>
                                 </table>
                             </Row>
