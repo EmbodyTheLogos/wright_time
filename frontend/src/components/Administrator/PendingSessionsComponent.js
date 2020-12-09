@@ -46,9 +46,9 @@ class PendingSessionsComponent extends React.Component {
                         <thead className="thead-dark">
                         <tr>
                             <th scope={"col"}> Session ID</th>
-                            <th scope={"col"}> Aircraft ID</th>
-                            <th scope={"col"}> Instructor ID</th>
-                            <th scope={"col"}> Student ID</th>
+                            <th scope={"col"}> Aircraft</th>
+                            <th scope={"col"}> Instructor</th>
+                            <th scope={"col"}> Student</th>
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
@@ -63,9 +63,9 @@ class PendingSessionsComponent extends React.Component {
                                 session =>
                                     <tr key={session.id}>
                                         <th scope={"row"}> {session.id}</th>
-                                        <td> {session.aircraft.id}</td>
-                                        <td> {session.instructor.id}</td>
-                                        <td> {session.student.id}</td>
+                                        <td> {session.aircraft.manufacturer + " " + session.aircraft.model + " " + session.aircraft.name}</td>
+                                        <td> {session.instructor.firstName + ' ' + session.instructor.lastName}</td>
+                                        <td> {session.student.firstName + ' ' + session.student.lastName}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
                                         <td>
@@ -103,9 +103,8 @@ class PendingSessionsComponent extends React.Component {
                                 session =>
                                     <tr key={session.id}>
                                         <th scope={"row"}> {session.id}</th>
-                                        <td> {session.aircraft.id}</td>
-                                        <td> {session.instructor.id}</td>
-                                        <td> {session.student.id}</td>
+                                        <td> {session.aircraft.manufacturer + " " + session.aircraft.model + " " + session.aircraft.name}</td>
+                                        <td> {session.instructor.firstName + ' ' + session.instructor.lastName}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
                                     </tr>
