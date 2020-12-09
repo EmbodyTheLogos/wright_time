@@ -10,6 +10,27 @@ import UserService from "../../services/UserService";
 import AircraftService from "../../services/AircraftService";
 import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
+import BGImage from "../../Images/cloudy_sky.jpg"
+
+var bg = {
+    backgroundImage: `url(${BGImage})`,
+    display: 'flex',
+    height: '100vh',
+    // borderStyle: 'solid',
+    // borderColor: 'yellow',
+}
+
+var content = {
+    backgroundColor: 'white',
+    margin: '10px auto',
+    paddingTop: '20px',
+    paddingRight: '30px',
+    paddingLeft: '30px',
+    paddingBottom: '20px',
+    // borderStyle: 'solid',
+    // borderColor: 'red',
+    overflow: 'auto',
+}
 
 class AddCertificationComponent extends React.Component {
     state = {
@@ -75,8 +96,14 @@ class AddCertificationComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        if(this.state.aircraftId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
-        if(this.state.userId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
+        if (this.state.aircraftId === "-1") {
+            this.setState({errorMessage: "Aircraft must not be empty"});
+            return
+        }
+        if (this.state.userId === "-1") {
+            this.setState({errorMessage: "Aircraft must not be empty"});
+            return
+        }
 
         let dateObtained = this.state.dateObtained.getFullYear() + "-" + (this.state.dateObtained.getMonth() + 1) + "-" + this.state.dateObtained.getDate().toLocaleString('en-US', {
             minimumIntegerDigits: 2,
@@ -117,58 +144,62 @@ class AddCertificationComponent extends React.Component {
         return (
             <div>
                 <AdministratorNavbar/>
-                <br/>
+                <div style={bg}>
 
-                <Container>
-                    {this.state.errorMessage &&
-                    <Alert variant="danger">
-                        <Alert.Heading>Input Error</Alert.Heading>
-                        <p>{this.state.errorMessage}</p>
-                    </Alert>}
+                    <Container style={content}>
+                        <h3>Add/Edit Certification Form</h3>
+                        <br/>
 
-                    <Center>
-                        <Form>
-                            <Form.Group as={Row} controlId={"userId"}>
-                                <Form.Label column sm={4}>User:</Form.Label>
-                                <Col sm={8}>
-                                    <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
-                                                  onChange={this.changeHandler} name={"userId"}>
-                                        <option value="-1"/>
-                                        {this.state.users.map(user => <option key={user.id} value={user.id}>
-                                            {user.firstName + " " + user.lastName}</option>)}
-                                    </Form.Control>
-                                </Col>
-                            </Form.Group>
+                        {this.state.errorMessage &&
+                        <Alert variant="danger">
+                            <Alert.Heading>Input Error</Alert.Heading>
+                            <p>{this.state.errorMessage}</p>
+                        </Alert>}
 
-                            <Form.Group as={Row} controlId={"aircraftId"}>
-                                <Form.Label column sm={4}>Aircraft:</Form.Label>
-                                <Col sm={8}>
-                                    <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
-                                                  onChange={this.changeHandler} name={"aircraftId"}>
-                                        <option value="-1"/>
-                                        {this.state.aircrafts.map(aircraft => <option key={aircraft.id} value={aircraft.id}>
-                                            {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
-                                    </Form.Control>
-                                </Col>
-                            </Form.Group>
+                        <Center>
+                            <Form>
+                                <Form.Group as={Row} controlId={"userId"}>
+                                    <Form.Label column sm={4}>User:</Form.Label>
+                                    <Col sm={8}>
+                                        <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
+                                                      onChange={this.changeHandler} name={"userId"}>
+                                            <option value="-1"/>
+                                            {this.state.users.map(user => <option key={user.id} value={user.id}>
+                                                {user.firstName + " " + user.lastName}</option>)}
+                                        </Form.Control>
+                                    </Col>
+                                </Form.Group>
 
-                            <Form.Group as={Row} controlId={"dateObtained"}>
-                                <Form.Label column sm={4}>Obtained:</Form.Label>
-                                <Col sm={8}>
-                                    <DatePicker
-                                        selected={this.state.dateObtained}
-                                        onChange={this.handleDateChange}
-                                        name="dateObtained"
-                                        dateFormat="MM/dd/yyyy"
-                                    />
-                                </Col>
-                            </Form.Group>
+                                <Form.Group as={Row} controlId={"aircraftId"}>
+                                    <Form.Label column sm={4}>Aircraft:</Form.Label>
+                                    <Col sm={8}>
+                                        <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
+                                                      onChange={this.changeHandler} name={"aircraftId"}>
+                                            <option value="-1"/>
+                                            {this.state.aircrafts.map(aircraft => <option key={aircraft.id}
+                                                                                          value={aircraft.id}>
+                                                {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
+                                        </Form.Control>
+                                    </Col>
+                                </Form.Group>
 
-                            <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
-                        </Form>
-                    </Center>
-                </Container>
+                                <Form.Group as={Row} controlId={"dateObtained"}>
+                                    <Form.Label column sm={4}>Obtained:</Form.Label>
+                                    <Col sm={8}>
+                                        <DatePicker
+                                            selected={this.state.dateObtained}
+                                            onChange={this.handleDateChange}
+                                            name="dateObtained"
+                                            dateFormat="MM/dd/yyyy"
+                                        />
+                                    </Col>
+                                </Form.Group>
 
+                                <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
+                            </Form>
+                        </Center>
+                    </Container>
+                </div>
             </div>
 
         )
