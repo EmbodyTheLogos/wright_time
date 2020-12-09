@@ -71,8 +71,11 @@ class PendingSessionsComponent extends React.Component {
                                         <td>
                                             <Button variant={"success"}
                                                     onClick={() => {
-                                                        SessionService.approve(session.id);
-                                                        window.location.reload(false);
+                                                        console.log(this.state.user.firstName)
+                                                        SessionService.approve(this.state.jwtToken, session.id).then(res => {
+                                                            // this.setState({})
+                                                            window.location.reload(false);
+                                                        })
                                                     }}>
                                                 Approve
                                             </Button>
@@ -80,8 +83,10 @@ class PendingSessionsComponent extends React.Component {
                                         <td>
                                             <Button variant={"danger"}
                                                     onClick={() => {
-                                                        SessionService.decline(session.id);
-                                                        window.location.reload(false);
+                                                        SessionService.decline(this.state.jwtToken, session.id).then(res => {
+                                                            // this.setState({})
+                                                            window.location.reload(false);
+                                                        })
                                                     }}>
                                                 Decline
                                             </Button>

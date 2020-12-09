@@ -92,7 +92,9 @@ class SessionService {
     }
 
     approve(token, id) {
-        return axios.put(SESSION_REST_API_URL + '/' + id + '/approve', {
+        console.log(SESSION_REST_API_URL + '/' + id + '/approve')
+        console.log(token)
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/approve', {}, {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -100,7 +102,7 @@ class SessionService {
     }
 
     decline(token, id) {
-        return axios.put(SESSION_REST_API_URL + '/' + id + '/decline', {
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/decline', {}, {
             headers: {
                 Authorization: "Bearer " + token
             }
