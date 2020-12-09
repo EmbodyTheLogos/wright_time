@@ -11,7 +11,7 @@ class UserProfileComponent extends React.Component {
         jwtToken: "",
         user: "",
         hours: 0,
-        certificates: ""
+        certifications: []
     }
 
     constructor(props) {
@@ -27,7 +27,7 @@ class UserProfileComponent extends React.Component {
                 this.setState({hours: res.data})
             })
             CertificationService.getByUser(this.state.jwtToken, this.state.user.id).then((res) => {
-                this.setState({certificates: res.data})
+                this.setState({certifications: res.data})
             })
         })
     }
@@ -49,7 +49,12 @@ class UserProfileComponent extends React.Component {
                 <br/>
                 <h5>{this.state.hours} total flight hours</h5>
                 <br/>
-                <h5>{JSON.stringify(this.state.certificates)}</h5>
+                <h5>Aircraft You Are Certified to Fly: </h5>
+                {
+                    this.state.certifications.map(cert =>
+                        <h5>{cert.aircraft.manufacturer + ' ' + cert.aircraft.name + ' ' + cert.aircraft.model}</h5>
+                    )
+                }
 
             </div>
         )
