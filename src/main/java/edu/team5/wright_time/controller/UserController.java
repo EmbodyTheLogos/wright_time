@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -107,6 +108,7 @@ public class UserController {
             throw new NoSuchElementException("Invaild role: " + user.getRole());
         }
         var total = 0;
+        sessions = sessions.stream().filter(session -> session.getState() != Session.State.DECLINED && session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
         for (Session session : sessions) {
             total += session.getAircraft().getTrainingDuration();
         }
@@ -126,6 +128,7 @@ public class UserController {
             throw new NoSuchElementException("Invaild role: " + user.getRole());
         }
         var total = 0;
+        sessions = sessions.stream().filter(session -> session.getState() != Session.State.DECLINED && session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
         for (Session session : sessions) {
             total += session.getAircraft().getTrainingDuration();
         }
