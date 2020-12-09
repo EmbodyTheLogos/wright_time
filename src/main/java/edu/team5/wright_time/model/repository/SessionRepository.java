@@ -17,5 +17,4 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<Session> findSessionByStudentAndDateBetween(User student, LocalDate begin, LocalDate end);
     List<Session> findSessionByInstructorAndDateBetween(User student, LocalDate begin, LocalDate end);
     List<Session> findSessionByAircraft(Aircraft aircraft);
-
 }

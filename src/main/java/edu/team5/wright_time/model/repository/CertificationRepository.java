@@ -11,4 +11,5 @@ public interface CertificationRepository extends CrudRepository <Certification, 
 
     List<Certification> findCertificationByAircraft(Aircraft aircraft);
     List<Certification> findCertificationByUser(User user);
+    boolean existsByUserAndAircraft(User user, Aircraft aircraft);
 }

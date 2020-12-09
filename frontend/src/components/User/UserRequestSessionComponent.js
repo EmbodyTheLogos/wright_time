@@ -97,11 +97,12 @@ class UserRequestSessionComponent extends React.Component {
         SessionService.post(this.state.jwtToken, session).then(res => {
             this.props.history.push('/pending')
         }).catch(res => {
-            console.log('error: ' + res)
             if(res.response) {
                 if(res.response.status === 409) {
                     this.setState({errorMessage: 'Conflict detected with another session.'})
                     console.log(res.response.data.conflict)
+                } else if(res.response.status === 417) {
+                    this.setState({errorMessage: 'Instructor not certified to pilot aircraft.'})
                 } else {
                     this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
                 }

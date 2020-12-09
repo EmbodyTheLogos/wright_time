@@ -1,8 +1,10 @@
 package edu.team5.wright_time.controller;
 
 import edu.team5.wright_time.controller.advice.ConflictException;
+import edu.team5.wright_time.controller.advice.NotCertifiedException;
 import edu.team5.wright_time.controller.requests.CompleteSessionRequest;
 import edu.team5.wright_time.model.entity.Session;
+import edu.team5.wright_time.model.repository.CertificationRepository;
 import edu.team5.wright_time.model.repository.SessionRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,13 @@ import java.util.stream.Collectors;
 public class SessionController {
     private final UserRepository userRepository;
     private final SessionRepository sessionRepository;
+    private final CertificationRepository certificationRepository;
 
     @Autowired
-    public SessionController(UserRepository userRepository, SessionRepository sessionRepository) {
+    public SessionController(UserRepository userRepository, SessionRepository sessionRepository, CertificationRepository certificationRepository) {
         this.userRepository = userRepository;
         this.sessionRepository = sessionRepository;
+        this.certificationRepository = certificationRepository;
     }
 
     @GetMapping
@@ -141,7 +145,11 @@ public class SessionController {
         }
     }
 
-    public void checkForConflicts(Session session) throws ConflictException {
+    public void checkForConflicts(Session session) throws ConflictException, NotCertifiedException {
+        if(!certificationRepository.existsByUserAndAircraft(session.getInstructor(), session.getAircraft())) {
+            throw new NotCertifiedException("Instructor Not Certified to Pilot Aircraft", session.getInstructor(), session.getAircraft());
+        }
+
         List<Session> allSessions = (List<Session>) sessionRepository.findAll();
         ArrayList<Session> conflictSessions = new ArrayList<>();
         int sessionEndTime = session.getStartTime() + session.getAircraft().getTrainingDuration();
@@ -175,14 +183,14 @@ public class SessionController {
 
     @PostMapping
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
-    public Session addSession(@RequestBody @Valid Session session) throws ConflictException {
+    public Session addSession(@RequestBody @Valid Session session) throws ConflictException, NotCertifiedException {
         checkForConflicts(session);
         return sessionRepository.save(session);
     }
 
     @PutMapping("/{id}")
     @Secured({"ROLE_ADMIN", "ROLE_INSTRUCTOR"})
-    public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws ConflictException, NoSuchElementException {
+    public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws ConflictException, NoSuchElementException, NotCertifiedException {
         session.setId(id);
         checkForConflicts(session);
         return sessionRepository.findById(id).map(toUpdate -> {
