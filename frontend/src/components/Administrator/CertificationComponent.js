@@ -33,9 +33,9 @@ class CertificationComponent extends React.Component {
                     <table className="table table-bordered table-hover">
                         <thead className="thead-dark">
                         <tr>
-                            <th scope={"col"}> Certification ID</th>
-                            <th scope={"col"}> User ID</th>
-                            <th scope={"col"}> Aircraft ID</th>
+                            <th scope={"col"}d> Certification ID</th>
+                            <th scope={"col"}> User</th>
+                            <th scope={"col"}> Aircraft</th>
                             <th scope={"col"}> Date Obtained</th>
                             <th scope={"col"}> </th>
                             <th scope={"col"}> </th>
@@ -47,8 +47,8 @@ class CertificationComponent extends React.Component {
                                 cert =>
                                     <tr key = {cert.id}>
                                         <th scope={"row"}> {cert.id}</th>
-                                        <td> {cert.user.id}</td>
-                                        <td> {cert.aircraft.id}</td>
+                                        <td> {cert.user.firstName + ' ' + cert.user.lastName}</td>
+                                        <td> {cert.aircraft.manufacturer + " " + cert.aircraft.model + " " + cert.aircraft.name}</td>
                                         <td> {cert.dateObtained}</td>
                                         <td>
                                             <Link to={"/admin/certifications/edit/" + cert.id}
