@@ -71,7 +71,7 @@ public class SessionController {
             return sessionRepository.findSessionByInstructor(user)
                     .stream().filter(session -> session.getState() != Session.State.DECLINED && session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
         } else {
-            throw new NoSuchElementException("Internal Error: bad role. ");
+            throw new NoSuchElementException("Internal Error: bad role: " + user.getRole());
         }
     }
 
