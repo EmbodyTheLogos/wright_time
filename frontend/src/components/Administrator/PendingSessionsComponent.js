@@ -51,7 +51,7 @@ class PendingSessionsComponent extends React.Component {
                             {role === "ROLE_ADMIN" && <th scope={"col"}> Student</th>}
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
-                            {role === "ROLE_ADMIN" && <th scope={"col"}/>}
+                            <th scope={"col"}/>
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
                         </tr>
                         </thead>
@@ -107,6 +107,17 @@ class PendingSessionsComponent extends React.Component {
                                         <td> {session.instructor.firstName + ' ' + session.instructor.lastName}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
+                                        <td>
+                                            <Button variant={"danger"}
+                                                    onClick={() => {
+                                                        SessionService.cancel(this.state.jwtToken, session.id).then(res => {
+                                                            // this.setState({})
+                                                            window.location.reload(false);
+                                                        })
+                                                    }}>
+                                                Cancel
+                                            </Button>
+                                        </td>
                                     </tr>
                             )
                         }
