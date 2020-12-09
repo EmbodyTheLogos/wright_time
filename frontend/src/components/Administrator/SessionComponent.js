@@ -54,10 +54,10 @@ class SessionComponent extends React.Component {
                             <th scope={"col"}> Student</th>
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
-                            <th scope={"col"}> Score</th>
-                            <th scope={"col"}> Comments</th>
-                            <th scope={"col"}> State</th>
-                            {role === "ROLE_ADMIN" &&<th scope={"col"}/>}
+                            {role === "ROLE_ADMIN" && <th scope={"col"}> Score</th>}
+                            {role === "ROLE_ADMIN" && <th scope={"col"}> Comments</th>}
+                            {role === "ROLE_ADMIN" && <th scope={"col"}> State</th>}
+                            <th scope={"col"}/>
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
                         </tr>
                         </thead>
@@ -72,12 +72,12 @@ class SessionComponent extends React.Component {
                                         <td> {session.student.firstName + ' ' + session.student.lastName}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
-                                        <td> {session.score}</td>
-                                        <td> {session.comments}</td>
-                                        <td> {session.state}</td>
+                                        {role === "ROLE_ADMIN" && <td> {session.score}</td>}
+                                        {role === "ROLE_ADMIN" && <td> {session.comments}</td>}
+                                        {role === "ROLE_ADMIN" && <td> {session.state}</td>}
                                         {this.state.user.role === "ROLE_ADMIN" &&
                                         <td>
-                                            <Link to={"/admin/sessions/edit/" + session.id}
+                                            <Link to={"/sessions/edit/" + session.id}
                                                   className={"btn btn-warning btn-block"}>Edit Session</Link>
                                         </td>}
                                         {this.state.user.role === "ROLE_ADMIN" &&
@@ -89,6 +89,11 @@ class SessionComponent extends React.Component {
                                                     }}>
                                                 Delete
                                             </Button>
+                                        </td>}
+                                        {this.state.user.role === "ROLE_INSTRUCTOR" &&
+                                        <td>
+                                            <Link to={"/sessions/review/" + session.id}
+                                                  className={"btn btn-warning btn-block"}>Add Score and Comment</Link>
                                         </td>}
                                     </tr>
                             )

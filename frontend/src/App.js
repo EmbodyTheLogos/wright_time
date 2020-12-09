@@ -17,6 +17,7 @@ import UserHomeComponent from "./components/User/UserHomeComponent";
 import UserProfileComponent from "./components/User/UserProfileComponent";
 import UserRequestSessionComponent from "./components/User/UserRequestSessionComponent";
 import SessionDetailsComponent from "./components/User/SessionDetailsComponent";
+import InstructorReviewComponent from "./components/User/InstructorReviewComponent"
 
 function App() {
     return (
@@ -39,7 +40,7 @@ function App() {
 
                         <Route path={"/sessions"} exact component={SessionComponent}/>
                         <Route path={"/sessions/add"} exact component={AddSessionComponent}/>
-                        <Route path={"/admin/sessions/edit/:id"} exact component={AddSessionComponent}/>
+                        <Route path={"/sessions/edit/:id"} exact component={AddSessionComponent}/>
                         <Route path={"/pending"} exact component={PendingSessionsComponent}/>
 
                         <Route path={"/admin/certifications"} exact component={CertificationComponent}/>
@@ -51,6 +52,8 @@ function App() {
 
                         <Route path={"/user/profile"} exact component={UserProfileComponent}/>
                         <Route path={"/user/session/details/:id"} exact component={SessionDetailsComponent}/>
+
+                        <Route path={"/sessions/review/:id"} exact component={InstructorReviewComponent}/>
 
                     </Switch>
                 </BrowserRouter>
