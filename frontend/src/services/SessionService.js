@@ -52,7 +52,7 @@ class SessionService {
     }
 
     getPositiveByUser(token, id) {
-        return axios.get(SESSION_REST_API_URL + 'positive/user/' + id, {
+        return axios.get(SESSION_REST_API_URL + '/positive/user/' + id, {
             headers: {
                 Authorization: "Bearer " + token
             }
