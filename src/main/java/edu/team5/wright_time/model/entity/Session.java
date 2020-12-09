@@ -32,8 +32,8 @@ public class Session {
     @JoinColumn(name="aircraft_id")
     private Aircraft aircraft;
 
-    @Min(value=6,message="Start time must be between 9 and 17")
-    @Max(value=18,message="Start time must be between 9 and 17")
+    @Min(value=9,message="Start time must be between 9 and 17")
+    @Max(value=17,message="Start time must be between 9 and 17")
     private int startTime;
 
     private LocalDate date;
