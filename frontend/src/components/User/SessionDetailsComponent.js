@@ -17,7 +17,10 @@ class SessionDetailsComponent extends React.Component {
         startTime: "",
         score: "",
         comments: "",
-        state: ""
+        state: "",
+        aircraft: "",
+        instructor: "",
+        student: ""
     }
 
     constructor(props) {
@@ -47,6 +50,9 @@ class SessionDetailsComponent extends React.Component {
                 comments: res.data.comments,
                 state: res.data.state,
                 date: new Date(year, month, day),
+                aircraft: res.data.aircraft,
+                instructor: res.data.instructor,
+                student: res.data.student
             });
         })
     }
