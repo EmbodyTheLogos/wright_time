@@ -84,7 +84,7 @@ class LoginComponent extends React.Component {
                     <Form.Label column sm={4}>Password:</Form.Label>
                     <Col sm={8}>
                         <Form.Control type={"password"} placeholder={"password"}
-                                      value={this.state.startTime} onChange={this.changeHandler}
+                                      defaultValue={this.state.password} onChange={this.changeHandler}
                                       name={"Password"}/>
                     </Col>
                 </Form.Group>
