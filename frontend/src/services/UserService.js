@@ -74,6 +74,14 @@ class UserService {
             }
         });
     }
+
+    getTotalHours(token, id) {
+        return axios.get(USER_REST_API_URL + '/' + id + '/total_hours', {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        });
+    }
 }
 
 export default new UserService();
