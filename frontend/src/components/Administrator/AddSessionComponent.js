@@ -109,12 +109,8 @@ class AddSessionComponent extends React.Component {
             SessionService.post(this.state.jwtToken, session).then(res => {
                 this.props.history.push('/sessions')
             }).catch(res => {
-                if(res.response) {
-                    this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
-                } else {
-                    this.setState({errorMessage: res.message});
-                }
-            })
+                this.setState({errorMessage: res.message});
+            });
         } else {
             SessionService.put(this.state.jwtToken, this.state.id, session).then(res => {
                 this.props.history.push('/sessions')
