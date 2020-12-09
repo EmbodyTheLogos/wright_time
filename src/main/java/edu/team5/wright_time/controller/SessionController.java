@@ -157,13 +157,13 @@ public class SessionController {
 
         //check if student, instructor, and aircraft in 'session' are in conflict with other sessions.
         for (Session eachSession : conflictSessions) {
-            if ((eachSession.getStudent().equals(session.getStudent()))) {
+            if ((eachSession.getStudent().getId() == session.getStudent().getId())) {
                 throw new NoSuchElementException("Student is in conflict with other sessions");
             }
-            if ((eachSession.getInstructor().equals(session.getInstructor()))) {
+            else if ((eachSession.getInstructor().getId() == session.getInstructor().getId())) {
                 throw new NoSuchElementException("Instructor is in conflict with other sessions");
             }
-            if ((eachSession.getAircraft().equals(session.getAircraft()))) {
+            else if ((eachSession.getAircraft().equals(session.getAircraft()))) {
                 throw new NoSuchElementException("Aircraft is in conflict with other sessions");
             }
         }
