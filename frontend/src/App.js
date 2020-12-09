@@ -17,7 +17,6 @@ import UserRequestSessionComponent from "./components/User/UserRequestSessionCom
 import SessionDetailsComponent from "./components/User/SessionDetailsComponent";
 import InstructorReviewComponent from "./components/User/InstructorReviewComponent"
 import LoginComponent from "./components/LoginComponent";
-import ChangePasswordComponent from "./components/ChangePasswordComponent";
 
 function App() {
     return (
@@ -26,7 +25,6 @@ function App() {
                 <BrowserRouter>
                     <Switch>
                         <Route path={"/"} exact component={LoginComponent}/>
-                        <Route path={"/change_password"} exact component={ChangePasswordComponent}/>
 
                         <Route path={"/aircraft"} exact component={AircraftComponent}/>
 

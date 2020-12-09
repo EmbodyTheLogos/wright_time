@@ -21,7 +21,7 @@ var content = {
     paddingTop: '20px',
     paddingRight: '30px',
     paddingLeft: '30px',
-    paddingBottom: '0px'
+    paddingBottom: '-1px'
 }
 
 

@@ -4,6 +4,22 @@ import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
 import React from "react";
 import Center from 'react-center';
 import AuthService from "../services/AuthService";
+import BGImage from "../Images/cloudy_sky.jpg"
+
+var bg = {
+    backgroundImage: `url(${BGImage})`,
+    display: 'flex',
+    height: '100vh'
+}
+
+var content = {
+    backgroundColor: 'white',
+    margin: '10px auto',
+    paddingTop: '20px',
+    paddingRight: '30px',
+    paddingLeft: '30px',
+    paddingBottom: '-1px'
+}
 
 class LoginComponent extends React.Component {
     state = {
@@ -68,8 +84,8 @@ class LoginComponent extends React.Component {
 
     render() {
         return (
-            <div>
-                <Container>
+            <div style={bg}>
+                <Container style={content}>
                     {this.state.errorMessage &&
                     <Alert variant="danger">
                         <Alert.Heading>Input Error</Alert.Heading>

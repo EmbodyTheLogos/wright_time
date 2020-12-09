@@ -9,6 +9,22 @@ import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 import UserNavbar from "../Navbars/UserNavbar";
 import AuthService from "../../services/AuthService";
+import BGImage from "../../Images/cloudy_sky.jpg"
+
+var bg = {
+    backgroundImage: `url(${BGImage})`,
+    display: 'flex',
+    height: '100vh'
+}
+
+var content = {
+    backgroundColor: 'white',
+    margin: '10px auto',
+    paddingTop: '20px',
+    paddingRight: '30px',
+    paddingLeft: '30px',
+    paddingBottom: '-1px'
+}
 
 class InstructorReviewComponent extends React.Component {
     state = {
@@ -75,9 +91,12 @@ class InstructorReviewComponent extends React.Component {
         return (
             <div>
                 {role === "ROLE_ADMIN" ? <AdministratorNavbar/> : <UserNavbar/>}
-                <br/>
+                <div style={bg}>
 
-                <Container>
+                <Container style={content}>
+                    <h3>Performance Review Form</h3>
+                    <br/>
+
                     {this.state.errorMessage &&
                     <Alert variant="danger">
                         <Alert.Heading>Input Error</Alert.Heading>
@@ -113,6 +132,7 @@ class InstructorReviewComponent extends React.Component {
                         </Form>
                     </Center>
                 </Container>
+                </div>
 
             </div>
 
