@@ -2,7 +2,7 @@ import {withCookies} from "react-cookie";
 import {withRouter} from "react-router-dom";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import React from "react";
-import AuthService from "../../services/AuthService";
+import AuthService from "../services/AuthService";
 
 class LoginComponent extends React.Component {
     state = {
