@@ -39,7 +39,8 @@ class UserNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color: "white"}}>Home</NavLink>
                         <NavLink to="/aircraft" style={{marginRight: '15px', color: "grey"}}
                                  activeStyle={{marginRight: '15px', color: "white"}}>Aircraft Table</NavLink>
-                        {role === "ROLE_STUDENT" && <NavLink to="/user/request-session" style={{marginRight: '15px', color: "grey"}}
+                        {role === "ROLE_STUDENT" &&
+                        <NavLink to="/user/request-session" style={{marginRight: '15px', color: "grey"}}
                                  activeStyle={{marginRight: '15px', color: "white"}}>Request Session</NavLink>
                         }
                         {role === "ROLE_STUDENT" && <NavLink to="/pending" style={{marginRight: '15px', color: "grey"}}
@@ -57,7 +58,12 @@ class UserNavbar extends React.Component {
                     {/*    /!*<NavLink to="/" style={{marginRight: '15px', color: "CadetBlue"}}>Logout</NavLink>*!/*/}
                     {/*</Nav>*/}
                     <Nav>
-                        <Button variant="outline-light" onClick={this.logout}>Logout</Button>
+                        <p className="text-center mt-2 mb-2 mr-2" style={{color: "white"}}>Logged in
+                            as: {this.state.user.firstName + " " + this.state.user.lastName}</p>
+                    </Nav>
+                    <Nav><p/></Nav>
+                    <Nav>
+                        <Button variant="outline-danger" onClick={this.logout}>Logout</Button>
                     </Nav>
                 </Navbar>
             </div>
