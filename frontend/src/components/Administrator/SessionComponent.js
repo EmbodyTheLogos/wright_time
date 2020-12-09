@@ -72,8 +72,8 @@ class SessionComponent extends React.Component {
                                         <td> {session.student.firstName + ' ' + session.student.lastName}</td>
                                         <td> {session.date}</td>
                                         <td> {session.startTime}</td>
-                                        {role === "ROLE_ADMIN" && <td> {session.score}</td>}
-                                        {role === "ROLE_ADMIN" && <td> {session.comments}</td>}
+                                        {role === "ROLE_ADMIN" && <td> {session.state === "COMPLETE" ? session.score : 'N/A'} </td>}
+                                        {role === "ROLE_ADMIN" && <td> {session.state === "COMPLETE" ? session.comments : 'N/A'}</td>}
                                         {role === "ROLE_ADMIN" && <td> {session.state}</td>}
                                         {this.state.user.role === "ROLE_ADMIN" &&
                                         <td>
