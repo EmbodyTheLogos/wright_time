@@ -44,7 +44,7 @@ class CertificationService {
     }
 
     getByUser(token, id) {
-        return axios.get(CERTIFICATION_REST_API_URL + 'user/' + id, {
+        return axios.get(CERTIFICATION_REST_API_URL + '/user/' + id, {
             headers: {
                 Authorization: "Bearer " + token
             }

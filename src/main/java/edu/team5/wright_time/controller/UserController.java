@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
@@ -40,68 +41,71 @@ public class UserController {
     }
 
     @GetMapping
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
-    public Iterable<User> getUser(){
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public Iterable<User> getUser() {
         return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public User getOneUser(@PathVariable long id) throws NoSuchElementException {
         return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
     }
 
     @GetMapping("/instructors/certified/{id}")
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
-    public Iterable<User> getCertifiedInstructors(@PathVariable long id) throws NoSuchElementException
-    {
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public Iterable<User> getCertifiedInstructors(@PathVariable long id) throws NoSuchElementException {
         Aircraft aircraft = aircraftRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No aircraft with id: " + id));
         Iterable<Certification> certifications = certificationRepository.findCertificationByAircraft(aircraft);
         ArrayList<Long> instructorID = new ArrayList<>();
-        for(Certification certification : certifications)
-        {
-            if (certification.getUser().getRole().equals("ROLE_INSTRUCTOR"))
-            {
+        for (Certification certification : certifications) {
+            if (certification.getUser().getRole().equals("ROLE_INSTRUCTOR")) {
                 instructorID.add(certification.getUser().getId());
             }
         }
-        if(instructorID.isEmpty())
-        {
-            throw new NoSuchElementException("No instructor is certified for aircraft with id "+id);
+        if (instructorID.isEmpty()) {
+            throw new NoSuchElementException("No instructor is certified for aircraft with id " + id);
         }
 
         Iterable<Long> certifiedInstructorsID = instructorID;
         return userRepository.findAllById(certifiedInstructorsID);
     }
+
     @GetMapping("/administrators")
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
-    public Iterable<User> getAllAdministrators()
-    {
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public Iterable<User> getAllAdministrators() {
         return userRepository.findUsersByRole("ROLE_ADMIN");
     }
+
     @GetMapping("/instructors")
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
-    public Iterable<User> getAllInstructors()
-    {
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public Iterable<User> getAllInstructors() {
         return userRepository.findUsersByRole("ROLE_INSTRUCTOR");
     }
+
     @GetMapping("/students")
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
-    public Iterable<User> getAllStudents()
-    {
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public Iterable<User> getAllStudents() {
         return userRepository.findUsersByRole("ROLE_STUDENT");
     }
 
     @GetMapping("/{id}/hours")
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public int getHours(@PathVariable long id) throws NoSuchElementException {
         final var locale = Locale.US;
         final var firstDayOfWeek = WeekFields.of(locale).getFirstDayOfWeek();
         final var lastDayOfWeek = DayOfWeek.of(((firstDayOfWeek.getValue() + 5) % DayOfWeek.values().length) + 1);
         final var begin = LocalDate.now(/* tz */).with(TemporalAdjusters.previousOrSame(firstDayOfWeek));
         final var end = LocalDate.now(/* tz */).with(TemporalAdjusters.nextOrSame(lastDayOfWeek));
-        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
-        final var sessions = sessionRepository.findSessionByStudentAndDateBetween(student, begin, end);
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
+        List<Session> sessions = null;
+        if(user.getRole().equals("ROLE_INSTRUCTOR")) {
+            sessions = sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end);
+        } else if(user.getRole().equals("ROLE_STUDENT")) {
+            sessions = sessionRepository.findSessionByStudentAndDateBetween(user, begin, end);
+        } else {
+            throw new NoSuchElementException("Invaild role: " + user.getRole());
+        }
         var total = 0;
         for (Session session : sessions) {
             total += session.getAircraft().getTrainingDuration();
@@ -110,10 +114,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}/total_hours")
-    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public int getTotalHours(@PathVariable long id) throws NoSuchElementException {
-        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
-        final var sessions = sessionRepository.findSessionByStudent(student);
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
+        List<Session> sessions = null;
+        if(user.getRole().equals("ROLE_INSTRUCTOR")) {
+            sessions = sessionRepository.findSessionByInstructor(user);
+        } else if(user.getRole().equals("ROLE_STUDENT")) {
+            sessions = sessionRepository.findSessionByStudent(user);
+        } else {
+            throw new NoSuchElementException("Invaild role: " + user.getRole());
+        }
         var total = 0;
         for (Session session : sessions) {
             total += session.getAircraft().getTrainingDuration();
