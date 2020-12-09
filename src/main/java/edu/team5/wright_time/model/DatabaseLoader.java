@@ -75,6 +75,7 @@ public class DatabaseLoader implements CommandLineRunner {
         sessionRepository.save(session5);
         sessionRepository.save(session6);
         sessionRepository.save(session7);
+        sessionRepository.save(session8);
 
     }
 }
