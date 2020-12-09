@@ -39,7 +39,7 @@ public class User {
     private String lastName;
 
     @NotEmpty(message="User role cannot be empty")
-    @Size(min=0,max=255,message="User role cannot exceed 255 characters") //TODO: restrict to ROLE_ADMIN, ROLE_STUDENT, ROLE_INSTRUCTOR
+    @Size(min=0,max=255,message="User role cannot exceed 255 characters")
     private String role;
 
     @PastOrPresent(message="Must enter a valid date of birth")

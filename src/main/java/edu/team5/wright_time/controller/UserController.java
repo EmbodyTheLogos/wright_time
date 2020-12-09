@@ -1,5 +1,6 @@
 package edu.team5.wright_time.controller;
 
+import edu.team5.wright_time.controller.requests.AddUserRequest;
 import edu.team5.wright_time.model.entity.Aircraft;
 import edu.team5.wright_time.model.entity.Certification;
 import edu.team5.wright_time.model.entity.Session;
@@ -37,7 +38,6 @@ public class UserController {
         this.sessionRepository = sessionRepository;
         this.certificationRepository = certificationRepository;
         this.aircraftRepository = aircraftRepository;
-
     }
 
     @GetMapping
@@ -134,8 +134,14 @@ public class UserController {
 
     @PostMapping
     @Secured("ROLE_ADMIN")
-    public User addUser(@RequestBody @Valid User user) {
-        user.setPassword(user.getFirstName().charAt(0) + user.getLastName().substring(1));
+    public User addUser(@RequestBody @Valid AddUserRequest userRequest) {
+        final var user = new User();
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(userRequest.getPassword());
+        user.setFirstName(userRequest.getFirstName());
+        user.setLastName(userRequest.getLastName());
+        user.setDateOfBirth(userRequest.getDateOfBirth());
+        user.setRole(userRequest.getRole());
         return userRepository.save(user);
     }
 
