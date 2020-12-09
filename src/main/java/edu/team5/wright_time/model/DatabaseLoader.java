@@ -48,8 +48,9 @@ public class DatabaseLoader implements CommandLineRunner {
         var session3 = new Session(user3, user2, aircraft2, 10, LocalDate.of(2020, 12, 25), Session.State.PENDING, "", 0);
         var session4 = new Session(user3, user2, aircraft3, 9, LocalDate.of(2020, 12, 4), Session.State.COMPLETE, "Good work", 5);
         var session5 = new Session(user3, user2, aircraft4, 17, LocalDate.of(2020, 12, 31), Session.State.CANCELLED, "", 0);
-        var session6 = new Session(user3, user2, aircraft1, 15, LocalDate.of(2020,2,28), Session.State.DECLINED, "", 0);
+        var session6 = new Session(user3, user2, aircraft1, 15, LocalDate.of(2020,12,28), Session.State.DECLINED, "", 0);
         var session7 = new Session(user3, user2, aircraft3, 11, LocalDate.of(2020, 12, 10), Session.State.APPROVED,"",0);
+        var session8 = new Session(user3, user2, aircraft3, 11, LocalDate.of(2020, 12, 2), Session.State.APPROVED,"",0);
         aircraftRepository.save(aircraft1);
         aircraftRepository.save(aircraft2);
         aircraftRepository.save(aircraft3);
