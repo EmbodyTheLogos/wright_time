@@ -1,15 +1,14 @@
 package edu.team5.wright_time.controller;
 
 import edu.team5.wright_time.controller.requests.ApiResponse;
+import edu.team5.wright_time.controller.requests.ChangePasswordRequest;
 import edu.team5.wright_time.controller.requests.JwtAuthenticationResponse;
 import edu.team5.wright_time.controller.requests.LoginRequest;
-import edu.team5.wright_time.controller.requests.SignupRequest;
 import edu.team5.wright_time.model.entity.User;
 import edu.team5.wright_time.model.repository.UserRepository;
 import edu.team5.wright_time.security.JwtTokenProvider;
 import edu.team5.wright_time.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -64,19 +63,14 @@ public class AuthController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
-                    HttpStatus.BAD_REQUEST);
-        }
+    @PostMapping("/change_password/{id}")
+    public ResponseEntity<?> changePassword(@PathVariable long id, @RequestBody ChangePasswordRequest changePasswordRequest) {
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+        user.setPassword(changePasswordRequest.getPassword());
 
-        // Creating user's account
-        var user = new User(signUpRequest.getEmail(), signUpRequest.getPassword(), signUpRequest.getFirstName(), signUpRequest.getLastName(), "ROLE_STUDENT", LocalDate.now());
-        var result = userRepository.save(user);
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(result.getEmail()).toUri();
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+                .fromCurrentContextPath().path("/api/users/{id}")
+                .buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(location).body(new ApiResponse(true, "User password changed successfully"));
     }
 }

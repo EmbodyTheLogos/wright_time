@@ -124,6 +124,7 @@ public class UserController {
     @PostMapping
     @Secured("ROLE_ADMIN")
     public User addUser(@RequestBody @Valid User user) {
+        user.setPassword(user.getFirstName().charAt(0) + user.getLastName().substring(1));
         return userRepository.save(user);
     }
 
