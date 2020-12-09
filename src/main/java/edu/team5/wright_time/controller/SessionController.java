@@ -211,6 +211,15 @@ public class SessionController {
         }).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
     }
 
+    @PutMapping("/{id}/cancel")
+    @Secured("ROLE_ADMIN")
+    public Session cancel(@PathVariable long id) throws NoSuchElementException {
+        return sessionRepository.findById(id).map(toUpdate -> {
+            toUpdate.setState(Session.State.CANCELLED);
+            return sessionRepository.save(toUpdate);
+        }).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
+    }
+
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
     public void deleteSession(@PathVariable long id) {

@@ -116,6 +116,14 @@ class SessionService {
             }
         })
     }
+
+    cancel(token, id) {
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/cancel', {}, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
 }
 
 export default new SessionService();
