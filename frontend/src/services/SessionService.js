@@ -51,6 +51,14 @@ class SessionService {
         })
     }
 
+    getPositiveByUser(token, id) {
+        return axios.get(SESSION_REST_API_URL + 'positive/user/' + id, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
+
     getPendingByUser(token, id) {
         return axios.get(SESSION_REST_API_URL + '/user/pending/' + id, {
             headers: {

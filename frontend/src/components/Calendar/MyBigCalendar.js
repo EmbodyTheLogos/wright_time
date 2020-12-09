@@ -42,7 +42,7 @@ class MyBigCalendar extends React.Component {
         AuthService.user(this.state.jwtToken).then(res => {
             this.setState({user: res.data})
             if (this.state.user.role === "ROLE_STUDENT") {
-                SessionService.getByUser(this.state.jwtToken, res.data.id).then(sessionRes => {
+                SessionService.getPositiveByUser(this.state.jwtToken, res.data.id).then(sessionRes => {
                     // console.log(sessionRes)
                     let events = []
                     for (let index in sessionRes.data) {

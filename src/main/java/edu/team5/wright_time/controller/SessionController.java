@@ -54,6 +54,21 @@ public class SessionController {
         }
     }
 
+    @GetMapping("/positive/user/{id}")
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
+    public Iterable<Session> getPositiveSessionByUser(@PathVariable long id) throws NoSuchElementException {
+        final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
+        if(user.getRole().equals("ROLE_STUDENT")) {
+            return sessionRepository.findSessionByStudent(user)
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED || session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
+        } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
+            return sessionRepository.findSessionByInstructor(user)
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED || session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
+        } else {
+            throw new NoSuchElementException("Internal Error: bad role. ");
+        }
+    }
+
     @GetMapping("user/pending/{id}")
     @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Iterable<Session> getPendingSessionsByUser(@PathVariable long id) throws NoSuchElementException {
@@ -96,10 +111,10 @@ public class SessionController {
         final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
         if(user.getRole().equals("ROLE_STUDENT")) {
             return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end)
-                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED || session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
         } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
             return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end)
-                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED || session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
         } else {
             throw new NoSuchElementException("Internal Error: bad role. ");
         }
@@ -115,10 +130,10 @@ public class SessionController {
         final var user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No user with id: " + id));
         if(user.getRole().equals("ROLE_STUDENT")) {
             return sessionRepository.findSessionByStudentAndDateBetween(user, begin, end)
-                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED || session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
         } else if (user.getRole().equals("ROLE_INSTRUCTOR")) {
             return sessionRepository.findSessionByInstructorAndDateBetween(user, begin, end)
-                    .stream().filter(session -> session.getState() != Session.State.DECLINED).collect(Collectors.toList());
+                    .stream().filter(session -> session.getState() != Session.State.DECLINED || session.getState() != Session.State.CANCELLED).collect(Collectors.toList());
         } else {
             throw new NoSuchElementException("Internal Error: bad role. ");
         }
