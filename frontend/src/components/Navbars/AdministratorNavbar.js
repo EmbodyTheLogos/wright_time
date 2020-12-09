@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink, withRouter} from "react-router-dom";
-import {Nav, Navbar} from 'react-bootstrap'
+import {Button, Nav, Navbar} from 'react-bootstrap'
 import {withCookies} from "react-cookie";
 import AuthService from "../../services/AuthService";
 
@@ -44,8 +44,8 @@ class AdministratorNavbar extends React.Component {
                                  activeStyle={{marginRight: '15px', color: "white"}}>Certifications Table</NavLink>
                     </Nav>
                     <Nav className="ml-auto">
-                        <NavLink to="/" style={{marginRight: '15px', color: "grey"}}
-                                 activeStyle={{marginRight: '15px', color: "white"}}>Logout</NavLink>
+                        {/*<NavLink to="/" style={{marginRight: '15px', color: "Brown"}}>Logout</NavLink>*/}
+                        <Button variant="outline-light">Logout</Button>
                     </Nav>
                 </Navbar>
             </div>
