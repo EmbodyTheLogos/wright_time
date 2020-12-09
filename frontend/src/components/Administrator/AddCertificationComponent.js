@@ -70,7 +70,7 @@ class AddCertificationComponent extends React.Component {
 
     handleDateChange = (date) => {
         this.setState({
-            'date': date
+            dateObtained: date
         })
     }
 

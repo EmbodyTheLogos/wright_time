@@ -95,7 +95,6 @@ class AddSessionComponent extends React.Component {
             instructor:{id:this.state.instructorId},
             student:{id:this.state.studentId},
             startTime: this.state.startTime,
-            endTime: this.state.endTime,
             date: date,
             score: this.state.score,
             comments: this.state.comments,
