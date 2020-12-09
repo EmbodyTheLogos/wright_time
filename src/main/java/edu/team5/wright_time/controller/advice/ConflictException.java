@@ -1,9 +1,13 @@
 package edu.team5.wright_time.controller.advice;
 
+import edu.team5.wright_time.model.entity.Session;
+import lombok.Getter;
+
 public class ConflictException extends Exception {
-    String message;
-    public ConflictException(String message)
-    {
-        this.message = message;
+    @Getter
+    private Session conflict;
+    public ConflictException(String message, Session conflict) {
+        super(message);
+        this.conflict = conflict;
     }
 }

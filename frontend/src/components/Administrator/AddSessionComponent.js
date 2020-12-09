@@ -112,7 +112,8 @@ class AddSessionComponent extends React.Component {
                 console.log(res.response)
                 if(res.response) {
                     if(res.response.status === 409) {
-                        this.setState({errorMessage: 'Conflict detected. '})
+                        this.setState({errorMessage: 'Conflict detected with another session.'})
+                        console.log(res.response.data.conflict)
                     } else {
                         this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
                     }
@@ -125,7 +126,12 @@ class AddSessionComponent extends React.Component {
                 this.props.history.push('/sessions')
             }).catch(res => {
                 if(res.response) {
-                    this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                    if(res.response.status === 409) {
+                        this.setState({errorMessage: 'Conflict detected with another session.'})
+                        console.log(res.response.data.conflict)
+                    } else {
+                        this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                    }
                 } else {
                     this.setState({errorMessage: res.message});
                 }

@@ -1,4 +1,4 @@
-package edu.team5.wright_time.controller.requests;
+package edu.team5.wright_time.controller.responce;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

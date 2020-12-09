@@ -1,9 +1,9 @@
 package edu.team5.wright_time.controller;
 
-import edu.team5.wright_time.controller.requests.ApiResponse;
 import edu.team5.wright_time.controller.requests.ChangePasswordRequest;
-import edu.team5.wright_time.controller.requests.JwtAuthenticationResponse;
 import edu.team5.wright_time.controller.requests.LoginRequest;
+import edu.team5.wright_time.controller.responce.ApiResponse;
+import edu.team5.wright_time.controller.responce.AuthenticationResponse;
 import edu.team5.wright_time.model.entity.User;
 import edu.team5.wright_time.model.repository.UserRepository;
 import edu.team5.wright_time.security.JwtTokenProvider;
@@ -60,7 +60,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
     @PostMapping("/change_password")

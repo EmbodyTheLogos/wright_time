@@ -1,6 +1,7 @@
 package edu.team5.wright_time.controller;
 
 import edu.team5.wright_time.controller.advice.ConflictException;
+import edu.team5.wright_time.controller.requests.CompleteSessionRequest;
 import edu.team5.wright_time.model.entity.Session;
 import edu.team5.wright_time.model.repository.SessionRepository;
 import edu.team5.wright_time.model.repository.UserRepository;
@@ -158,14 +159,16 @@ public class SessionController {
 
         //check if student, instructor, and aircraft in 'session' are in conflict with other sessions.
         for (Session eachSession : conflictSessions) {
-            if ((eachSession.getStudent().getId() == session.getStudent().getId())) {
-                throw new ConflictException("Student is in conflict with other sessions");
-            }
-            else if ((eachSession.getInstructor().getId() == session.getInstructor().getId())) {
-                throw new ConflictException("Instructor is in conflict with other sessions");
-            }
-            else if ((eachSession.getAircraft().equals(session.getAircraft()))) {
-                throw new ConflictException("Aircraft is in conflict with other sessions");
+            if(session.getId() != eachSession.getId()) {
+                if ((eachSession.getStudent().getId() == session.getStudent().getId())) {
+                    throw new ConflictException("Student is in conflict with other sessions", eachSession);
+                }
+                else if ((eachSession.getInstructor().getId() == session.getInstructor().getId())) {
+                    throw new ConflictException("Instructor is in conflict with other sessions", eachSession);
+                }
+                else if ((eachSession.getAircraft().equals(session.getAircraft()))) {
+                    throw new ConflictException("Aircraft is in conflict with other sessions", eachSession);
+                }
             }
         }
     }
@@ -180,6 +183,7 @@ public class SessionController {
     @PutMapping("/{id}")
     @Secured({"ROLE_ADMIN", "ROLE_INSTRUCTOR"})
     public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws ConflictException, NoSuchElementException {
+        session.setId(id);
         checkForConflicts(session);
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setAircraft(session.getAircraft());
@@ -217,6 +221,16 @@ public class SessionController {
     public Session cancel(@PathVariable long id) throws NoSuchElementException {
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setState(Session.State.CANCELLED);
+            return sessionRepository.save(toUpdate);
+        }).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
+    }
+
+    @PutMapping("/{id}/complete")
+    public Session completeSession(@PathVariable long id, @RequestBody CompleteSessionRequest request) {
+        return sessionRepository.findById(id).map(toUpdate -> {
+            toUpdate.setState(Session.State.COMPLETE);
+            toUpdate.setComments(request.getComments());
+            toUpdate.setScore(request.getScore());
             return sessionRepository.save(toUpdate);
         }).orElseThrow(() -> new NoSuchElementException("No session with id: " + id));
     }

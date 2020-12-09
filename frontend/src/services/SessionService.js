@@ -124,6 +124,14 @@ class SessionService {
             }
         })
     }
+
+    complete(token, id, data) {
+        return axios.put(SESSION_REST_API_URL + '/' + id + '/complete', data, {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+    }
 }
 
 export default new SessionService();

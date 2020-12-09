@@ -99,7 +99,12 @@ class UserRequestSessionComponent extends React.Component {
         }).catch(res => {
             console.log('error: ' + res)
             if(res.response) {
-                this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                if(res.response.status === 409) {
+                    this.setState({errorMessage: 'Conflict detected with another session.'})
+                    console.log(res.response.data.conflict)
+                } else {
+                    this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                }
             } else {
                 this.setState({errorMessage: res.message});
             }
