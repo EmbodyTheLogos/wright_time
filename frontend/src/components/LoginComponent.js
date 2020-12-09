@@ -1,6 +1,6 @@
 import {withCookies} from "react-cookie";
 import {Link, withRouter} from "react-router-dom";
-import {Button, Col, Form, Row} from "react-bootstrap";
+import {Alert, Button, Col, Form, Row} from "react-bootstrap";
 import React from "react";
 import AuthService from "../services/AuthService";
 
@@ -29,9 +29,13 @@ class LoginComponent extends React.Component {
                 }
             })
         }).catch(res => {
-            //TODO: error checking for invalid login.
             if(res.response) {
-                this.setState({errorMessage: res.response.data.errors[0].defaultMessage});
+                if(res.response.status === 401) {
+                    this.setState({errorMessage: 'Invalid Email or Password'});
+                } else {
+                    this.setState({errorMessage: "unknown error"})
+                }
+
             } else {
                 this.setState({errorMessage: res.message});
             }
@@ -62,6 +66,11 @@ class LoginComponent extends React.Component {
     render() {
         return (
             <div>
+                {this.state.errorMessage &&
+                <Alert variant="danger">
+                    <Alert.Heading>Input Error</Alert.Heading>
+                    <p>{this.state.errorMessage}</p>
+                </Alert>}
                 <Form.Group as={Row} controlId={"email"}>
                     <Form.Label column sm={4}>Email:</Form.Label>
                     <Col sm={8}>

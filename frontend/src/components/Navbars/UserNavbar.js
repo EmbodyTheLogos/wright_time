@@ -51,11 +51,11 @@ class UserNavbar extends React.Component {
                         <NavLink to={"/user/profile"} style={{marginRight: '15px', color: "grey"}}
                                  activeStyle={{marginRight: '15px', color: "white"}}>Profile</NavLink>
                     </Nav>
-                    <Nav className="ml-auto">
-                        <NavLink to={"/change_password"} style={{marginRight: '15px', color: "grey"}}
-                                   activeStyle={{marginRight: '15px', color: "white"}}>Change Password</NavLink>
-                        {/*<NavLink to="/" style={{marginRight: '15px', color: "CadetBlue"}}>Logout</NavLink>*/}
-                    </Nav>
+                    {/*<Nav className="ml-auto">*/}
+                    {/*    <NavLink to={"/change_password"} style={{marginRight: '15px', color: "grey"}}*/}
+                    {/*               activeStyle={{marginRight: '15px', color: "white"}}>Change Password</NavLink>*/}
+                    {/*    /!*<NavLink to="/" style={{marginRight: '15px', color: "CadetBlue"}}>Logout</NavLink>*!/*/}
+                    {/*</Nav>*/}
                     <Nav>
                         <Button variant="outline-light" onClick={this.logout}>Logout</Button>
                     </Nav>
