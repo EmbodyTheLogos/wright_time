@@ -13,7 +13,7 @@ class AddUserComponent extends React.Component {
     state = {
         mode: "edit",
         id: -1,
-        role: "",
+        role: "empty",
         firstName: "",
         lastName: "",
         email: "",
@@ -68,6 +68,9 @@ class AddUserComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+
+        if(this.state.role === "empty") { this.setState({errorMessage: "State must not be empty"}); return}
+
         console.log(this.state.dateOfBirth)
         let dateOfBirth = this.state.dateOfBirth.getFullYear() + "-"+ (this.state.dateOfBirth.getMonth() + 1) +"-"+ this.state.dateOfBirth.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let user = {
@@ -132,7 +135,7 @@ class AddUserComponent extends React.Component {
                                 <Col sm={8}>
                                     <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.role}
                                                   onChange={this.changeHandler} name={"role"}>
-                                        <option value="empty"></option>
+                                        <option value="empty"> </option>
                                         <option value="ROLE_ADMIN">Administrator</option>
                                         <option value="ROLE_INSTRUCTOR">Instructor</option>
                                         <option value="ROLE_STUDENT">Student</option>

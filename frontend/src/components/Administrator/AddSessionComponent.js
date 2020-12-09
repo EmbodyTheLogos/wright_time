@@ -87,11 +87,10 @@ class AddSessionComponent extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        console.log(this.state.aircraftId)
         if(this.state.aircraftId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
-        if(this.state.instructorId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
-        if(this.state.studentId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
-        if(this.state.state === "empty") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
+        if(this.state.studentId === "-1") { this.setState({errorMessage: "Student must not be empty"}); return}
+        if(this.state.instructorId === "-1") { this.setState({errorMessage: "Instructor must not be empty"}); return}
+        if(this.state.state === "empty") { this.setState({errorMessage: "State must not be empty"}); return}
 
         let date = this.state.date.getFullYear() + "-"+ (this.state.date.getMonth() + 1) +"-"+ this.state.date.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
         let session = {

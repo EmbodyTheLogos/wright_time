@@ -15,15 +15,14 @@ class AddCertificationComponent extends React.Component {
     state = {
         mode: "",
         id: -1,
-        userId: "",
-        aircraftId: "",
+        userId: "-1",
+        aircraftId: "-1",
         dateObtained: new Date(),
         aircrafts: [],
         users: [],
         errorMessage: "",
         jwtToken: ""
     };
-
 
     constructor(props) {
         super(props)
@@ -75,6 +74,9 @@ class AddCertificationComponent extends React.Component {
     }
 
     submitHandler = (event) => {
+        if(this.state.aircraftId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
+        if(this.state.userId === "-1") { this.setState({errorMessage: "Aircraft must not be empty"}); return}
+
         event.preventDefault();
         let dateObtained = this.state.dateObtained.getFullYear() + "-" + (this.state.dateObtained.getMonth() + 1) + "-" + this.state.dateObtained.getDate().toLocaleString('en-US', {
             minimumIntegerDigits: 2,
@@ -131,7 +133,7 @@ class AddCertificationComponent extends React.Component {
                                 <Col sm={8}>
                                     <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.userId}
                                                   onChange={this.changeHandler} name={"userId"}>
-                                        <option value="empty"/>
+                                        <option value="-1"/>
                                         {this.state.users.map(user => <option key={user.id} value={user.id}>
                                             {user.firstName + " " + user.lastName}</option>)}
                                     </Form.Control>
@@ -143,7 +145,7 @@ class AddCertificationComponent extends React.Component {
                                 <Col sm={8}>
                                     <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.aircraftId}
                                                   onChange={this.changeHandler} name={"aircraftId"}>
-                                        <option value="empty"/>
+                                        <option value="-1"/>
                                         {this.state.aircrafts.map(aircraft => <option key={aircraft.id} value={aircraft.id}>
                                             {aircraft.manufacturer + " " + aircraft.model + " " + aircraft.name}</option>)}
                                     </Form.Control>
