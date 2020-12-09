@@ -212,7 +212,7 @@ public class SessionController {
     }
 
     @PutMapping("/{id}/cancel")
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN"})
     public Session cancel(@PathVariable long id) throws NoSuchElementException {
         return sessionRepository.findById(id).map(toUpdate -> {
             toUpdate.setState(Session.State.CANCELLED);
