@@ -53,6 +53,8 @@ public class DatabaseLoader implements CommandLineRunner {
         var session6 = new Session(user3, user2, aircraft1, 15, LocalDate.of(2020,12,28), Session.State.DECLINED, "", 0);
         var session7 = new Session(user3, user2, aircraft3, 11, LocalDate.of(2020, 12, 10), Session.State.APPROVED,"",0);
         var session8 = new Session(user3, user2, aircraft3, 11, LocalDate.of(2020, 12, 2), Session.State.APPROVED,"",0);
+        var session9 = new Session(user3, user2, aircraft3, 9, LocalDate.of(2020, 12, 80), Session.State.APPROVED, "", 0);
+
         aircraftRepository.save(aircraft1);
         aircraftRepository.save(aircraft2);
         aircraftRepository.save(aircraft3);
@@ -76,6 +78,7 @@ public class DatabaseLoader implements CommandLineRunner {
         sessionRepository.save(session6);
         sessionRepository.save(session7);
         sessionRepository.save(session8);
+        sessionRepository.save(session9);
 
     }
 }
