@@ -11,7 +11,7 @@ class UserProfileComponent extends React.Component {
         jwtToken: "",
         user: "",
         hours: 0,
-        certifications: []
+        certifications: [],
     }
 
     constructor(props) {
@@ -38,14 +38,12 @@ class UserProfileComponent extends React.Component {
                 <UserNavbar/>
                 <br/>
 
-                <h3>User Profile Formatting Placeholder</h3>
+                <h3>Profile of {this.state.user.firstName + " " + this.state.user.lastName}</h3>
                 <br/>
                 <br/>
-                <h5>{this.state.user.firstName + " " + this.state.user.lastName}</h5>
+                <h5>Contact at: {this.state.user.email}</h5>
                 <br/>
-                <h5>{this.state.user.email}</h5>
-                <br/>
-                <h5>{this.state.user.dateOfBirth}</h5>
+                <h5>Born: {this.state.user.dateOfBirth}</h5>
                 <br/>
                 <h5>{this.state.hours} total flight hours</h5>
                 <br/>

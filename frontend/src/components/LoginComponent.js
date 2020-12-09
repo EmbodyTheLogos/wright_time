@@ -1,8 +1,10 @@
 import {withCookies} from "react-cookie";
 import {Link, withRouter} from "react-router-dom";
-import {Alert, Button, Col, Form, Row} from "react-bootstrap";
+import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
 import React from "react";
+import Center from 'react-center';
 import AuthService from "../services/AuthService";
+import * as PropTypes from "prop-types";
 
 class LoginComponent extends React.Component {
     state = {
@@ -14,7 +16,7 @@ class LoginComponent extends React.Component {
         let name = event.target.name;
         let value = event.target.value;
         console.log(name + ':' + value)
-        this.setState({[name]:value})
+        this.setState({[name]: value})
     }
 
     submitHandler = (event) => {
@@ -31,9 +33,9 @@ class LoginComponent extends React.Component {
                 }
             })
         }).catch(res => {
-            if(res.response) {
+            if (res.response) {
                 console.log(res.response)
-                if(res.response.status === 401) {
+                if (res.response.status === 401) {
                     this.setState({errorMessage: 'Invalid Email or Password'});
                 } else {
                     this.setState({errorMessage: "unknown error"})
@@ -69,41 +71,51 @@ class LoginComponent extends React.Component {
     render() {
         return (
             <div>
-                {this.state.errorMessage &&
-                <Alert variant="danger">
-                    <Alert.Heading>Input Error</Alert.Heading>
-                    <p>{this.state.errorMessage}</p>
-                </Alert>}
-                <Form.Group as={Row} controlId={"email"}>
-                    <Form.Label column sm={4}>Email:</Form.Label>
-                    <Col sm={8}>
-                        <Form.Control type={"text"} placeholder={"email"}
-                                      value={this.state.email} onChange={this.changeHandler}
-                                      name={"email"}/>
-                    </Col>
-                </Form.Group>
+                <Container>
+                    {this.state.errorMessage &&
+                    <Alert variant="danger">
+                        <Alert.Heading>Input Error</Alert.Heading>
+                        <p>{this.state.errorMessage}</p>
+                    </Alert>}
+                    <Center>
+                        <Form>
+                            <Form.Group as={Row} controlId={"email"} style={{marginTop: "20px"}}>
+                                <Form.Label column sm={3}>Email:</Form.Label>
+                                <Col sm={9}>
+                                    <Form.Control type={"text"} placeholder={"Email"}
+                                                  value={this.state.email} onChange={this.changeHandler}
+                                                  name={"email"}/>
+                                </Col>
+                            </Form.Group>
 
-                <Form.Group as={Row} controlId={"password"}>
-                    <Form.Label column sm={4}>Password:</Form.Label>
-                    <Col sm={8}>
-                        <Form.Control type={"password"} placeholder={"password"}
-                                      defaultValue={this.state.password} onChange={this.changeHandler}
-                                      name={"password"}/>
-                    </Col>
-                </Form.Group>
-                <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
+                            <Form.Group as={Row} controlId={"password"} style={{marginTop: "20px"}}>
+                                <Form.Label column sm={3}>Password:</Form.Label>
+                                <Col sm={9}>
+                                    <Form.Control type={"password"} placeholder={"Password"}
+                                                  defaultValue={this.state.password} onChange={this.changeHandler}
+                                                  name={"password"}/>
+                                </Col>
+                            </Form.Group>
+                            <Button variant="dark" type="submit" style={{marginTop: "20px"}}
+                                    onClick={this.submitHandler}>Submit</Button>
+                        </Form>
+                    </Center>
+                    <br/>
 
-                <br/>
-
-                <div>
-                    <div className="container mt-4">
-                        <Link to={"/pending"} className={"btn btn-secondary btn-block"} onClick={this.loginAdmin}>Administrator</Link>
-                        <br/>
-                        <Link to={"/user/home"} className={"btn btn-info btn-block"} onClick={this.loginInstructor}>Instructor</Link>
-                        <br/>
-                        <Link to={"/user/home"} className={"btn btn-info btn-block"} onClick={this.loginUser}>User</Link>
+                    <div>
+                        <div className="container mt-4">
+                            <Link to={"/pending"} className={"btn btn-secondary btn-block"}
+                                  onClick={this.loginAdmin}>Administrator</Link>
+                            <br/>
+                            <Link to={"/user/home"} className={"btn btn-info btn-block"}
+                                  onClick={this.loginInstructor}>Instructor</Link>
+                            <br/>
+                            <Link to={"/user/home"} className={"btn btn-info btn-block"}
+                                  onClick={this.loginUser}>User</Link>
+                        </div>
                     </div>
-                </div>
+
+                </Container>
             </div>
         );
     }
