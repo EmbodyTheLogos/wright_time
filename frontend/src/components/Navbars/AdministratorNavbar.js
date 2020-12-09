@@ -35,7 +35,7 @@ class AdministratorNavbar extends React.Component {
                 <Navbar bg="dark" variant="dark" expand="lg" className={"container-fluid"}>
                     {/*<Navbar.Brand style={{fontWeight: "bold", color: "LightSkyBlue"}} href={'/'}>Wright*/}
                     {/*    Time</Navbar.Brand>*/}
-                    <Navbar.Brand href={'/'}>
+                    <Navbar.Brand>
                         <img
                             src={logoImage}
                             width="40"
