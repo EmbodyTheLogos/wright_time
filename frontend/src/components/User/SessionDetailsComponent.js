@@ -92,21 +92,65 @@ class SessionDetailsComponent extends React.Component {
                 <UserNavbar/>
                 <div style={bg}>
                     <Container style={content}>
-                        <h3>Session Details</h3>
+                        <h2>Session Details</h2>
                         <br/>
-                        {state === "COMPLETE" ? <h5>Completed at: {this.state.date + ""}</h5> :
-                            <h5>Scheduled for: {this.state.date + ""}</h5>}
+                        {state === "COMPLETE" ? <h4>Completed at: {this.state.date + ""}</h4> :
+                            <h4>Scheduled for: {this.state.date + ""}</h4>}
+                        <br/>
 
-                        <h5>Aircraft: {this.state.aircraft.manufacturer + " " + this.state.aircraft.model + " " + this.state.aircraft.name}</h5>
-                        <h5>Instructor: {this.state.instructor.firstName + " " + this.state.instructor.lastName}</h5>
-                        <h5>Student: {this.state.student.firstName + " " + this.state.student.lastName}</h5>
-                        {this.state.state === "PENDING" && <h5>State: Pending</h5>}
-                        {this.state.state === "DECLINED" && <h5>State: Declined</h5>}
-                        {this.state.state === "CANCELLED" && <h5>State: Cancelled</h5>}
-                        {this.state.state === "APPROVED" && <h5>State: Approved</h5>}
-                        {this.state.state === "COMPLETE" && <h5>State: Completed</h5>}
-                        {this.state.state === "COMPLETE" && <h5>Score: {this.state.score}</h5>}
-                        {this.state.state === "COMPLETE" && <h5>Comments: {this.state.comments}</h5>}
+                        <table className="table table-hover table-fixed">
+                            <thead/>
+                            <tbody>
+                            <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}} width={'50%'}>Aircraft:</td>
+                                <td style={{
+                                    textAlign: "left",
+                                    fontSize: '20px'
+                                }}>{this.state.aircraft.manufacturer + " " + this.state.aircraft.model + " " + this.state.aircraft.name}</td>
+                            </tr>
+                            <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}}>Instructor:</td>
+                                <td style={{
+                                    textAlign: "left",
+                                    fontSize: '20px'
+                                }}>{this.state.instructor.firstName + " " + this.state.instructor.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}}>Student:</td>
+                                <td style={{
+                                    textAlign: "left",
+                                    fontSize: '20px'
+                                }}>{this.state.student.firstName + " " + this.state.student.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}}>State:</td>
+                                {this.state.state === "PENDING" &&
+                                <td style={{textAlign: "left", fontSize: '20px'}}>Pending</td>}
+                                {this.state.state === "DECLINED" &&
+                                <td style={{textAlign: "left", fontSize: '20px'}}>Declined</td>}
+                                {this.state.state === "CANCELLED" &&
+                                <td style={{textAlign: "left", fontSize: '20px'}}>Cancelled</td>}
+                                {this.state.state === "APPROVED" &&
+                                <td style={{textAlign: "left", fontSize: '20px'}}>Approved</td>}
+                                {this.state.state === "COMPLETE" &&
+                                <td style={{textAlign: "left", fontSize: '20px'}}>Completed</td>}
+                            </tr>
+                            {this.state.state === "COMPLETE" && <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}}>Score:</td>
+                                <td style={{
+                                    textAlign: "left",
+                                    fontSize: '20px'
+                                }}>{this.state.score}</td>
+                            </tr>}
+                            {this.state.state === "COMPLETE" && <tr>
+                                <td style={{textAlign: "right", fontSize: '20px'}}>Comments:</td>
+                                <td style={{
+                                    textAlign: "left",
+                                    fontSize: '20px'
+                                }}>{this.state.comments}</td>
+                            </tr>}
+                            </tbody>
+                        </table>
                     </Container>
                 </div>
 

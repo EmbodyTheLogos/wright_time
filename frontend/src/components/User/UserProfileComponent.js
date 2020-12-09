@@ -60,9 +60,9 @@ class UserProfileComponent extends React.Component {
                 <UserNavbar/>
                 <div style={bg}>
                     <Container style={content}>
-                        <h3 style={{textAlign: "left", marginLeft: "50px"}}>Profile
-                            of {this.state.user.firstName + " " + this.state.user.lastName}</h3>
-                        <h5 style={{textAlign: "left", marginLeft: "50px"}}>Contact at: {this.state.user.email}</h5>
+                        <h2 style={{textAlign: "left", marginLeft: "50px"}}>Profile
+                            of {this.state.user.firstName + " " + this.state.user.lastName}</h2>
+                        <h4 style={{textAlign: "left", marginLeft: "50px"}}>Contact at: {this.state.user.email}</h4>
                         <table className="table table-hover table-fixed">
                             <thead/>
                             <tbody>
