@@ -117,7 +117,7 @@ class SessionComponent extends React.Component {
 
                     <br/>
                     {role === "ROLE_ADMIN" &&
-                    <Link to={"/admin/sessions/add"} className={"btn btn-dark"}>Add Session</Link>}
+                    <Link to={"/sessions/add"} className={"btn btn-dark"}>Add Session</Link>}
                 </div>
 
             </div>
