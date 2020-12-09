@@ -109,6 +109,18 @@ public class UserController {
         return total;
     }
 
+    @GetMapping("/{id}/total_hours")
+    @Secured({ "ROLE_STUDENT", "ROLE_INSTRUCTOR", "ROLE_ADMIN" })
+    public int getTotalHours(@PathVariable long id) throws NoSuchElementException {
+        final var student = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No student with id: " + id));
+        final var sessions = sessionRepository.findSessionByStudent(student);
+        var total = 0;
+        for (Session session : sessions) {
+            total += session.getAircraft().getTrainingDuration();
+        }
+        return total;
+    }
+
     @PostMapping
     @Secured("ROLE_ADMIN")
     public User addUser(@RequestBody @Valid User user) {
@@ -131,7 +143,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @Secured("ROLE_ADMIN")
     public void deleteUser(@PathVariable long id) {
-        //TODO: prevent from deleting current user. 
+        //TODO: prevent from deleting current user.
         userRepository.deleteById(id);
     }
 
