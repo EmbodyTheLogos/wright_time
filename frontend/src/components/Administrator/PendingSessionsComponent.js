@@ -48,7 +48,7 @@ class PendingSessionsComponent extends React.Component {
                             <th scope={"col"}> Session ID</th>
                             <th scope={"col"}> Aircraft</th>
                             <th scope={"col"}> Instructor</th>
-                            <th scope={"col"}> Student</th>
+                            {role === "ROLE_ADMIN" && <th scope={"col"}> Student</th>}
                             <th scope={"col"}> Date</th>
                             <th scope={"col"}> Start Time</th>
                             {role === "ROLE_ADMIN" && <th scope={"col"}/>}
