@@ -13,12 +13,14 @@ class LoginComponent extends React.Component {
     changeHandler = (event) => {
         let name = event.target.name;
         let value = event.target.value;
+        console.log(name + ':' + value)
         this.setState({[name]:value})
     }
 
     submitHandler = (event) => {
         event.preventDefault();
         const {cookies} = this.props;
+        console.log(this.state.password)
         AuthService.signin(this.state.email, this.state.password).then(res => {
             cookies.set('JWT-TOKEN', res.data.accessToken)
             AuthService.user(res.data.accessToken).then(res => {
@@ -30,6 +32,7 @@ class LoginComponent extends React.Component {
             })
         }).catch(res => {
             if(res.response) {
+                console.log(res.response)
                 if(res.response.status === 401) {
                     this.setState({errorMessage: 'Invalid Email or Password'});
                 } else {
@@ -85,7 +88,7 @@ class LoginComponent extends React.Component {
                     <Col sm={8}>
                         <Form.Control type={"password"} placeholder={"password"}
                                       defaultValue={this.state.password} onChange={this.changeHandler}
-                                      name={"Password"}/>
+                                      name={"password"}/>
                     </Col>
                 </Form.Group>
                 <Button variant="dark" type="submit" onClick={this.submitHandler}>Submit</Button>
