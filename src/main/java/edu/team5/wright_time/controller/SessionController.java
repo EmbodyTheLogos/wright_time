@@ -177,7 +177,7 @@ public class SessionController {
     }
 
     @PutMapping("/{id}")
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN", "ROLE_INSTRUCTOR"})
     public Session updateSessionAircraft(@PathVariable long id, @RequestBody @Valid Session session) throws NoSuchElementException {
         checkForConflicts(session);
         return sessionRepository.findById(id).map(toUpdate -> {
