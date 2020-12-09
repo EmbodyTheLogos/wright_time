@@ -161,7 +161,7 @@ class AddSessionComponent extends React.Component {
                                 <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.instructorId}
                                               onChange={this.changeHandler} name={"instructorId"}>
-                                    <option value="empty"> </option>
+                                    <option value="-1"> </option>
                                     {this.state.instructors.map(instructor => <option key={instructor.id} value={instructor.id}>
                                         {instructor.firstName + " " + instructor.lastName}</option>)}
                                 </Form.Control>
@@ -173,7 +173,7 @@ class AddSessionComponent extends React.Component {
                                 <Col sm={8}>
                                 <Form.Control as={"select"} className={"mr-sm-2"} value={this.state.studentId}
                                               onChange={this.changeHandler} name={"studentId"}>
-                                    <option value="empty"> </option>
+                                    <option value="-1"> </option>
                                     {this.state.students.map(student => <option key={student.id} value={student.id}>
                                         {student.firstName + " " + student.lastName}</option>)}
                                 </Form.Control>
